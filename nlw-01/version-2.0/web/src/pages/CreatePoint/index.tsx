@@ -2,8 +2,13 @@
 import React, { useEffect, useState, ChangeEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
-import { MapContainer as Map, TileLayer, Marker } from 'react-leaflet';
-// import { LeafletMouseEvent } from 'leaflet';
+import {
+  MapContainer as Map,
+  TileLayer,
+  Marker,
+  useMapEvents,
+} from 'react-leaflet';
+import { LeafletMouseEvent } from 'leaflet';
 
 import axios from 'axios';
 import api from '../../services/api';
@@ -102,6 +107,22 @@ const CreatePoint: React.FC = () => {
     setSelectedCity(city);
   }
 
+  function LocationMarker() {
+    const map = useMapEvents({
+      click(e: LeafletMouseEvent) {
+        if (initialPosition[0] === 0) {
+          map.locate();
+        }
+
+        const { lat: latitude, lng: longitude } = e.latlng;
+
+        setSelectedPosition([latitude, longitude]);
+      },
+    });
+
+    return <Marker position={selectedPosition} />;
+  }
+
   return (
     <Container>
       <header>
@@ -157,7 +178,7 @@ const CreatePoint: React.FC = () => {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
 
-              <Marker position={selectedPosition} />
+              <LocationMarker />
             </Map>
           )}
 
