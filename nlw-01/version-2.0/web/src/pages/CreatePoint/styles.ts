@@ -134,6 +134,11 @@ export const ItemGrid = styled.ul`
   gap: 16px;
   list-style: none;
 
+  .selected {
+    background: #e1faec;
+    border: 2px solid #34cb79;
+  }
+
   li {
     background: #f5f5f5;
     border: 2px solid #f5f5f5;

@@ -1,6 +1,8 @@
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useEffect, useState, ChangeEvent } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
 import {
   MapContainer as Map,
@@ -48,7 +50,17 @@ const CreatePoint: React.FC = () => {
   const [ufs, setUfs] = useState<string[]>([]);
   const [cities, setCities] = useState<string[]>([]);
 
+  const [selectedItems, setSeletedItems] = useState<number[]>([]);
+
   const [seletedFile, setSeletedFile] = useState<File>();
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    whatsapp: '',
+  });
+
+  const history = useHistory();
 
   useEffect(() => {
     async function currentPossition() {
@@ -123,6 +135,58 @@ const CreatePoint: React.FC = () => {
     return <Marker position={selectedPosition} />;
   }
 
+  function handleSelectItem(id: number) {
+    const alreadySelected = selectedItems.findIndex(item => item === id);
+
+    if (alreadySelected >= 0) {
+      const filteredItems = selectedItems.filter(item => item !== id);
+
+      setSeletedItems(filteredItems);
+    } else {
+      setSeletedItems([...selectedItems, id]);
+    }
+  }
+
+  function handleInputChange(event: ChangeEvent<HTMLInputElement>) {
+    const { name, value } = event.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  }
+
+  async function handleSubmit(event: FormEvent) {
+    event.preventDefault();
+
+    const { name, email, whatsapp } = formData;
+    const uf = selectedUf;
+    const city = selectedCity;
+    const [latitude, longitude] = selectedPosition;
+    const itemsData = selectedItems;
+
+    const data = new FormData();
+
+    data.append('name', name);
+    data.append('email', email);
+    data.append('whatsapp', whatsapp);
+    data.append('uf', uf);
+    data.append('city', city);
+    data.append('latitude', String(latitude));
+    data.append('longitude', String(longitude));
+    data.append('items', itemsData.join(','));
+
+    if (seletedFile) {
+      data.append('images', seletedFile);
+    }
+
+    await api.post('points', data);
+
+    alert('Ponto de coleta criado');
+
+    history.push('/');
+  }
+
   return (
     <Container>
       <header>
@@ -134,7 +198,7 @@ const CreatePoint: React.FC = () => {
         </Link>
       </header>
 
-      <form>
+      <form onSubmit={handleSubmit}>
         <h1>
           Cadastro do
           <br />
@@ -150,17 +214,32 @@ const CreatePoint: React.FC = () => {
 
           <Field>
             <label htmlFor="name">Nome da entidade</label>
-            <input type="text" name="name" id="name" />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              onChange={handleInputChange}
+            />
           </Field>
 
           <FieldGroup>
             <Field>
               <label htmlFor="email">E-mail</label>
-              <input type="email" name="email" id="email" />
+              <input
+                type="email"
+                name="email"
+                id="email"
+                onChange={handleInputChange}
+              />
             </Field>
             <Field>
               <label htmlFor="whatsapp">WhatsApp</label>
-              <input type="text" name="whatsapp" id="whatsapp" />
+              <input
+                type="text"
+                name="whatsapp"
+                id="whatsapp"
+                onChange={handleInputChange}
+              />
             </Field>
           </FieldGroup>
         </fieldset>
@@ -226,7 +305,11 @@ const CreatePoint: React.FC = () => {
 
           <ItemGrid>
             {items?.map(item => (
-              <li key={item.id}>
+              <li
+                key={item.id}
+                className={selectedItems.includes(item.id) ? 'selected' : ''}
+                onClick={() => handleSelectItem(item.id)}
+              >
                 <img src={item.url} alt={item.title} />
                 <span>{item.title}</span>
               </li>
