@@ -272,7 +272,7 @@ const CreatePoint: React.FC = () => {
             {items.map(item => (
               <li 
                 key={item.id} 
-                onClick={() => handleSelectItem(item.id)}
+                onClick={this.handleSelectItem(item.id)}
                 className={selectedItems.includes(item.id) ? 'selected' : ''}  
               >
                 <img src={item.image_url} alt={item.title}/>
