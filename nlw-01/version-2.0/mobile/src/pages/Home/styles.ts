@@ -25,7 +25,7 @@ export const Title = styled.Text`
 `;
 
 export const Description = styled.Text`
-  color: '#6C6C80';
+  color: #6c6c80;
   font-size: 16px;
   margin-top: 16px;
   font-family: 'Roboto_400Regular';
@@ -34,38 +34,38 @@ export const Description = styled.Text`
 `;
 
 export const Input = styled.TextInput`
-  background-color: '#34CB79';
+  background-color: #34cb79;
   height: 60;
-  flex-direction: 'row';
+  flex-direction: row;
   border-radius: 10;
-  overflow: 'hidden';
-  align-items: 'center';
+  overflow: hidden;
+  align-items: center;
   margin-top: 8;
 `;
 
 export const Button = styled(RectButton)`
-  background-color: '#34CB79';
+  background-color: #34cb79;
   height: 60px;
-  flex-direction: 'row';
+  flex-direction: row;
   border-radius: 10px;
-  overflow: 'hidden';
-  align-items: 'center';
+  overflow: hidden;
+  align-items: center;
   margin-top: 8px;
 `;
 
 export const ButtonIcon = styled.View`
   height: 60px;
   width: 60px;
-  background-color: 'rgba(0, 0, 0, 0.1)';
-  justify-content: 'center';
-  align-items: 'center';
+  background-color: rgba(0, 0, 0, 0.1);
+  justify-content: center;
+  align-items: center;
 `;
 
 export const ButtonText = styled.Text`
   flex: 1;
-  justify-content: 'center';
-  text-align: 'center';
-  color: '#FFF';
+  justify-content: center;
+  text-align: center;
+  color: #fff;
   font-family: 'Roboto_500Medium';
   font-size: 16px;
 `;
