@@ -1,4 +1,4 @@
-import { ImageBackgroundBase, KeyboardAvoidingView } from 'react-native';
+import { ImageBackground, KeyboardAvoidingView } from 'react-native';
 import { RectButton } from 'react-native-gesture-handler';
 import styled from 'styled-components/native';
 
@@ -6,7 +6,7 @@ export const Container = styled(KeyboardAvoidingView)`
   flex: 1;
 `;
 
-export const Content = styled(ImageBackgroundBase)`
+export const Content = styled(ImageBackground)`
   flex: 1;
   padding: 32px;
 `;
@@ -34,13 +34,14 @@ export const Description = styled.Text`
 `;
 
 export const Input = styled.TextInput`
-  background-color: #34cb79;
-  height: 60;
+  background-color: #fff;
+  height: 60px;
   flex-direction: row;
-  border-radius: 10;
+  border-radius: 10px;
   overflow: hidden;
   align-items: center;
-  margin-top: 8;
+  margin-top: 8px;
+  padding: 20px;
 `;
 
 export const Button = styled(RectButton)`

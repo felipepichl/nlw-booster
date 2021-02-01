@@ -9,7 +9,7 @@ export default {
   render(image: Image): IImage {
     return {
       id: image.id,
-      url: `http://localhost:3333/uploads/${image.path}`,
+      url: `http://10.1.1.104:3333/uploads/${image.path}`,
     };
   },
 

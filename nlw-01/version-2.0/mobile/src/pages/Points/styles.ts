@@ -17,8 +17,6 @@ export const Title = styled.Text`
 `;
 
 export const Description = styled.Text`
-  width: 90;
-  height: 80;
   color: #6c6c80;
   font-size: 16px;
   margin-top: 4px;
@@ -31,9 +29,6 @@ export const MapContainer = styled.View`
   border-radius: 10px;
   overflow: hidden;
   margin-top: 16px;
-
-  .map {
-  }
 `;
 
 export const Map = styled(MapView)`

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Image, View, Text } from 'react-native';
+import { Platform, Image, View, Text } from 'react-native';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Feather as Icon } from '@expo/vector-icons';
 
@@ -8,9 +8,9 @@ import { useNavigation } from '@react-navigation/native';
 import {
   Container,
   Content,
-  Description,
   Main,
   Title,
+  Description,
   Input,
   Button,
   ButtonIcon,
@@ -34,7 +34,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <Container>
+    <Container behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
       <Content source={background} imageStyle={{ width: 274, height: 368 }}>
         <Main>
           <Image source={logo} />

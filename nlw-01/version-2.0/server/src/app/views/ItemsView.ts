@@ -11,7 +11,7 @@ export default {
     return {
       id: item.id,
       title: item.title,
-      url: `http://localhost:3333/uploads/items/${item.path}`,
+      url: `http://10.1.1.104:3333/uploads/items/${item.path}`,
     };
   },
 

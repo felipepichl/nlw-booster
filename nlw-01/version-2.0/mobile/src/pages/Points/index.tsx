@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Alert, TouchableOpacity } from 'react-native';
+import { Alert, TouchableOpacity, ScrollView } from 'react-native';
+import { SvgUri } from 'react-native-svg';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import * as Location from 'expo-location';
 
@@ -19,19 +20,21 @@ import {
   MapMarkerImage,
   MapMarkerTitle,
   ItemsContatiner,
+  Item,
+  ItemText,
 } from './styles';
 
 interface Item {
   id: number;
   title: string;
-  image_url: string;
+  url: string;
 }
 
 interface Point {
   id: number;
   name: string;
   image: string;
-  image_url: string;
+  url: string;
   latitude: number;
   longitude: number;
 }
@@ -101,6 +104,10 @@ const Points: React.FC = () => {
     goBack();
   }
 
+  function handleNavigateToDetail(id: number) {
+    navigate('Detail', { point_id: id });
+  }
+
   return (
     <>
       <Container>
@@ -124,14 +131,17 @@ const Points: React.FC = () => {
               {points.map(point => (
                 <MapMarker
                   key={point.id}
-                  // onPress={() => handleNavigateToDetail(point.id)}
+                  onPress={() => handleNavigateToDetail(point.id)}
                   coordinate={{
                     latitude: point.latitude,
                     longitude: point.longitude,
                   }}
                 >
                   <MapMarkerContainer>
-                    <MapMarkerImage source={{ uri: point.image_url }} />
+                    <MapMarkerImage
+                      style={{ resizeMode: 'cover' }}
+                      source={{ uri: point.url }}
+                    />
                     <MapMarkerTitle>{point.name}</MapMarkerTitle>
                   </MapMarkerContainer>
                 </MapMarker>
@@ -140,7 +150,20 @@ const Points: React.FC = () => {
           )}
         </MapContainer>
       </Container>
-      <ItemsContatiner />
+      <ItemsContatiner>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={{ paddingHorizontal: 20 }}
+        >
+          {items.map(item => (
+            <Item key={String(item.id)} activeOpacity={0.6}>
+              <SvgUri width={42} height={42} uri={item.url} />
+              <ItemText>{item.title}</ItemText>
+            </Item>
+          ))}
+        </ScrollView>
+      </ItemsContatiner>
     </>
   );
 };
