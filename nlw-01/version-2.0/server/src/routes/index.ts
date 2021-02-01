@@ -31,6 +31,6 @@ routes.post('/items', upload.single('image'), itemsController.create);
 
 routes.get('/points', pointsController.index);
 routes.get('/points/:id', pointsController.show);
-routes.post('/points', upload.array('images'), pointsController.create);
+routes.post('/points', upload.single('image'), pointsController.create);
 
 export default routes;

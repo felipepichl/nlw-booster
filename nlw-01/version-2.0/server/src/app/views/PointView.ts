@@ -11,7 +11,7 @@ interface IPoint {
   longitude: number;
   city: string;
   uf: string;
-  images: IImage[];
+  image: IImage;
   items: IItems[];
 }
 
@@ -25,7 +25,7 @@ export default {
       longitude: point.longitude,
       city: point.city,
       uf: point.uf,
-      images: imageView.renderMay(point.images),
+      image: imageView.render(point.image),
       items: itemView.renderMay(point.items),
     };
   },

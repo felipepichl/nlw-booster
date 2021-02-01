@@ -39,7 +39,7 @@ export default class Point {
     cascade: ['insert', 'update'],
   })
   @JoinColumn({ name: 'point_id' })
-  images: Image[];
+  image: Image;
 
   @ManyToMany(() => Item)
   @JoinTable()

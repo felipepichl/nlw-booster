@@ -18,9 +18,9 @@ export default class Image {
   @Column()
   path: string;
 
-  @ManyToOne(() => Point, point => point.images)
+  @ManyToOne(() => Point, point => point.image)
   @JoinColumn({ name: 'point_id' })
-  point: Point[];
+  point: Point;
 
   @CreateDateColumn()
   created_at: Date;

@@ -1,15 +1,13 @@
 import Image from '@models/Image';
 
 export interface IImage {
-  id: number;
-  url: string;
+  image_url: string;
 }
 
 export default {
   render(image: Image): IImage {
     return {
-      id: image.id,
-      url: `http://10.1.1.104:3333/uploads/${image.path}`,
+      image_url: `http://10.1.1.104:3333/uploads/${image.path}`,
     };
   },
 

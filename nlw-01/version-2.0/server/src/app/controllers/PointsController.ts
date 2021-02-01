@@ -12,7 +12,7 @@ export default class PointsControllers {
     const pointRepository = getRepository(Point);
 
     const points = await pointRepository.find({
-      relations: ['images', 'items'],
+      relations: ['image', 'items'],
     });
 
     return response.json(pointView.renderMany(points));
@@ -24,7 +24,7 @@ export default class PointsControllers {
     const pointRepository = getRepository(Point);
 
     const point = await pointRepository.findOneOrFail(id, {
-      relations: ['images', 'items'],
+      relations: ['image', 'items'],
     });
 
     return response.json(pointView.render(point));
@@ -43,11 +43,7 @@ export default class PointsControllers {
 
     const pointRepository = getRepository(Point);
 
-    const requestImages = request.files as Express.Multer.File[];
-
-    const images = requestImages.map(image => {
-      return { path: image.filename };
-    });
+    const requestImage = request.file as Express.Multer.File;
 
     const itemsIds = items
       .split(',')
@@ -74,7 +70,7 @@ export default class PointsControllers {
       longitude,
       city,
       uf,
-      images,
+      image: requestImage.filename,
       items: existentsItem,
     };
 
