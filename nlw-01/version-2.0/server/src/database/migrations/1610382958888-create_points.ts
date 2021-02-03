@@ -43,6 +43,10 @@ export default class createPoints1610382958888 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'image',
+            type: 'varchar',
+          },
+          {
             name: 'created_at',
             type: 'timestamp',
             default: 'now()',

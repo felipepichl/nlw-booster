@@ -1,15 +1,12 @@
 import {
   Column,
   Entity,
-  JoinColumn,
   JoinTable,
   ManyToMany,
-  OneToMany,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
 
-import Image from './Image';
 import Item from './Item';
 
 @Entity('points')
@@ -35,11 +32,8 @@ export default class Point {
   @Column()
   uf: string;
 
-  @OneToMany(() => Image, image => image.point, {
-    cascade: ['insert', 'update'],
-  })
-  @JoinColumn({ name: 'point_id' })
-  image: Image;
+  @Column()
+  image: string;
 
   @ManyToMany(() => Item)
   @JoinTable()

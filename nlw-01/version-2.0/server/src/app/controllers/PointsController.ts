@@ -12,7 +12,7 @@ export default class PointsControllers {
     const pointRepository = getRepository(Point);
 
     const points = await pointRepository.find({
-      relations: ['image', 'items'],
+      relations: ['items'],
     });
 
     return response.json(pointView.renderMany(points));
@@ -24,7 +24,7 @@ export default class PointsControllers {
     const pointRepository = getRepository(Point);
 
     const point = await pointRepository.findOneOrFail(id, {
-      relations: ['image', 'items'],
+      relations: ['items'],
     });
 
     return response.json(pointView.render(point));
