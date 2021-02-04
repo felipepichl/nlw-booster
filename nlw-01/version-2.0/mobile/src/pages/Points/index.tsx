@@ -97,7 +97,7 @@ const Points: React.FC = () => {
       .then(response => {
         setPoints(response.data);
       });
-  }, [selectedItems]);
+  }, [routeParams, selectedItems]);
 
   function handleNavigateBack() {
     goBack();
@@ -105,6 +105,18 @@ const Points: React.FC = () => {
 
   function handleNavigateToDetail(id: number) {
     navigate('Detail', { point_id: id });
+  }
+
+  function handleSelectItem(id: number) {
+    const alreadySelected = selectedItems.findIndex(item => item === id);
+
+    if (alreadySelected >= 0) {
+      const filteredItems = selectedItems.filter(item => item !== id);
+
+      setSeletedItems(filteredItems);
+    } else {
+      setSeletedItems([...selectedItems, id]);
+    }
   }
 
   return (
@@ -156,7 +168,16 @@ const Points: React.FC = () => {
           contentContainerStyle={{ paddingHorizontal: 20 }}
         >
           {items.map(item => (
-            <Item key={String(item.id)} activeOpacity={0.6}>
+            <Item
+              key={String(item.id)}
+              onPress={() => handleSelectItem(item.id)}
+              activeOpacity={0.6}
+              style={
+                selectedItems.includes(item.id)
+                  ? { borderColor: '#34cb79', borderWidth: 2 }
+                  : {}
+              }
+            >
               <SvgUri width={42} height={42} uri={item.url} />
               <ItemText>{item.title}</ItemText>
             </Item>
