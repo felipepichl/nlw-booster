@@ -33,6 +33,7 @@ export default class PointsControllers {
   async create(request: Request, response: Response): Promise<Response> {
     const {
       name,
+      email,
       whatsapp,
       latitude,
       longitude,
@@ -65,6 +66,7 @@ export default class PointsControllers {
 
     const data = {
       name,
+      email,
       whatsapp,
       latitude,
       longitude,

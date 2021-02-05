@@ -18,6 +18,9 @@ export default class Point {
   name: string;
 
   @Column()
+  email: string;
+
+  @Column()
   whatsapp: string;
 
   @Column('decimal')

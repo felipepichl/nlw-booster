@@ -19,6 +19,10 @@ export default class createPoints1610382958888 implements MigrationInterface {
             type: 'varchar',
           },
           {
+            name: 'email',
+            type: 'varchar',
+          },
+          {
             name: 'whatsapp',
             type: 'varchar',
           },

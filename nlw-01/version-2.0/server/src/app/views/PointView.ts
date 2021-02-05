@@ -5,6 +5,7 @@ import itemView, { IItems } from './ItemsView';
 interface IPoint {
   id: number;
   name: string;
+  email: string;
   whatsapp: string;
   latitude: number;
   longitude: number;
@@ -19,6 +20,7 @@ export default {
     return {
       id: point.id,
       name: point.name,
+      email: point.email,
       whatsapp: point.whatsapp,
       latitude: point.latitude,
       longitude: point.longitude,
