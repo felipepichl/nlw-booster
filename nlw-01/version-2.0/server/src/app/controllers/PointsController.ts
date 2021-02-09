@@ -1,19 +1,18 @@
 import { Request, Response } from 'express';
-import { getRepository, In } from 'typeorm';
-import * as Yup from 'yup';
+import { getRepository } from 'typeorm';
 
 import Point from '@models/Point';
-import Item from '@models/Item';
+
+import CreatePointServices from '../services/CreatePointServices';
+import ListPointsServices from '../services/ListPointsServices';
 
 import pointView from '../views/PointView';
 
 export default class PointsControllers {
   async index(request: Request, response: Response): Promise<Response> {
-    const pointRepository = getRepository(Point);
+    const listPoints = new ListPointsServices();
 
-    const points = await pointRepository.find({
-      relations: ['items'],
-    });
+    const points = await listPoints.execute();
 
     return response.json(pointView.renderMany(points));
   }
@@ -42,29 +41,11 @@ export default class PointsControllers {
       items,
     } = request.body;
 
-    const pointRepository = getRepository(Point);
+    const { filename: image } = request.file as Express.Multer.File;
 
-    const requestImage = request.file as Express.Multer.File;
+    const createPoint = new CreatePointServices();
 
-    const itemsIds = items
-      .split(',')
-      .map((item: string) => Number(item.trim()));
-
-    const itemSchema = Yup.number().required();
-
-    await itemSchema.validate(itemsIds, {
-      abortEarly: false,
-    });
-
-    const itemsRepository = getRepository(Item);
-
-    const existentsItem = await itemsRepository.find({
-      where: {
-        id: In(itemsIds),
-      },
-    });
-
-    const data = {
+    const point = await createPoint.execute({
       name,
       email,
       whatsapp,
@@ -72,9 +53,18 @@ export default class PointsControllers {
       longitude,
       city,
       uf,
-      image: requestImage.filename,
-      items: existentsItem,
-    };
+      items,
+      image,
+    });
+
+    return response.status(201).json(point);
+
+    /**
+    const itemSchema = Yup.number().required();
+
+    await itemSchema.validate(itemsIds, {
+      abortEarly: false,
+    });
 
     const schema = Yup.object().shape({
       name: Yup.string().required(),
@@ -93,11 +83,6 @@ export default class PointsControllers {
     await schema.validate(data, {
       abortEarly: false,
     });
-
-    const point = pointRepository.create(data);
-
-    await pointRepository.save(point);
-
-    return response.status(201).json(point);
+    */
   }
 }
