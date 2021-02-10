@@ -1,16 +1,14 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
 
-import Point from '@models/Point';
-
-import CreatePointServices from '../services/CreatePointServices';
-import ListPointsServices from '../services/ListPointsServices';
+import CreatePointService from '../services/CreatePointService';
+import ListPointsService from '../services/ListPointsService';
+import ShowPointService from '../services/ShowPointService';
 
 import pointView from '../views/PointView';
 
 export default class PointsControllers {
   async index(request: Request, response: Response): Promise<Response> {
-    const listPoints = new ListPointsServices();
+    const listPoints = new ListPointsService();
 
     const points = await listPoints.execute();
 
@@ -20,11 +18,9 @@ export default class PointsControllers {
   async show(request: Request, response: Response): Promise<Response> {
     const { id } = request.params;
 
-    const pointRepository = getRepository(Point);
+    const showPoint = new ShowPointService();
 
-    const point = await pointRepository.findOneOrFail(id, {
-      relations: ['items'],
-    });
+    const point = await showPoint.execute({ id });
 
     return response.json(pointView.render(point));
   }
@@ -43,7 +39,7 @@ export default class PointsControllers {
 
     const { filename: image } = request.file as Express.Multer.File;
 
-    const createPoint = new CreatePointServices();
+    const createPoint = new CreatePointService();
 
     const point = await createPoint.execute({
       name,

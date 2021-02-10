@@ -1,18 +1,18 @@
 import { Request, Response } from 'express';
-import { getRepository } from 'typeorm';
-import sharp from 'sharp';
+
 import path from 'path';
 import fs from 'fs';
 
-import Item from '@models/Item';
+import CreateItemService from '../services/CreateItemService';
+import ListItemService from '../services/ListItemsService';
 
 import itemView from '../views/ItemsView';
 
 export default class ItemsControllers {
   async index(request: Request, response: Response): Promise<Response> {
-    const itemRepository = getRepository(Item);
+    const listItem = new ListItemService();
 
-    const items = await itemRepository.find();
+    const items = await listItem.execute();
 
     return response.json(itemView.renderMay(items));
   }
@@ -20,28 +20,22 @@ export default class ItemsControllers {
   async create(request: Request, response: Response): Promise<Response> {
     const { title } = request.body;
 
-    const itemRepository = getRepository(Item);
+    const { filename, destination } = request.file as Express.Multer.File;
 
-    const requestImage = request.file as Express.Multer.File;
-
-    const data = {
-      title,
-      path: requestImage.filename,
-    };
-
-    const oldPath = `${requestImage.destination}/${data.path}`;
-    const newPath = `${path.resolve(requestImage.destination, 'items')}/${
-      data.path
-    }`;
+    const oldPath = `${destination}/${filename}`;
+    const newPath = `${path.resolve(destination, 'items')}/${filename}`;
 
     fs.rename(oldPath, newPath, err => {
       if (err) throw err;
     });
 
-    const item = itemRepository.create(data);
+    const createItem = new CreateItemService();
 
-    await itemRepository.save(item);
+    const item = await createItem.execute({
+      title,
+      path: filename,
+    });
 
-    return response.status(201).json(data);
+    return response.status(201).json(item);
   }
 }
