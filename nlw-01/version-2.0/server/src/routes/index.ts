@@ -1,7 +1,6 @@
 import express from 'express';
-import path from 'path';
-
 import multer from 'multer';
+
 import multerConfig from '@config/uploads';
 
 import ItemsControllers from '@controller/ItemsController';
