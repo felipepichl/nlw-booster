@@ -10,19 +10,6 @@ import PointsControllers from '@controller/PointsController';
 const routes = express.Router();
 const upload = multer(multerConfig);
 
-/**
- * Static Route
- */
-routes.use(
-  '/uploads',
-  express.static(path.resolve(__dirname, '..', '..', 'uploads')),
-);
-
-routes.use(
-  '/uploads',
-  express.static(path.resolve(__dirname, '..', '..', 'uploads', 'items')),
-);
-
 const itemsController = new ItemsControllers();
 const pointsController = new PointsControllers();
 
