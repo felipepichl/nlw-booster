@@ -1,9 +1,10 @@
-import { getRepository, Repository, In } from 'typeorm';
+import { getRepository, Repository } from 'typeorm';
+import { container } from 'tsyringe';
 
 import IPointsRepository from '@modules/Points/repositories/IPointsRepository';
 import ICreatePointDTO from '@modules/Points/dtos/ICreatePointDTO';
 
-import Item from '@modules/Items/infra/typeorm/entities/Item';
+import ShowItemsByIdsService from '@modules/Items/services/ShowItemsByIdsService';
 
 import Point from '../entities/Point';
 
@@ -25,17 +26,11 @@ class PointRepository implements IPointsRepository {
     image,
     items,
   }: ICreatePointDTO): Promise<Point | undefined> {
-    const itemsIds = items
-      .split(',')
-      .map((item: string) => Number(item.trim()));
+    const ids = items.split(',').map((item: string) => Number(item.trim()));
 
-    const itemsRepository = getRepository(Item);
+    const showItemsByIdsService = container.resolve(ShowItemsByIdsService);
 
-    const existentsItem = await itemsRepository.find({
-      where: {
-        id: In(itemsIds),
-      },
-    });
+    const existentsItem = await showItemsByIdsService.execute({ ids });
 
     const data = {
       name,

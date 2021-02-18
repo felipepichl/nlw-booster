@@ -1,4 +1,4 @@
-import { getRepository, Repository } from 'typeorm';
+import { getRepository, Repository, In } from 'typeorm';
 
 import IItemsRepository from '@modules/Items/repositories/IItemsRepository';
 import ICreateItemDTO from '@modules/Items/dtos/ICreateItemDTO';
@@ -22,6 +22,16 @@ class ItemsRepository implements IItemsRepository {
 
   public async findAll(): Promise<Item[] | undefined> {
     const items = await this.ormRepository.find();
+
+    return items;
+  }
+
+  public async findAllByIds(ids: number[]): Promise<Item[] | undefined> {
+    const items = await this.ormRepository.find({
+      where: {
+        id: In(ids),
+      },
+    });
 
     return items;
   }
