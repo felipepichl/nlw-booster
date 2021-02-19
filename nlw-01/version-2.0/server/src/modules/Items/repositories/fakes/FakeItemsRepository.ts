@@ -6,10 +6,13 @@ import Item from '../../infra/typeorm/entities/Item';
 class FakeItemsRepository implements IItemsRepository {
   private items: Item[] = [];
 
-  public async create(itemData: ICreateItemDTO): Promise<Item | undefined> {
+  public async create({
+    title,
+    path,
+  }: ICreateItemDTO): Promise<Item | undefined> {
     const item = new Item();
 
-    Object.assign(item, { itemData });
+    Object.assign(item, { id: 1, title, path });
 
     this.items.push(item);
 
@@ -17,10 +20,14 @@ class FakeItemsRepository implements IItemsRepository {
   }
 
   public async findAll(): Promise<Item[] | undefined> {
-    return items;
+    return this.items;
   }
 
   public async findAllByIds(ids: number[]): Promise<Item[] | undefined> {
+    const items = ids.map(id => {
+      return this.items.find(item => item.id === id);
+    });
+
     return items;
   }
 }
