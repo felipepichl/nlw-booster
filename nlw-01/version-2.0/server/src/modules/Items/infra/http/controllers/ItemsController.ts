@@ -1,9 +1,6 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import path from 'path';
-import fs from 'fs';
-
 import itemView from '@modules/Items/views/ItemsView';
 
 import CreateItemService from '@modules/Items/services/CreateItemService';
@@ -21,20 +18,13 @@ export default class ItemsControllers {
   async create(request: Request, response: Response): Promise<Response> {
     const { title } = request.body;
 
-    const { filename, destination } = request.file as Express.Multer.File;
-
-    const oldPath = `${destination}/${filename}`;
-    const newPath = `${path.resolve(destination, 'items')}/${filename}`;
-
-    fs.rename(oldPath, newPath, err => {
-      if (err) throw err;
-    });
+    const { filename: path } = request.file as Express.Multer.File;
 
     const createItem = container.resolve(CreateItemService);
 
     const item = await createItem.execute({
       title,
-      path: filename,
+      path,
     });
 
     return response.status(201).json(item);

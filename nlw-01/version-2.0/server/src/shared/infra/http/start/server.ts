@@ -4,7 +4,7 @@ import cors from 'cors';
 
 import '@shared/infra/typeorm/connection';
 
-import uploadConfig from '@config/uploads';
+import uploadConfig from '@config/upload';
 import errorHandler from '@shared/errors/handler';
 
 import routes from '../routes';
@@ -14,8 +14,8 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static(uploadConfig.directory));
-app.use('/uploads', express.static(`${uploadConfig.directory}/items`));
+app.use('/uploads', express.static(uploadConfig.uploadFolder));
+app.use('/uploads', express.static(`${uploadConfig.uploadFolder}/items`));
 app.use(routes);
 app.use(errorHandler);
 

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import multer from 'multer';
-import multerConfig from '@config/uploads';
+import multerConfig from '@config/upload';
 
 import ItemsController from '../controllers/ItemsController';
 

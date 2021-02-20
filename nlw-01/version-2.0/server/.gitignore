@@ -1,6 +1,5 @@
 node_modules
 dist
 
-uploads
-!uploads/items/*
-!uploads/items/.gitkeep
+temp/uploads/*
+!temp/uploads/items
