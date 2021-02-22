@@ -3,6 +3,8 @@ import { injectable, inject } from 'tsyringe';
 import Point from '@modules/Points/infra/typeorm/entities/Point';
 import IPointsRepository from '@modules/Points/repositories/IPointsRepository';
 
+import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
+
 interface IRequest {
   name: string;
   email: string;
@@ -20,6 +22,9 @@ class CreatePointServices {
   constructor(
     @inject('PointsRepository')
     private pointsRepository: IPointsRepository,
+
+    @inject('StorageProvider')
+    private storageProvider: IStorageProvider,
   ) {}
 
   public async execute({
@@ -33,6 +38,8 @@ class CreatePointServices {
     items,
     image,
   }: IRequest): Promise<Point> {
+    const fileName = await this.storageProvider.saveFile(image);
+
     const data = {
       name,
       email,
@@ -41,7 +48,7 @@ class CreatePointServices {
       longitude,
       city,
       uf,
-      image,
+      image: fileName,
       items,
     };
 
