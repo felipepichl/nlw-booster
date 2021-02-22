@@ -1,10 +1,12 @@
 import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 
 import FakePointsRepository from '../repositories/fakes/FakePointsRepository';
-import CreatePointService from './CreatePointService';
 
-describe('CreatePoint', () => {
-  it('should be able to create a new point', async () => {
+import CreatePointService from './CreatePointService';
+import ListPointsServices from './ListPointsService';
+
+describe('ListPoints', () => {
+  it('should be able to list all points', async () => {
     const fakePointsRepository = new FakePointsRepository();
     const fakeStorageProvider = new FakeStorageProvider();
 
@@ -12,6 +14,8 @@ describe('CreatePoint', () => {
       fakePointsRepository,
       fakeStorageProvider,
     );
+
+    const listPointsService = new ListPointsServices(fakePointsRepository);
 
     const point = await createPointService.execute({
       name: 'Name Test',
@@ -25,6 +29,9 @@ describe('CreatePoint', () => {
       items: '1,2',
     });
 
+    const points = await listPointsService.execute();
+
     expect(point).toHaveProperty('id');
+    expect(points).toContainEqual(point);
   });
 });
