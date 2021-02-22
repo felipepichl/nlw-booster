@@ -8,8 +8,8 @@ import IStorageProvider from '../models/IStorageProvider';
 class DiskStorageProvider implements IStorageProvider {
   public async saveFile(file: string): Promise<string> {
     await fs.promises.rename(
-      path.resolve(uploadConfig.tempFolder, file),
-      path.resolve(uploadConfig.uploadFolder, file),
+      path.resolve(uploadConfig.directories.tempFolder, file),
+      path.resolve(uploadConfig.directories.uploadsFolder, file),
     );
 
     return file;
@@ -17,8 +17,8 @@ class DiskStorageProvider implements IStorageProvider {
 
   public async saveFileItem(file: string): Promise<string> {
     await fs.promises.rename(
-      path.resolve(uploadConfig.tempFolder, file),
-      path.resolve(uploadConfig.uploadFolder, 'items', file),
+      path.resolve(uploadConfig.directories.tempFolder, file),
+      path.resolve(uploadConfig.directories.itemsFolder, file),
     );
 
     return file;

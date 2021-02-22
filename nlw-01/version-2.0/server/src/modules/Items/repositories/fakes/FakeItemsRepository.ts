@@ -12,7 +12,7 @@ class FakeItemsRepository implements IItemsRepository {
   }: ICreateItemDTO): Promise<Item | undefined> {
     const item = new Item();
 
-    Object.assign(item, { id: 1, title, path });
+    Object.assign(item, { id: Math.floor(Math.random() * 100), title, path });
 
     this.items.push(item);
 
