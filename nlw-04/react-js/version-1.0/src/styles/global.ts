@@ -6,4 +6,23 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
   }
+
+  body {
+    font-family: Inter, sans-serif;
+    background: #f2f3f5;
+    color: #666;
+  }
+
+  body, input, textarea, button {
+    font: 400 "Inter", sans-serif;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
 `;
