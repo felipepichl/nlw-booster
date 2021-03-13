@@ -1,6 +1,9 @@
 import React from 'react';
 
-import { Container, CurrentExperience } from './styles';
+import {
+  Container,
+  CurrentExperience,
+} from '../../styles/components/ExperienceBar';
 
 const ExperienceBar: React.FC = () => {
   return (
