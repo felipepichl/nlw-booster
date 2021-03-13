@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { Container } from './styles';
+import { Container } from '../../styles/pages/Dashboard';
 
 import ExperienceBar from '../../components/ExperienceBar';
 
-const Home: React.FC = () => {
+const Dashboard: React.FC = () => {
   return (
     <Container>
       <ExperienceBar />
@@ -12,4 +12,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default Dashboard;
