@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container } from '../../styles/components/Profile';
+import { Container } from '../styles/components/Profile';
 
 const Profile: React.FC = () => {
   return (
