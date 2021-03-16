@@ -4,7 +4,7 @@ import { Container, CountdownButton } from '../styles/components/Countdown';
 
 const Countdown: React.FC = () => {
   const [time, setTime] = useState(25 * 60);
-  const [active, setActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const minutes = Math.floor(time / 60);
   const seconds = time % 60;
@@ -15,16 +15,16 @@ const Countdown: React.FC = () => {
     .split('');
 
   function startCountdown() {
-    setActive(true);
+    setIsActive(true);
   }
 
   useEffect(() => {
-    if (active && time > 0) {
+    if (isActive && time > 0) {
       setTimeout(() => {
         setTime(time - 1);
       }, 1000);
     }
-  }, [active, time]);
+  }, [isActive, time]);
 
   return (
     <>
@@ -40,9 +40,24 @@ const Countdown: React.FC = () => {
         </div>
       </Container>
 
-      <CountdownButton type="button" onClick={startCountdown}>
-        Iniciar um ciclo
-      </CountdownButton>
+      {isActive ? (
+        <CountdownButton
+          // className={isActive && 'isActive'}
+          isActive={isActive}
+          type="button"
+          onClick={startCountdown}
+        >
+          Abandonar ciclo
+        </CountdownButton>
+      ) : (
+        <CountdownButton
+          isActive={isActive}
+          type="button"
+          onClick={startCountdown}
+        >
+          Iniciar um ciclo
+        </CountdownButton>
+      )}
     </>
   );
 };

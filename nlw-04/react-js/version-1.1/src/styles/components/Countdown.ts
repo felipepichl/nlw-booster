@@ -1,5 +1,9 @@
 import styled from 'styled-components';
 
+interface ButtonProps {
+  isActive: boolean;
+}
+
 export const Container = styled.div`
   display: flex;
   align-items: center;
@@ -39,7 +43,7 @@ export const Container = styled.div`
   }
 `;
 
-export const CountdownButton = styled.button`
+export const CountdownButton = styled.button<ButtonProps>`
   width: 100%;
   height: 5rem;
 
@@ -62,5 +66,15 @@ export const CountdownButton = styled.button`
 
   :hover {
     background: var(--blue-dark);
+  }
+
+  .isActive {
+    background: var(--white);
+    color: (--title);
+
+    :hover {
+      background: var(--red);
+      color: (--white);
+    }
   }
 `;
