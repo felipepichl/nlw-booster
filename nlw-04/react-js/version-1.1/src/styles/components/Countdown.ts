@@ -83,8 +83,13 @@ export const CountdownButton = styled.button<ButtonProps>`
           background: var(--blue);
           color: var(--white);
 
-          :hover {
+          :not(:disabled):hover {
             background: var(--blue-dark);
+          }
+          :disabled {
+            background: var(--white);
+            color: var(--title);
+            cursor: not-allowed;
           }
         `}
 `;
