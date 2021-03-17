@@ -42,7 +42,6 @@ const Countdown: React.FC = () => {
 
       {isActive ? (
         <CountdownButton
-          // className={isActive && 'isActive'}
           isActive={isActive}
           type="button"
           onClick={startCountdown}

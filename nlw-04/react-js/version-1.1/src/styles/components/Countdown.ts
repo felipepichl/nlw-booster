@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface ButtonProps {
   isActive: boolean;
@@ -56,25 +56,35 @@ export const CountdownButton = styled.button<ButtonProps>`
   border: 0;
   border-radius: 5px;
 
-  background: var(--blue);
-  color: var(--white);
+  /* background: var(--blue);
+  color: var(--white); */
 
   font-size: 1.25rem;
   font-weight: 600;
 
   transition: background-color 0.2s;
 
-  :hover {
+  /* :hover {
     background: var(--blue-dark);
-  }
+  } */
 
-  .isActive {
-    background: var(--white);
-    color: (--title);
+  ${props =>
+    props.isActive
+      ? css`
+          background: var(--white);
+          color: (--title);
 
-    :hover {
-      background: var(--red);
-      color: (--white);
-    }
-  }
+          :hover {
+            background: var(--red);
+            color: (--white);
+          }
+        `
+      : css`
+          background: var(--blue);
+          color: var(--white);
+
+          :hover {
+            background: var(--blue-dark);
+          }
+        `}
 `;
