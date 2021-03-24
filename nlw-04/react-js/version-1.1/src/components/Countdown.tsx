@@ -38,9 +38,9 @@ const Countdown: React.FC = () => {
     } else if (isActive && time === 0) {
       setHasFinished(true);
       setIsActive(false);
-      startCountdown();
+      startNewCallenge();
     }
-  }, [isActive, time]);
+  }, [isActive, time, startNewCallenge]);
 
   return (
     <>
