@@ -11,7 +11,7 @@ import {
 } from '../styles/components/ChallangeBox';
 
 const ChallangeBox: React.FC = () => {
-  const { activeChallenge } = useContext(ChallengesContext);
+  const { activeChallenge, resetChallenge } = useContext(ChallengesContext);
 
   return (
     <Container>
@@ -26,7 +26,9 @@ const ChallangeBox: React.FC = () => {
           </main>
 
           <footer>
-            <FailButton type="button">Falhei</FailButton>
+            <FailButton type="button" onClick={resetChallenge}>
+              Falhei
+            </FailButton>
             <SucceededButton type="button">Completei</SucceededButton>
           </footer>
         </Active>
