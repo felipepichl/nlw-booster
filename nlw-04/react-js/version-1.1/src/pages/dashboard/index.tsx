@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Head from 'next/head';
+import { CountdownProvider } from '../../contexts/CountdownContext';
 
 import {
   Container,
@@ -23,17 +24,19 @@ const Dashboard: React.FC = () => {
 
       <ExperienceBar />
 
-      <section>
-        <LeftContainer>
-          <Profile />
-          <CompletedChallenges />
-          <Countdown />
-        </LeftContainer>
+      <CountdownProvider>
+        <section>
+          <LeftContainer>
+            <Profile />
+            <CompletedChallenges />
+            <Countdown />
+          </LeftContainer>
 
-        <RightContainer>
-          <ChallangeBox />
-        </RightContainer>
-      </section>
+          <RightContainer>
+            <ChallangeBox />
+          </RightContainer>
+        </section>
+      </CountdownProvider>
     </Container>
   );
 };
