@@ -14,8 +14,11 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use('/uploads', express.static(uploadConfig.uploadFolder));
-app.use('/uploads', express.static(`${uploadConfig.uploadFolder}/items`));
+app.use('/uploads', express.static(uploadConfig.directories.uploadsFolder));
+app.use(
+  '/uploads',
+  express.static(`${uploadConfig.directories.uploadsFolder}/items`),
+);
 app.use(routes);
 app.use(errorHandler);
 
