@@ -1,8 +1,8 @@
-import UserRepository from 'app/repositories/UserRepository';
+import UserRepository from 'app/repositories/UsersRepository';
 import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
 
-class UserController {
+class UsersController {
   public async store(request: Request, response: Response): Promise<Response> {
     const { name, email } = request.body;
 
@@ -25,4 +25,4 @@ class UserController {
   }
 }
 
-export default UserController;
+export default UsersController;
