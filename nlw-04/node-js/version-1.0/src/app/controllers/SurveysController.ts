@@ -29,7 +29,7 @@ class SurveysController {
 
     const serveys = await surveyRepository.find();
 
-    return response.status(200).json(serveys);
+    return response.json(serveys);
   }
 }
 
