@@ -9,7 +9,7 @@ class SurveysController {
 
     const surveyRepository = getCustomRepository(SurveysRepository);
 
-    const surveyExists = surveyRepository.findOne({ where: title });
+    const surveyExists = await surveyRepository.findOne({ title });
 
     if (surveyExists) {
       return response.status(400).json({ error: 'Survey already exists' });
