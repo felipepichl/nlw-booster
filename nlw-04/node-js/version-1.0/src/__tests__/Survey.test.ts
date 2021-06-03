@@ -16,6 +16,7 @@ describe('Survey', () => {
     });
 
     expect(response.status).toBe(201);
+    expect(response.body).toHaveProperty('id');
   });
 
   it('should not be able to create a new survey with same survey', async () => {
@@ -25,5 +26,16 @@ describe('Survey', () => {
     });
 
     expect(response.status).toBe(400);
+  });
+
+  it('should be able to get all surveys', async () => {
+    await request(app).post('/surveys').send({
+      title: 'Title Example 2',
+      description: 'Description Example 2',
+    });
+
+    const response = await request(app).get('/surveys');
+
+    expect(response.body.length).toBe(2);
   });
 });
