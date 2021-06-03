@@ -39,10 +39,18 @@ export default class CreateSurveysUsers1622758418375
 
         foreignKeys: [
           {
-            name: 'user',
+            name: 'fk_user',
             referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['user_id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
+          },
+          {
+            name: 'fk_survey',
+            referencedTableName: 'surveys',
+            referencedColumnNames: ['id'],
+            columnNames: ['survey_id'],
             onDelete: 'CASCADE',
             onUpdate: 'CASCADE',
           },
