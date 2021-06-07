@@ -5,6 +5,8 @@ import SurveysRepository from 'app/repositories/SurveysRepository';
 import SurveysUsersRepository from 'app/repositories/SurveysUsersRepository';
 import UsersRepository from 'app/repositories/UsersRepository';
 
+import SendMailService from '../../services/SendEmailService';
+
 class SendMailController {
   public async execute(
     request: Request,
@@ -24,11 +26,11 @@ class SendMailController {
       });
     }
 
-    const surveyAlreadyExists = await surveysRepository.findOne({
+    const survey = await surveysRepository.findOne({
       id: survey_id,
     });
 
-    if (!surveyAlreadyExists) {
+    if (!survey) {
       return response.status(400).json({
         error: 'Survey does not exists',
       });
@@ -40,6 +42,8 @@ class SendMailController {
     });
 
     await surveysUsersRepository.save(surveyUser);
+
+    await SendMailService.execute(email, survey.title, survey.description);
 
     return response.json(surveyUser);
   }
