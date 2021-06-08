@@ -1,5 +1,7 @@
 /* eslint-disable no-console */
 import nodemailer, { Transporter } from 'nodemailer';
+import handlebars from 'handlebars';
+import fs from 'fs';
 
 class SendEmailService {
   private client: Transporter;
@@ -20,11 +22,23 @@ class SendEmailService {
     });
   }
 
-  async execute(to: string, subject: string, body: string): Promise<void> {
+  async execute(
+    to: string,
+    subject: string,
+    // eslint-disable-next-line @typescript-eslint/ban-types
+    variables: object,
+    path: string,
+  ): Promise<void> {
+    const templateFileContent = fs.readFileSync(path).toString('utf8');
+
+    const mailTemplateParse = handlebars.compile(templateFileContent);
+
+    const html = mailTemplateParse(variables);
+
     const message = await this.client.sendMail({
       to,
       subject,
-      html: body,
+      html,
       from: 'NPS <noreplay@nps.com.br>',
     });
 
