@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import SendMailController from '@controller/SendMailController';
+import SendMailController from '../app/controllers/SendMailController';
 import UserController from '../app/controllers/UsersController';
 import SurveysController from '../app/controllers/SurveysController';
 import AnswerController from '../app/controllers/AnswerController';

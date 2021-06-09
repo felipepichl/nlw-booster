@@ -3,9 +3,9 @@ import { getCustomRepository } from 'typeorm';
 import { resolve } from 'path';
 import * as Yup from 'yup';
 
-import SurveysRepository from 'app/repositories/SurveysRepository';
-import SurveysUsersRepository from 'app/repositories/SurveysUsersRepository';
-import UsersRepository from 'app/repositories/UsersRepository';
+import UsersRepository from '../repositories/UsersRepository';
+import SurveysUsersRepository from '../repositories/SurveysUsersRepository';
+import SurveysRepository from '../repositories/SurveysRepository';
 
 import SendMailService from '../../services/SendEmailService';
 
