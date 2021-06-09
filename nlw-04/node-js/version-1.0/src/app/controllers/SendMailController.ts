@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { resolve } from 'path';
+import * as Yup from 'yup';
 
 import SurveysRepository from 'app/repositories/SurveysRepository';
 import SurveysUsersRepository from 'app/repositories/SurveysUsersRepository';
@@ -14,6 +15,15 @@ class SendMailController {
     response: Response,
   ): Promise<Response> {
     const { email, survey_id } = request.body;
+
+    const schema = Yup.object().shape({
+      email: Yup.string().email().required('Email is required'),
+      survey_id: Yup.string().required('Survey ID is required'),
+    });
+
+    if (!(await schema.isValid(request.body))) {
+      return response.status(400).json({ error: 'Validation Failed!' });
+    }
 
     const usersRepository = getCustomRepository(UsersRepository);
     const surveysRepository = getCustomRepository(SurveysRepository);
