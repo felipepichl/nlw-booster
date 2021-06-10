@@ -1,6 +1,7 @@
-import { UsersRepository } from 'app/repositories/UsersRepository';
 import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
+
+import { UsersRepository } from 'app/repositories/UsersRepository';
 
 class UsersController {
   public async store(request: Request, response: Response): Promise<Response> {
