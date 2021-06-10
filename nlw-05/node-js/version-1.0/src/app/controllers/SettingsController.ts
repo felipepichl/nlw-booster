@@ -9,6 +9,12 @@ class SettingsController {
 
     const settingsRepository = getCustomRepository(SettingsRepository);
 
+    const settingsAlreadyExists = settingsRepository.findOne(username);
+
+    if (settingsAlreadyExists) {
+      return response.status(400).json({ message: 'Settings already exists' });
+    }
+
     const settings = settingsRepository.create({
       username,
       chat,
