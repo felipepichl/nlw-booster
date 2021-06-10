@@ -18,7 +18,11 @@ class UsersServices {
   public async execute({ name, email }: IRequest): Promise<IResponse> {
     const userRepository = getCustomRepository(UsersRepository);
 
-    const userAlreadyExists = userRepository.findOne(email);
+    console.log(email);
+
+    const userAlreadyExists = await userRepository.findOne({ email });
+
+    console.log(userAlreadyExists);
 
     if (userAlreadyExists) {
       throw new AppError('User already exists');

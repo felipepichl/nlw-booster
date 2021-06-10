@@ -18,9 +18,9 @@ class SettingsController {
       throw new AppError('Validations Failed!');
     }
 
-    const settings = await SettingsServices.execute({ username, chat });
+    const setting = await SettingsServices.execute({ username, chat });
 
-    return response.json(settings);
+    return response.json(setting);
   }
 }
 
