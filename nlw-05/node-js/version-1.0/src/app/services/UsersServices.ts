@@ -3,29 +3,19 @@ import { getCustomRepository } from 'typeorm';
 import { User } from '@models/User';
 import { UsersRepository } from 'app/repositories/UsersRepository';
 
-import { AppError } from 'app/errors/AppError';
-
 interface IRequest {
   name: string;
   email: string;
 }
 
-interface IResponse {
-  user: User;
-}
-
 class UsersServices {
-  public async execute({ name, email }: IRequest): Promise<IResponse> {
+  public async execute({ name, email }: IRequest): Promise<User> {
     const userRepository = getCustomRepository(UsersRepository);
-
-    console.log(email);
 
     const userAlreadyExists = await userRepository.findOne({ email });
 
-    console.log(userAlreadyExists);
-
     if (userAlreadyExists) {
-      throw new AppError('User already exists');
+      return userAlreadyExists;
     }
 
     const user = userRepository.create({
@@ -35,7 +25,7 @@ class UsersServices {
 
     await userRepository.save(user);
 
-    return { user };
+    return user;
   }
 }
 
