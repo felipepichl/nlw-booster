@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
 import * as Yup from 'yup';
+import AppError from 'app/errors/AppError';
 
 import SurveysRepository from '../repositories/SurveysRepository';
 
@@ -14,7 +15,7 @@ class SurveysController {
     });
 
     if (!(await schema.isValid(request.body))) {
-      return response.status(400).json({ error: 'Validation Failed!' });
+      throw new AppError('Validation Failed!');
     }
 
     const surveyRepository = getCustomRepository(SurveysRepository);
@@ -22,7 +23,7 @@ class SurveysController {
     const surveyExists = await surveyRepository.findOne({ title });
 
     if (surveyExists) {
-      return response.status(400).json({ error: 'Survey already exists' });
+      throw new AppError('Survey already exists');
     }
 
     const survey = surveyRepository.create({

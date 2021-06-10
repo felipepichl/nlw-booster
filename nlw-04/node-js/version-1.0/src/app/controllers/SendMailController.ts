@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
 import { resolve } from 'path';
 import * as Yup from 'yup';
+import AppError from 'app/errors/AppError';
 
 import UsersRepository from '../repositories/UsersRepository';
 import SurveysUsersRepository from '../repositories/SurveysUsersRepository';
@@ -22,7 +23,7 @@ class SendMailController {
     });
 
     if (!(await schema.isValid(request.body))) {
-      return response.status(400).json({ error: 'Validation Failed!' });
+      throw new AppError('Validation Failed!');
     }
 
     const usersRepository = getCustomRepository(UsersRepository);
@@ -32,9 +33,7 @@ class SendMailController {
     const user = await usersRepository.findOne({ email });
 
     if (!user) {
-      return response.status(400).json({
-        error: 'User does not exists',
-      });
+      throw new AppError('User does not exists');
     }
 
     const survey = await surveysRepository.findOne({
@@ -42,9 +41,7 @@ class SendMailController {
     });
 
     if (!survey) {
-      return response.status(400).json({
-        error: 'Survey does not exists',
-      });
+      throw new AppError('Survey does not exists');
     }
 
     const npsPath = resolve(
