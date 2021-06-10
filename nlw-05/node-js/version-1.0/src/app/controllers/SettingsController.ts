@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { getCustomRepository } from 'typeorm';
 
+import { AppError } from 'app/errors/AppError';
 import { SettingsRepository } from 'app/repositories/SettingsRepository';
 
 class SettingsController {
@@ -12,7 +13,7 @@ class SettingsController {
     const settingsAlreadyExists = settingsRepository.findOne(username);
 
     if (settingsAlreadyExists) {
-      return response.status(400).json({ message: 'Settings already exists' });
+      throw new AppError('Settings already exists');
     }
 
     const settings = settingsRepository.create({
