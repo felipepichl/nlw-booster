@@ -14,9 +14,6 @@ class Settings {
   readonly id: string;
 
   @Column()
-  name: string;
-
-  @Column()
   username: string;
 
   @Column()
