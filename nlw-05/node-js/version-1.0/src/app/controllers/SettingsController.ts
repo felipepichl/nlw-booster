@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { getCustomRepository } from 'typeorm';
 import * as Yup from 'yup';
 
 import { AppError } from 'app/errors/AppError';
-import { SettingsRepository } from 'app/repositories/SettingsRepository';
+
+import SettingsServices from '../services/SettingsServices';
 
 class SettingsController {
   public async store(request: Request, response: Response): Promise<Response> {
@@ -18,20 +18,7 @@ class SettingsController {
       throw new AppError('Validations Failed!');
     }
 
-    const settingsRepository = getCustomRepository(SettingsRepository);
-
-    const settingsAlreadyExists = settingsRepository.findOne(username);
-
-    if (settingsAlreadyExists) {
-      throw new AppError('Settings already exists');
-    }
-
-    const settings = settingsRepository.create({
-      username,
-      chat,
-    });
-
-    await settingsRepository.save(settings);
+    const settings = await SettingsServices.execute({ username, chat });
 
     return response.json(settings);
   }

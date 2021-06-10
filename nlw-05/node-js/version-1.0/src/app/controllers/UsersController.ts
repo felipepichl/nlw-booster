@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
-import { getCustomRepository } from 'typeorm';
 import * as Yup from 'yup';
 
 import { AppError } from 'app/errors/AppError';
-import { UsersRepository } from 'app/repositories/UsersRepository';
+
+import UsersServices from '../services/UsersServices';
 
 class UsersController {
   public async store(request: Request, response: Response): Promise<Response> {
@@ -18,20 +18,7 @@ class UsersController {
       throw new AppError('Validations Failed!');
     }
 
-    const userRepository = getCustomRepository(UsersRepository);
-
-    const userAlreadyExists = userRepository.findOne(email);
-
-    if (userAlreadyExists) {
-      throw new AppError('User already exists');
-    }
-
-    const user = userRepository.create({
-      name,
-      email,
-    });
-
-    await userRepository.save(user);
+    const user = await UsersServices.execute({ name, email });
 
     return response.json(user);
   }
