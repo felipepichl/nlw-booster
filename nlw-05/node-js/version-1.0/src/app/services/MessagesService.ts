@@ -10,11 +10,7 @@ interface IRequest {
 }
 
 class MessagesServices {
-  public async execute({
-    admin_id,
-    user_id,
-    text,
-  }: IRequest): Promise<Message> {
+  public async store({ admin_id, user_id, text }: IRequest): Promise<Message> {
     const messageRepository = getCustomRepository(MessagesRepository);
 
     const message = messageRepository.create({
@@ -26,6 +22,14 @@ class MessagesServices {
     await messageRepository.save(message);
 
     return message;
+  }
+
+  public async listByUser(user_id: string): Promise<Message[]> {
+    const messageRepository = getCustomRepository(MessagesRepository);
+
+    const messages = await messageRepository.find({ user_id });
+
+    return messages;
   }
 }
 

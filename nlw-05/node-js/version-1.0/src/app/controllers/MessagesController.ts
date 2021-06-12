@@ -19,9 +19,20 @@ class MessagesController {
       throw new AppError('Validations Failed!');
     }
 
-    const message = await MessagesService.execute({ admin_id, user_id, text });
+    const message = await MessagesService.store({ admin_id, user_id, text });
 
     return response.json(message);
+  }
+
+  public async showByUser(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { user_id } = request.params;
+
+    const messages = await MessagesService.listByUser(user_id);
+
+    return response.json(messages);
   }
 }
 

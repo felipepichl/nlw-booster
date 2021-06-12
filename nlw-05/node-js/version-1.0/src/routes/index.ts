@@ -15,5 +15,6 @@ router.post('/users', userController.store);
 router.post('/settings', settingsController.store);
 
 router.post('/messages', messagesController.store);
+router.get('/messages/:id', messagesController.showByUser);
 
 export default router;
