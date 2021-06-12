@@ -4,7 +4,7 @@ import { Message } from '@models/Message';
 import { MessagesRepository } from 'app/repositories/MessageRepository';
 
 interface IRequest {
-  admin_id: string;
+  admin_id?: string;
   user_id: string;
   text: string;
 }

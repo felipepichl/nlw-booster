@@ -10,7 +10,7 @@ class MessagesController {
     const { admin_id, user_id, text } = request.body;
 
     const schema = Yup.object().shape({
-      admin_id: Yup.string().required(),
+      admin_id: Yup.string(),
       user_id: Yup.boolean().required(),
       text: Yup.boolean().required(),
     });
