@@ -27,7 +27,10 @@ class MessagesServices {
   public async listByUser(user_id: string): Promise<Message[]> {
     const messageRepository = getCustomRepository(MessagesRepository);
 
-    const messages = await messageRepository.find({ user_id });
+    const messages = await messageRepository.find({
+      where: { user_id },
+      relations: ['users'],
+    });
 
     return messages;
   }
