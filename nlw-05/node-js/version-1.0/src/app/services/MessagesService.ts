@@ -1,4 +1,4 @@
-import { getCustomRepository } from 'typeorm';
+import { getCustomRepository, Repository } from 'typeorm';
 
 import { Message } from '@models/Message';
 import { MessagesRepository } from 'app/repositories/MessageRepository';
@@ -10,24 +10,26 @@ interface IRequest {
 }
 
 class MessagesServices {
-  public async store({ admin_id, user_id, text }: IRequest): Promise<Message> {
-    const messageRepository = getCustomRepository(MessagesRepository);
+  private messageRepository: Repository<Message>;
 
-    const message = messageRepository.create({
+  constructor() {
+    this.messageRepository = getCustomRepository(MessagesRepository);
+  }
+
+  public async store({ admin_id, user_id, text }: IRequest): Promise<Message> {
+    const message = this.messageRepository.create({
       admin_id,
       user_id,
       text,
     });
 
-    await messageRepository.save(message);
+    await this.messageRepository.save(message);
 
     return message;
   }
 
   public async listByUser(user_id: string): Promise<Message[]> {
-    const messageRepository = getCustomRepository(MessagesRepository);
-
-    const messages = await messageRepository.find({
+    const messages = await this.messageRepository.find({
       where: { user_id },
       relations: ['users'],
     });

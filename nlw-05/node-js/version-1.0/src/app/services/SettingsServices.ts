@@ -1,4 +1,4 @@
-import { getCustomRepository } from 'typeorm';
+import { getCustomRepository, Repository } from 'typeorm';
 
 import { Setting } from '@models/Setting';
 import { SettingsRepository } from 'app/repositories/SettingsRepository';
@@ -15,10 +15,14 @@ interface IResponse {
 }
 
 class SettingServices {
-  public async execute({ username, chat }: IRequest): Promise<IResponse> {
-    const settingsRepository = getCustomRepository(SettingsRepository);
+  private settingsRepository: Repository<Setting>;
 
-    const settingsAlreadyExists = await settingsRepository.findOne({
+  constructor() {
+    this.settingsRepository = getCustomRepository(SettingsRepository);
+  }
+
+  public async execute({ username, chat }: IRequest): Promise<IResponse> {
+    const settingsAlreadyExists = await this.settingsRepository.findOne({
       username,
     });
 
@@ -26,12 +30,12 @@ class SettingServices {
       throw new AppError('Settings already exists');
     }
 
-    const setting = settingsRepository.create({
+    const setting = this.settingsRepository.create({
       username,
       chat,
     });
 
-    await settingsRepository.save(setting);
+    await this.settingsRepository.save(setting);
 
     return { setting };
   }

@@ -1,4 +1,4 @@
-import { getCustomRepository } from 'typeorm';
+import { getCustomRepository, Repository } from 'typeorm';
 
 import { User } from '@models/User';
 import { UsersRepository } from 'app/repositories/UsersRepository';
@@ -9,21 +9,25 @@ interface IRequest {
 }
 
 class UsersServices {
-  public async execute({ name, email }: IRequest): Promise<User> {
-    const userRepository = getCustomRepository(UsersRepository);
+  private usersRepository: Repository<User>;
 
-    const userAlreadyExists = await userRepository.findOne({ email });
+  constructor() {
+    this.usersRepository = getCustomRepository(UsersRepository);
+  }
+
+  public async execute({ name, email }: IRequest): Promise<User> {
+    const userAlreadyExists = await this.usersRepository.findOne({ email });
 
     if (userAlreadyExists) {
       return userAlreadyExists;
     }
 
-    const user = userRepository.create({
+    const user = this.usersRepository.create({
       name,
       email,
     });
 
-    await userRepository.save(user);
+    await this.usersRepository.save(user);
 
     return user;
   }
