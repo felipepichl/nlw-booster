@@ -1,10 +1,16 @@
-import { MigrationInterface, QueryRunner, Table } from 'typeorm';
+import {
+  MigrationInterface,
+  QueryRunner,
+  Table,
+  TableForeignKey,
+} from 'typeorm';
 
-export default class CreateMessages1623451705539 implements MigrationInterface {
+export default class CreateConnections1623712377992
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'messages',
+        name: 'connections',
         columns: [
           {
             name: 'id',
@@ -14,14 +20,13 @@ export default class CreateMessages1623451705539 implements MigrationInterface {
           {
             name: 'admin_id',
             type: 'uuid',
-            isNullable: true,
           },
           {
             name: 'user_id',
             type: 'uuid',
           },
           {
-            name: 'text',
+            name: 'socket_id',
             type: 'varchar',
           },
           {
@@ -35,22 +40,24 @@ export default class CreateMessages1623451705539 implements MigrationInterface {
             default: 'now()',
           },
         ],
+      }),
+    );
 
-        foreignKeys: [
-          {
-            name: 'user_messages_fk',
-            referencedTableName: 'users',
-            referencedColumnNames: ['id'],
-            columnNames: ['user_id'],
-            onDelete: 'SET NULL',
-            onUpdate: 'SET NULL',
-          },
-        ],
+    await queryRunner.createForeignKey(
+      'connections',
+      new TableForeignKey({
+        name: 'user_connections_fk',
+        referencedTableName: 'users',
+        referencedColumnNames: ['id'],
+        columnNames: ['user_id'],
+        onDelete: 'SET NULL',
+        onUpdate: 'SET NULL',
       }),
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('messages');
+    await queryRunner.dropForeignKey('connections', 'user_connections_fk');
+    await queryRunner.dropTable('connections');
   }
 }
