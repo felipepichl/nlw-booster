@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 
 import { AppError } from 'app/errors/AppError';
 
-import SettingsServices from '../services/SettingsServices';
+import { SettingServices } from '../services/SettingsServices';
 
 class SettingsController {
   public async store(request: Request, response: Response): Promise<Response> {
@@ -18,7 +18,9 @@ class SettingsController {
       throw new AppError('Validations Failed!');
     }
 
-    const setting = await SettingsServices.execute({ username, chat });
+    const settingsServices = new SettingServices();
+
+    const setting = await settingsServices.execute({ username, chat });
 
     return response.json(setting);
   }

@@ -1,7 +1,7 @@
 import { getCustomRepository, Repository } from 'typeorm';
 
-import { User } from '@models/User';
 import { UsersRepository } from 'app/repositories/UsersRepository';
+import { User } from '../models/User';
 
 interface IRequest {
   name: string;
@@ -33,4 +33,4 @@ class UsersServices {
   }
 }
 
-export default new UsersServices();
+export { UsersServices };

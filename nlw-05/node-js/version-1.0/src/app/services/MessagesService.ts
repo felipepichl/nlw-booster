@@ -1,7 +1,7 @@
 import { getCustomRepository, Repository } from 'typeorm';
 
-import { Message } from '@models/Message';
 import { MessagesRepository } from 'app/repositories/MessageRepository';
+import { Message } from '../models/Message';
 
 interface IRequest {
   admin_id?: string;
@@ -38,4 +38,4 @@ class MessagesServices {
   }
 }
 
-export default new MessagesServices();
+export { MessagesServices };

@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 
 import { AppError } from 'app/errors/AppError';
 
-import UsersServices from '../services/UsersServices';
+import { UsersServices } from '../services/UsersServices';
 
 class UsersController {
   public async store(request: Request, response: Response): Promise<Response> {
@@ -18,7 +18,9 @@ class UsersController {
       throw new AppError('Validations Failed!');
     }
 
-    const user = await UsersServices.execute({ name, email });
+    const userServices = new UsersServices();
+
+    const user = await userServices.execute({ name, email });
 
     return response.json(user);
   }

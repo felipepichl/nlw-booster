@@ -1,9 +1,9 @@
 import { getCustomRepository, Repository } from 'typeorm';
 
-import { Setting } from '@models/Setting';
-import { SettingsRepository } from 'app/repositories/SettingsRepository';
-
 import { AppError } from 'app/errors/AppError';
+
+import { SettingsRepository } from 'app/repositories/SettingsRepository';
+import { Setting } from '../models/Setting';
 
 interface IRequest {
   username: string;
@@ -41,4 +41,4 @@ class SettingServices {
   }
 }
 
-export default new SettingServices();
+export { SettingServices };

@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 
 import { AppError } from 'app/errors/AppError';
 
-import MessagesService from '../services/MessagesService';
+import { MessagesServices } from '../services/MessagesService';
 
 class MessagesController {
   public async store(request: Request, response: Response): Promise<Response> {
@@ -19,7 +19,9 @@ class MessagesController {
       throw new AppError('Validations Failed!');
     }
 
-    const message = await MessagesService.store({ admin_id, user_id, text });
+    const messagesService = new MessagesServices();
+
+    const message = await messagesService.store({ admin_id, user_id, text });
 
     return response.json(message);
   }
@@ -30,7 +32,9 @@ class MessagesController {
   ): Promise<Response> {
     const { user_id } = request.params;
 
-    const messages = await MessagesService.listByUser(user_id);
+    const messagesService = new MessagesServices();
+
+    const messages = await messagesService.listByUser(user_id);
 
     return response.json(messages);
   }
