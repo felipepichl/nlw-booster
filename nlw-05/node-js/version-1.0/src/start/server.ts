@@ -47,6 +47,6 @@ app.use(
   },
 );
 
-app.listen(3333, () => {
+http.listen(3333, () => {
   console.log('Server running in port 3333');
 });
