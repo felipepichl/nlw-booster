@@ -20,6 +20,7 @@ export default class CreateConnections1623712377992
           {
             name: 'admin_id',
             type: 'uuid',
+            isNullable: true,
           },
           {
             name: 'user_id',

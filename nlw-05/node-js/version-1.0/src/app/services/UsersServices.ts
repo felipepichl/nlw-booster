@@ -4,7 +4,7 @@ import { UsersRepository } from 'app/repositories/UsersRepository';
 import { User } from '../models/User';
 
 interface IRequest {
-  name: string;
+  name?: string;
   email: string;
 }
 
@@ -28,6 +28,14 @@ class UsersServices {
     });
 
     await this.usersRepository.save(user);
+
+    return user;
+  }
+
+  public async findByEmail(email: string): Promise<User> {
+    const user = await this.usersRepository.findOne({
+      email,
+    });
 
     return user;
   }
