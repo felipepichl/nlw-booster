@@ -16,7 +16,7 @@ class MessagesServices {
     this.messageRepository = getCustomRepository(MessagesRepository);
   }
 
-  public async store({ admin_id, user_id, text }: IRequest): Promise<Message> {
+  public async create({ admin_id, user_id, text }: IRequest): Promise<Message> {
     const message = this.messageRepository.create({
       admin_id,
       user_id,

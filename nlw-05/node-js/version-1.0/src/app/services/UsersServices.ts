@@ -15,7 +15,7 @@ class UsersServices {
     this.usersRepository = getCustomRepository(UsersRepository);
   }
 
-  public async execute({ name, email }: IRequest): Promise<User> {
+  public async create({ name, email }: IRequest): Promise<User> {
     const userAlreadyExists = await this.usersRepository.findOne({ email });
 
     if (userAlreadyExists) {

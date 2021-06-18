@@ -13,9 +13,9 @@ io.on('connect', socket => {
     const userExists = await usersService.findByEmail(email);
 
     if (!userExists) {
-      const user = await usersService.execute(email);
+      const user = await usersService.create(email);
 
-      await connectionsServices.execute({
+      await connectionsServices.create({
         user_id: user.id,
         socket_id,
       });
@@ -23,14 +23,14 @@ io.on('connect', socket => {
       const connection = await connectionsServices.findByUserId(userExists.id);
 
       if (!connection) {
-        await connectionsServices.execute({
+        await connectionsServices.create({
           user_id: userExists.id,
           socket_id,
         });
       } else {
         connection.socket_id = socket_id;
 
-        await connectionsServices.execute(connection);
+        await connectionsServices.create(connection);
       }
     }
   });

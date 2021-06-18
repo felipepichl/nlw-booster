@@ -21,7 +21,7 @@ class SettingServices {
     this.settingsRepository = getCustomRepository(SettingsRepository);
   }
 
-  public async execute({ username, chat }: IRequest): Promise<IResponse> {
+  public async create({ username, chat }: IRequest): Promise<IResponse> {
     const settingsAlreadyExists = await this.settingsRepository.findOne({
       username,
     });

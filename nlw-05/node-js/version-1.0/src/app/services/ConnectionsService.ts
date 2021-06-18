@@ -16,7 +16,7 @@ class ConnectionsServices {
     this.connectionRepository = getCustomRepository(ConnectionRepository);
   }
 
-  public async execute({
+  public async create({
     admin_id,
     user_id,
     socket_id,

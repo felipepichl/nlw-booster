@@ -21,7 +21,7 @@ class MessagesController {
 
     const messagesService = new MessagesServices();
 
-    const message = await messagesService.store({ admin_id, user_id, text });
+    const message = await messagesService.create({ admin_id, user_id, text });
 
     return response.json(message);
   }
