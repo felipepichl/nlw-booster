@@ -20,7 +20,31 @@ class SettingsController {
 
     const settingsServices = new SettingServices();
 
-    const setting = await settingsServices.execute({ username, chat });
+    const setting = await settingsServices.create({ username, chat });
+
+    return response.json(setting);
+  }
+
+  public async findByUserName(
+    request: Request,
+    response: Response,
+  ): Promise<Response> {
+    const { username } = request.params;
+
+    const settingsServices = new SettingServices();
+
+    const setting = await settingsServices.findByUserName(username);
+
+    return response.json(setting);
+  }
+
+  public async update(request: Request, response: Response): Promise<Response> {
+    const { username } = request.params;
+    const { chat } = request.body;
+
+    const settingsServices = new SettingServices();
+
+    const setting = await settingsServices.update(username, chat);
 
     return response.json(setting);
   }

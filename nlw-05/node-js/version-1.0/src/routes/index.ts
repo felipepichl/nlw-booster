@@ -13,6 +13,8 @@ const messagesController = new MessagesController();
 router.post('/users', userController.store);
 
 router.post('/settings', settingsController.store);
+router.get('/settings/:username', settingsController.findByUserName);
+router.put('/settings/:username', settingsController.update);
 
 router.post('/messages', messagesController.store);
 router.get('/messages/:id', messagesController.showByUser);
