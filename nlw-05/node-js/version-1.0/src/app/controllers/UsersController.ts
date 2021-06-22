@@ -20,7 +20,7 @@ class UsersController {
 
     const userServices = new UsersServices();
 
-    const user = await userServices.execute({ name, email });
+    const user = await userServices.create({ name, email });
 
     return response.json(user);
   }
