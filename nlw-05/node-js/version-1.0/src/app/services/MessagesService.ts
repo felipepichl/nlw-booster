@@ -31,7 +31,7 @@ class MessagesServices {
   public async listByUser(user_id: string): Promise<Message[]> {
     const messages = await this.messageRepository.find({
       where: { user_id },
-      relations: ['users'],
+      relations: ['user'],
     });
 
     return messages;
