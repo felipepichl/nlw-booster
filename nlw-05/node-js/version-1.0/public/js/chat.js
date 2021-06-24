@@ -31,19 +31,19 @@ document.querySelector("#start_chat").addEventListener("click", (event) => {
 
     messages.forEach(message => {
       if(message.admin_id === null) {
-        const render = Mustache.render(template_client, {
+        const rendered = Mustache.render(template_client, {
           message: message.text,
           email,
         });
 
-        document.getElementById('messages').innerHTML += render;
+        document.getElementById('messages').innerHTML += rendered;
       } else {
-        const render = Mustache.render(template_admin, {
+        const rendered = Mustache.render(template_admin, {
           message_admin: message.text,
           email,
         });
 
-        document.getElementById('messages').innerHTML += render;
+        document.getElementById('messages').innerHTML += rendered;
       }
     });
 
