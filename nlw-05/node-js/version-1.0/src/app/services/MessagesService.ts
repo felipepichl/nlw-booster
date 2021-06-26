@@ -9,7 +9,7 @@ interface IRequest {
   text: string;
 }
 
-class MessagesServices {
+class MessagesService {
   private messageRepository: Repository<Message>;
 
   constructor() {
@@ -38,4 +38,4 @@ class MessagesServices {
   }
 }
 
-export { MessagesServices };
+export { MessagesService };

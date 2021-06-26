@@ -1,7 +1,7 @@
 import { io } from '../start/http';
 import { ConnectionsServices } from '../app/services/ConnectionsService';
 import { UsersServices } from '../app/services/UsersServices';
-import { MessagesServices } from '../app/services/MessagesService';
+import { MessagesService } from '../app/services/MessagesService';
 
 interface IParams {
   text: string;
@@ -11,7 +11,7 @@ interface IParams {
 io.on('connect', socket => {
   const connectionsService = new ConnectionsServices();
   const usersService = new UsersServices();
-  const messageService = new MessagesServices();
+  const messageService = new MessagesService();
 
   socket.on('client_first_access', async params => {
     const socket_id = socket.id;
