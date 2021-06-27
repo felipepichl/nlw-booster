@@ -51,6 +51,14 @@ class ConnectionsServices {
 
     return coonections;
   }
+
+  public async findBySocketId(socket_id: string): Promise<Connection> {
+    const coonection = await this.connectionRepository.findOne({
+      socket_id,
+    });
+
+    return coonection;
+  }
 }
 
 export { ConnectionsServices };
