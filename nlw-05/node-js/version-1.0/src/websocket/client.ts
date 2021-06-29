@@ -66,7 +66,6 @@ io.on('connect', socket => {
     const message = await messageService.create({
       text,
       user_id,
-      admin_id: socket_admin_id,
     });
 
     io.to(socket_admin_id).emit('admin_receive_message', {
