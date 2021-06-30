@@ -24,8 +24,6 @@ function call(id){
     connection.socket_id === id
   );
 
-  console.log('=> ', connection);
-
   connectionsInSupport.push(connection);
 
   const template = document.getElementById('admin_template').innerHTML;
@@ -41,7 +39,7 @@ function call(id){
     user_id: connection.user_id,
   }
 
-  socket.emit('admin_list_messages_by_user', params, messages => {
+  socket.emit('admin_list_messages_by_user', params, (messages) => {
 
     const divMessages = document.getElementById(
       `allMessages${connection.user_id}`
@@ -69,9 +67,7 @@ function call(id){
 
       divMessages.appendChild(createDiv);
     });
-
-  })
-
+  });
 }
 
 function sendMessage(id) {
@@ -88,15 +84,15 @@ function sendMessage(id) {
   const createDiv = document.createElement('div');
 
   createDiv.className = 'admin_message_admin';
-  createDiv.innerHTML = `Atendente: <span>${params.text}</span>`;
 
+  createDiv.innerHTML = `Atendente: <span>${params.text}</span>`;
   createDiv.innerHTML += `<span class="admin_date">${dayjs()
     .format('DD/MM/YYYY HH:mm:ss')}</span>`;
 
   divMessages.appendChild(createDiv);
 
   text.value = '';
-}
+};
 
 socket.on('admin_receive_message', data => {
   const connection = connectionsInSupport.find(
