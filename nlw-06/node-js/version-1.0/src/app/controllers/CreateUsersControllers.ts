@@ -4,8 +4,8 @@ import * as Yup from 'yup';
 
 import { CreateUserServices } from '../services/CreateUsersServices';
 
-class UsersController {
-  public async store(request: Request, response: Response): Promise<Response> {
+class CreateUsersControllers {
+  public async handle(request: Request, response: Response): Promise<Response> {
     const { name, email, password, admin } = request.body;
 
     const schema = Yup.object().shape({
@@ -30,4 +30,4 @@ class UsersController {
   }
 }
 
-export { UsersController };
+export { CreateUsersControllers };
