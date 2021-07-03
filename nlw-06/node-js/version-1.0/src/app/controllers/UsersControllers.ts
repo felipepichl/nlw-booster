@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { AppError } from 'app/error/AppError';
 import * as Yup from 'yup';
 
-import { UsersServices } from '../services/UsersServices';
+import { CreateUserServices } from '../services/CreateUsersServices';
 
 class UsersController {
   public async store(request: Request, response: Response): Promise<Response> {
@@ -17,9 +17,9 @@ class UsersController {
       throw new AppError('Validations Failed');
     }
 
-    const usersServices = new UsersServices();
+    const usersServices = new CreateUserServices();
 
-    const user = await usersServices.create({
+    const user = await usersServices.execute({
       name,
       email,
       password,

@@ -7,17 +7,17 @@ interface IRequest {
   name: string;
   email: string;
   password: string;
-  admin: boolean;
+  admin?: boolean;
 }
 
-class UsersServices {
+class CreateUserServices {
   private usersRepository: Repository<User>;
 
   constructor() {
     this.usersRepository = getCustomRepository(UsersRepositories);
   }
 
-  public async create({
+  public async execute({
     name,
     email,
     password,
@@ -42,4 +42,4 @@ class UsersServices {
   }
 }
 
-export { UsersServices };
+export { CreateUserServices };
