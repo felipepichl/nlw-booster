@@ -1,7 +1,7 @@
 import { Repository, getCustomRepository } from 'typeorm';
 
 import { User } from '@models/User';
-import { UsersRepository } from '../repositories/UsersRepository';
+import { UsersRepositories } from '../repositories/UsersRepositories';
 
 interface IRequest {
   name: string;
@@ -14,7 +14,7 @@ class UsersServices {
   private usersRepository: Repository<User>;
 
   constructor() {
-    this.usersRepository = getCustomRepository(UsersRepository);
+    this.usersRepository = getCustomRepository(UsersRepositories);
   }
 
   public async create({
