@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import { AppError } from 'app/error/AppError';
 import * as Yup from 'yup';
 
+import { AppError } from 'app/error/AppError';
 import { CreateUserServices } from '../services/CreateUsersServices';
 
 class CreateUsersControllers {
@@ -17,9 +17,9 @@ class CreateUsersControllers {
       throw new AppError('Validations Failed');
     }
 
-    const usersServices = new CreateUserServices();
+    const createUsersServices = new CreateUserServices();
 
-    const user = await usersServices.execute({
+    const user = await createUsersServices.execute({
       name,
       email,
       password,
