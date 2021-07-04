@@ -24,10 +24,6 @@ class CreateUserServices {
     password,
     admin,
   }: IRequest): Promise<User> {
-    if (!email) {
-      throw new AppError('Incorrect email');
-    }
-
     const userAlreadyExists = await this.usersRepository.findOne({ email });
 
     if (userAlreadyExists) {
