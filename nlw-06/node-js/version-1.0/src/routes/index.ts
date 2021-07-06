@@ -1,16 +1,16 @@
 import { Router } from 'express';
 
-import { CreateUsersControllers } from '@controller/CreateUsersControllers';
 import { CreateTagsController } from '@controller/CreateTagsController';
+import { createUserRouter } from '../app/routes/user.routes';
 
 import { ensureAdmin } from '../app/middlewares/ensureAdmin';
 
 const router = Router();
 
-const createUsersControllers = new CreateUsersControllers();
 const createTagsController = new CreateTagsController();
 
-router.post('/users', createUsersControllers.handle);
+router.use('/users', createUserRouter);
+
 router.post('/tags', ensureAdmin, createTagsController.handle);
 
 export default router;
