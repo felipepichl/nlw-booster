@@ -47,6 +47,8 @@ class AuthenticateUserService {
       },
     );
 
+    delete user.password;
+
     return { user, token };
   }
 }

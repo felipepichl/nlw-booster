@@ -10,7 +10,7 @@ const router = Router();
 
 router.use('/users', createUserRouter);
 
-router.use('/authenticate', authenticateUserRouter);
+router.use('/session', authenticateUserRouter);
 
 router.use('/tags', ensureAdmin, createTagRouter);
 

@@ -17,9 +17,9 @@ class AuthenticateUserController {
       throw new AppError('Validations failed');
     }
 
-    const authenticateService = new AuthenticateUserService();
+    const authenticateUserService = new AuthenticateUserService();
 
-    const authenticate = await authenticateService.execute({
+    const authenticate = await authenticateUserService.execute({
       email,
       password,
     });
