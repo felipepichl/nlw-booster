@@ -1,7 +1,11 @@
 import { Repository, getCustomRepository } from 'typeorm';
 
+import { User } from '@models/User';
 import { Compliment } from '@models/Compliment';
+
+import { UsersRepositories } from '../repositories/UsersRepositories';
 import { ComplimentsRepositories } from '../repositories/ComplimentsRepositories';
+
 import { AppError } from '../error/AppError';
 
 interface IRequest {
@@ -14,8 +18,11 @@ interface IRequest {
 class CreateComplimentsService {
   private complimentsRepository: Repository<Compliment>;
 
+  private usersRepository: Repository<User>;
+
   constructor() {
     this.complimentsRepository = getCustomRepository(ComplimentsRepositories);
+    this.usersRepository = getCustomRepository(UsersRepositories);
   }
 
   public async execute({
@@ -24,13 +31,13 @@ class CreateComplimentsService {
     tag_id,
     message,
   }: IRequest): Promise<Compliment> {
-    // const userReceiverExists = await this.complimentsRepository.findOne({
-    //   user_receiver,
-    // });
+    const userReceiverExists = await this.usersRepository.findOne({
+      where: { id: user_receiver },
+    });
 
-    // if (!userReceiverExists) {
-    //   throw new AppError('User Receiver does not exists');
-    // }
+    if (!userReceiverExists) {
+      throw new AppError('User Receiver does not exists');
+    }
 
     const compliment = this.complimentsRepository.create({
       user_sender,
