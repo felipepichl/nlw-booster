@@ -6,6 +6,7 @@ import { createTagRouter } from '../app/routes/tag.routes';
 import { createComplimentRouter } from '../app/routes/compliment.routes';
 
 import { ensureAdmin } from '../app/middlewares/ensureAdmin';
+import { ensureAuthenticated } from '../app/middlewares/ensureAuthenticated';
 
 const router = Router();
 
@@ -13,7 +14,7 @@ router.use('/users', createUserRouter);
 
 router.use('/session', authenticateUserRouter);
 
-router.use('/tags', ensureAdmin, createTagRouter);
+router.use('/tags', ensureAuthenticated, ensureAdmin, createTagRouter);
 
 router.use('/compliments', createComplimentRouter);
 

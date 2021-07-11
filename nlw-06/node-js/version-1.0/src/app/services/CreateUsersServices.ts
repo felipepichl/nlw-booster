@@ -23,7 +23,7 @@ class CreateUserServices {
     name,
     email,
     password,
-    admin,
+    admin = false,
   }: IRequest): Promise<User> {
     const userAlreadyExists = await this.usersRepository.findOne({ email });
 
