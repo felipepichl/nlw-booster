@@ -10,8 +10,8 @@ import {
 
 import { v4 as uuid } from 'uuid';
 
-import { User } from '@models/User';
-import { Tag } from '@models/Tag';
+import { User } from './User';
+import { Tag } from './Tag';
 
 @Entity('compliments')
 class Compliment {

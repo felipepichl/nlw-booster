@@ -43,7 +43,7 @@ export default class CreateCompliments1625796845903
         foreignKeys: [
           {
             name: 'fk_user_sender',
-            referencedTableName: 'user',
+            referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['user_sender'],
             onDelete: 'SET NULL',
@@ -51,7 +51,7 @@ export default class CreateCompliments1625796845903
           },
           {
             name: 'fk_user_receiver',
-            referencedTableName: 'user',
+            referencedTableName: 'users',
             referencedColumnNames: ['id'],
             columnNames: ['user_receiver'],
             onDelete: 'SET NULL',
@@ -59,7 +59,7 @@ export default class CreateCompliments1625796845903
           },
           {
             name: 'fk_tag',
-            referencedTableName: 'tag',
+            referencedTableName: 'tags',
             referencedColumnNames: ['id'],
             columnNames: ['tag_id'],
             onDelete: 'SET NULL',

@@ -15,6 +15,6 @@ router.use('/session', authenticateUserRouter);
 
 router.use('/tags', ensureAdmin, createTagRouter);
 
-router.use('/compliment', createComplimentRouter);
+router.use('/compliments', createComplimentRouter);
 
 export default router;
