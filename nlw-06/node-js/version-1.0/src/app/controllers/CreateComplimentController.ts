@@ -6,10 +6,10 @@ import { CreateComplimentsService } from '../services/CreateComplimentsService';
 
 class CreateComplimentController {
   public async handle(request: Request, response: Response): Promise<Response> {
-    const { user_sender, user_receiver, tag_id, message } = request.body;
+    const { user_receiver, tag_id, message } = request.body;
+    const user_sender = request.user.id;
 
     const schema = Yup.object().shape({
-      user_sender: Yup.string().required(),
       user_receiver: Yup.string().required(),
       tag_id: Yup.string().required(),
       message: Yup.string().required(),

@@ -14,7 +14,9 @@ router.use('/users', createUserRouter);
 
 router.use('/session', authenticateUserRouter);
 
-router.use('/tags', ensureAuthenticated, ensureAdmin, createTagRouter);
+router.use(ensureAuthenticated);
+
+router.use('/tags', ensureAdmin, createTagRouter);
 
 router.use('/compliments', createComplimentRouter);
 

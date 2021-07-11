@@ -28,8 +28,6 @@ export function ensureAuthenticated(
 
     const { sub } = decoded as ITokenPayload;
 
-    console.log(sub);
-
     request.user = {
       id: sub,
     };
