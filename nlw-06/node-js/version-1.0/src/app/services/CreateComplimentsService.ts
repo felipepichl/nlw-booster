@@ -31,9 +31,13 @@ class CreateComplimentsService {
     tag_id,
     message,
   }: IRequest): Promise<Compliment> {
-    const userReceiverExists = await this.usersRepository.findOne({
-      where: { id: user_receiver },
-    });
+    if (user_sender === user_receiver) {
+      throw new AppError('Incorrect User Receiver');
+    }
+
+    const userReceiverExists = await this.usersRepository.findOne(
+      user_receiver,
+    );
 
     if (!userReceiverExists) {
       throw new AppError('User Receiver does not exists');
