@@ -17,7 +17,7 @@ class ListUserReceiveComplimentsService {
   public async execute({ user_id }: IRequest): Promise<Compliment[]> {
     const compliments = await this.complimentsRepository.find({
       where: { user_receiver: user_id },
-      relations: ['userReceiver'],
+      relations: ['userReceiver', 'tag'],
     });
 
     return compliments;
