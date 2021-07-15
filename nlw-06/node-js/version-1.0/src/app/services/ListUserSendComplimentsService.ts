@@ -7,7 +7,7 @@ interface IRequest {
   user_id: string;
 }
 
-class ListUserSenderComplimentsService {
+class ListUserSendComplimentsService {
   private complimentsRepository: Repository<Compliment>;
 
   constructor() {
@@ -24,4 +24,4 @@ class ListUserSenderComplimentsService {
   }
 }
 
-export { ListUserSenderComplimentsService };
+export { ListUserSendComplimentsService };
