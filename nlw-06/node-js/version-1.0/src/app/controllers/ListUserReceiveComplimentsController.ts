@@ -8,7 +8,7 @@ class ListUserReceiveComplimentsController {
 
     const listUserReceiveComplimentsService = new ListUserReceiveComplimentsService();
 
-    const listUserReceiceCompliments = listUserReceiveComplimentsService.execute(
+    const listUserReceiceCompliments = await listUserReceiveComplimentsService.execute(
       {
         user_id,
       },

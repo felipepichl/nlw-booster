@@ -19,6 +19,8 @@ class ListUserSenderComplimentsService {
       where: { user_sender: user_id },
     });
 
+    console.log(compliments);
+
     return compliments;
   }
 }
