@@ -8,7 +8,7 @@ import {
 
 import { v4 as uuid } from 'uuid';
 
-import { Exclude } from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 
 @Entity('tags')
 class Tag {
@@ -25,6 +25,11 @@ class Tag {
   @UpdateDateColumn()
   @Exclude()
   updated_at: Date;
+
+  @Expose({ name: 'customName' })
+  getCustomName(): string {
+    return `#${this.name}`;
+  }
 
   constructor() {
     if (!this.id) {
