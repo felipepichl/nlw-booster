@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { AppError } from 'app/error/AppError';
 import { CreateTagsServices } from 'app/services/CreateTagsServices';
 
+import tagView from '../views/TagView';
+
 class CreateTagsController {
   public async handle(request: Request, response: Response): Promise<Response> {
     const { name } = request.body;
@@ -22,7 +24,7 @@ class CreateTagsController {
       name,
     });
 
-    return response.json(tag);
+    return response.json(tagView.render(tag));
   }
 }
 

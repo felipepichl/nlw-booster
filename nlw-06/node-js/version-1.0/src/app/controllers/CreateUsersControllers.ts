@@ -4,6 +4,8 @@ import * as Yup from 'yup';
 import { AppError } from 'app/error/AppError';
 import { CreateUserServices } from '../services/CreateUsersServices';
 
+import userView from '../views/UserView';
+
 class CreateUsersControllers {
   public async handle(request: Request, response: Response): Promise<Response> {
     const { name, email, password, admin } = request.body;
@@ -27,7 +29,7 @@ class CreateUsersControllers {
       admin,
     });
 
-    return response.json(user);
+    return response.json(userView.render(user));
   }
 }
 
