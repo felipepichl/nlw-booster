@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 
+import { classToClass } from 'class-transformer';
+
 import { ListTagsService } from '../services/ListTagsService';
 
 class ListTagController {
@@ -8,7 +10,7 @@ class ListTagController {
 
     const tags = await listTagsService.execute();
 
-    return response.json(tags);
+    return response.json(classToClass(tags));
   }
 }
 

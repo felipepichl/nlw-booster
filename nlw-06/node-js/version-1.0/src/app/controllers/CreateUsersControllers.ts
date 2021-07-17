@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import * as Yup from 'yup';
 
+import { classToClass } from 'class-transformer';
+
 import { AppError } from 'app/error/AppError';
 import { CreateUserServices } from '../services/CreateUsersServices';
-
-import userView from '../views/UserView';
 
 class CreateUsersControllers {
   public async handle(request: Request, response: Response): Promise<Response> {
@@ -29,7 +29,7 @@ class CreateUsersControllers {
       admin,
     });
 
-    return response.json(userView.render(user));
+    return response.json(classToClass(user));
   }
 }
 

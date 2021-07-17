@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import * as Yup from 'yup';
 
+import { classToClass } from 'class-transformer';
+
 import { AppError } from '../error/AppError';
 import { CreateComplimentsService } from '../services/CreateComplimentsService';
 
@@ -28,7 +30,7 @@ class CreateComplimentController {
       message,
     });
 
-    return response.json(compliment);
+    return response.json(classToClass(compliment));
   }
 }
 

@@ -1,5 +1,7 @@
 import { Request, Response } from 'express';
 
+import { classToClass } from 'class-transformer';
+
 import { ListUserSendComplimentsService } from 'app/services/ListUserSendComplimentsService';
 
 class ListUserSendComplimentsController {
@@ -14,7 +16,7 @@ class ListUserSendComplimentsController {
       },
     );
 
-    return response.json(listUserSendCompliments);
+    return response.json(classToClass(listUserSendCompliments));
   }
 }
 

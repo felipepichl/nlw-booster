@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import * as Yup from 'yup';
 
+import { classToClass } from 'class-transformer';
+
 import { AppError } from 'app/error/AppError';
 import { AuthenticateUserService } from '../services/AuthenticateUserService';
 
@@ -19,12 +21,12 @@ class AuthenticateUserController {
 
     const authenticateUserService = new AuthenticateUserService();
 
-    const authenticate = await authenticateUserService.execute({
+    const { user, token } = await authenticateUserService.execute({
       email,
       password,
     });
 
-    return response.json(authenticate);
+    return response.json({ user: classToClass(user), token });
   }
 }
 

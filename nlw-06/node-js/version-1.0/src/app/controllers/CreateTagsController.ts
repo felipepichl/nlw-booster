@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import * as Yup from 'yup';
 
+import { classToClass } from 'class-transformer';
+
 import { AppError } from 'app/error/AppError';
 import { CreateTagsServices } from 'app/services/CreateTagsServices';
-
-import tagView from '../views/TagView';
 
 class CreateTagsController {
   public async handle(request: Request, response: Response): Promise<Response> {
@@ -24,7 +24,7 @@ class CreateTagsController {
       name,
     });
 
-    return response.json(tagView.render(tag));
+    return response.json(classToClass(tag));
   }
 }
 

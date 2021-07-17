@@ -8,6 +8,8 @@ import {
 
 import { v4 as uuid } from 'uuid';
 
+import { Exclude } from 'class-transformer';
+
 @Entity('tags')
 class Tag {
   @PrimaryColumn()
@@ -17,9 +19,11 @@ class Tag {
   name: string;
 
   @CreateDateColumn()
+  @Exclude()
   created_at: Date;
 
   @UpdateDateColumn()
+  @Exclude()
   updated_at: Date;
 
   constructor() {
