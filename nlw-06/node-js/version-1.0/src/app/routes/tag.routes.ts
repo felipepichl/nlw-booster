@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { CreateTagsController } from '@controller/CreateTagsController';
-import { ListTagController } from '@controller/ListTagController';
+import { ListTagsController } from '@controller/ListTagsController';
 
 import { ensureAdmin } from 'app/middlewares/ensureAdmin';
 import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
@@ -9,7 +9,7 @@ import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 const createTagRouter = Router();
 
 const createTagsController = new CreateTagsController();
-const listTagsController = new ListTagController();
+const listTagsController = new ListTagsController();
 
 createTagRouter.use(ensureAuthenticated);
 

@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { CreateUsersControllers } from '@controller/CreateUsersControllers';
+import { CreateUsersController } from '@controller/CreateUsersController';
 import { ListUsersController } from '@controller/ListUsersController';
 import { ListUserReceiveComplimentsController } from '@controller/ListUserReceiveComplimentsController';
 import { ListUserSendComplimentsController } from '@controller/ListUserSendComplimentsController';
@@ -9,7 +9,7 @@ import { ensureAuthenticated } from '../middlewares/ensureAuthenticated';
 
 const createUserRouter = Router();
 
-const createUserController = new CreateUsersControllers();
+const createUserController = new CreateUsersController();
 const listUserController = new ListUsersController();
 const listUserReceiveComplimentController = new ListUserReceiveComplimentsController();
 const listUserSendComplimentController = new ListUserSendComplimentsController();

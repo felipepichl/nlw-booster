@@ -4,7 +4,7 @@ import { classToClass } from 'class-transformer';
 
 import { ListTagsService } from '../services/ListTagsService';
 
-class ListTagController {
+class ListTagsController {
   public async handle(request: Request, response: Response): Promise<Response> {
     const listTagsService = new ListTagsService();
 
@@ -14,4 +14,4 @@ class ListTagController {
   }
 }
 
-export { ListTagController };
+export { ListTagsController };

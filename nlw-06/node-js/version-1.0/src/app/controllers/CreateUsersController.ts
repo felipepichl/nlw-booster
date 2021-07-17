@@ -6,7 +6,7 @@ import { classToClass } from 'class-transformer';
 import { AppError } from 'app/error/AppError';
 import { CreateUserServices } from '../services/CreateUsersServices';
 
-class CreateUsersControllers {
+class CreateUsersController {
   public async handle(request: Request, response: Response): Promise<Response> {
     const { name, email, password, admin } = request.body;
 
@@ -33,4 +33,4 @@ class CreateUsersControllers {
   }
 }
 
-export { CreateUsersControllers };
+export { CreateUsersController };
