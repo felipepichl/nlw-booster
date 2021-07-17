@@ -1,6 +1,6 @@
 import { Tag } from '@models/Tag';
 
-interface ITag {
+export interface ITag {
   name: string;
 }
 
@@ -11,8 +11,7 @@ export default {
     };
   },
 
-  renderMany(tags: Tag[]): ITag {
-    return;
-    tags.map(tag => this.render(tag));
+  renderMany(tags: Tag[]): ITag[] {
+    return tags.map(tag => this.render(tag));
   },
 };
