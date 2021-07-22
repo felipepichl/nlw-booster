@@ -15,6 +15,16 @@ export default class CreateSubject1626972662536 implements MigrationInterface {
             name: 'title',
             type: 'varchar',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
       }),
     );

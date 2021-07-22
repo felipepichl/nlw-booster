@@ -23,6 +23,16 @@ export default class CreateClass1626972391314 implements MigrationInterface {
             name: 'subject_id',
             type: 'uuid',
           },
+          {
+            name: 'created_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
+          {
+            name: 'updated_at',
+            type: 'timestamp',
+            default: 'now()',
+          },
         ],
 
         foreignKeys: [
