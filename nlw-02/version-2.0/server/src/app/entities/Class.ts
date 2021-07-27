@@ -9,10 +9,12 @@ import {
 } from 'typeorm';
 
 import { v4 as uuid } from 'uuid';
+
 import { User } from './User';
+import { Subject } from './Subject';
 
 @Entity('classes')
-class Subject {
+class Class {
   @PrimaryColumn()
   id: string;
 
@@ -46,4 +48,4 @@ class Subject {
   }
 }
 
-export { Subject };
+export { Class };
