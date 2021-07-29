@@ -9,7 +9,7 @@ interface IRequest {
   subject_id: string;
 }
 
-class CreateClassesReposiroty {
+class CreateClassesServices {
   private classesRepository: Repository<Class>;
 
   constructor() {
@@ -33,4 +33,4 @@ class CreateClassesReposiroty {
   }
 }
 
-export { CreateClassesReposiroty };
+export { CreateClassesServices };
