@@ -58,6 +58,6 @@ export default class CreateClass1626972391314 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('class');
+    await queryRunner.dropTable('classes');
   }
 }
