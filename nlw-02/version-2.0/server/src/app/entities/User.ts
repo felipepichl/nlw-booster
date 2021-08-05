@@ -22,6 +22,18 @@ class User {
   @Column()
   password: string;
 
+  @Column()
+  avatar_url: string;
+
+  @Column()
+  bio: string;
+
+  @Column()
+  whatsapp: string;
+
+  @Column()
+  username: string;
+
   @CreateDateColumn()
   created_at: Date;
 
