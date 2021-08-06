@@ -56,6 +56,8 @@ class CreateUsersWithGithubServices {
 
     await this.createUserRepository.save(user);
 
+    delete user.password;
+
     return user;
   }
 }
