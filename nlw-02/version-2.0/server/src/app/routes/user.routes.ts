@@ -1,11 +1,12 @@
 import { Router } from 'express';
 
-import { UsersController } from '../controllers/UsersControllers';
+// import { UsersController } from '../controllers/UsersControllers';
+import { CreateUsersController } from '../controllers/Users/CreateUsersController';
 
 const createUserRouter = Router();
 
-const usersController = new UsersController();
+const createUsersController = new CreateUsersController();
 
-createUserRouter.post('', usersController.store);
+createUserRouter.post('', createUsersController.handle);
 
 export { createUserRouter };
