@@ -1,4 +1,6 @@
 import { Request, Response } from 'express';
+import { classToClass } from 'class-transformer';
+
 import { AppError } from 'app/error/AppError';
 import * as Yup from 'yup';
 
@@ -28,7 +30,7 @@ class CreateUsersController {
       whatsapp,
     });
 
-    return response.json(user);
+    return response.json(classToClass(user));
   }
 }
 

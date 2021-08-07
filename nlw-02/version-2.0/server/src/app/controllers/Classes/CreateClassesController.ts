@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { classToClass } from 'class-transformer';
 
 import { CreateClassesServices } from 'app/services/Classes/CreateClassesServices';
 
@@ -16,7 +17,7 @@ class CreateClassesController {
       subject_id,
     });
 
-    return response.json(classes);
+    return response.json(classToClass(classes));
   }
 }
 

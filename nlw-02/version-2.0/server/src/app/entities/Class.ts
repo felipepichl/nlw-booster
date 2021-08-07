@@ -10,6 +10,8 @@ import {
 
 import { v4 as uuid } from 'uuid';
 
+import { Exclude } from 'class-transformer';
+
 import { User } from './User';
 import { Subject } from './Subject';
 
@@ -21,6 +23,7 @@ class Class {
   @Column()
   cost: number;
 
+  @Exclude()
   @Column()
   user_id: string;
 
@@ -28,6 +31,7 @@ class Class {
   @ManyToOne(() => User)
   user: User;
 
+  @Exclude()
   @Column()
   subject_id: string;
 
