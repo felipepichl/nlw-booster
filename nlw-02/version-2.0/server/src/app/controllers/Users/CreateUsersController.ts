@@ -13,8 +13,8 @@ class CreateUsersController {
     const schema = Yup.object().shape({
       username: Yup.string().required(),
       email: Yup.string().email().required(),
-      password: Yup.string().email().required(),
-      whatsapp: Yup.string().email().required(),
+      password: Yup.string().required(),
+      whatsapp: Yup.string().required(),
     });
 
     if (!(await schema.isValid(request.body))) {
