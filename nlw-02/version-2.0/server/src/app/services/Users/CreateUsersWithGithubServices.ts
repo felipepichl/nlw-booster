@@ -52,6 +52,7 @@ class CreateUsersWithGithubServices {
       avatar_url,
       bio,
       whatsapp,
+      username,
     });
 
     await this.createUserRepository.save(user);
