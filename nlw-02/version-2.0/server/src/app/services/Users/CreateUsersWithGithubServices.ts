@@ -35,9 +35,9 @@ class CreateUsersWithGithubServices {
 
     const { name, avatar_url, bio } = apiResponse.data;
 
-    console.log(apiResponse.data);
-
-    const userAlreadyExists = await this.createUserRepository.findOne(email);
+    const userAlreadyExists = await this.createUserRepository.findOne({
+      email,
+    });
 
     if (userAlreadyExists) {
       throw new AppError('User already exists');
