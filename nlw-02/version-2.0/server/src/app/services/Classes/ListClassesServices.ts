@@ -3,7 +3,7 @@ import { getCustomRepository, Repository } from 'typeorm';
 import { Class } from '@entities/Class';
 import { ClassesRepository } from 'app/repositories/ClassesRepository';
 
-class ListClassServices {
+class ListClassesServices {
   private classRepository: Repository<Class>;
 
   constructor() {
@@ -17,4 +17,4 @@ class ListClassServices {
   }
 }
 
-export { ListClassServices };
+export { ListClassesServices };
