@@ -17,7 +17,9 @@ class CreateSubjectsServices {
   }
 
   public async execute({ title }: IRequest): Promise<Subject> {
-    const subjectAllReadyExists = await this.subjectRepository.find({ title });
+    const subjectAllReadyExists = await this.subjectRepository.findOne({
+      title,
+    });
 
     if (subjectAllReadyExists) {
       throw new AppError('Subject already exists');

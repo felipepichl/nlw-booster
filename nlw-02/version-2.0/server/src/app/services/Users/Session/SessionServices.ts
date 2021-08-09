@@ -29,8 +29,6 @@ class SessionServices {
   public async execute({ email, password }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findOne({ email });
 
-    console.log(user);
-
     if (!user) {
       throw new AppError('Incorrect Email/Password');
     }
@@ -47,8 +45,6 @@ class SessionServices {
       subject: user.id,
       expiresIn,
     });
-
-    delete user.password;
 
     return { user, token };
   }

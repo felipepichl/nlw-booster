@@ -8,7 +8,7 @@ import {
 
 import { v4 as uuid } from 'uuid';
 
-@Entity('subject')
+@Entity('subjects')
 class Subject {
   @PrimaryColumn()
   id: string;
