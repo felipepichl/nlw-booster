@@ -25,8 +25,8 @@ class CreateClassScheduleServices {
   }: IRequest): Promise<ClassSchedule> {
     const classSchedule = this.classScheduleRepository.create({
       week_day,
-      to,
       from,
+      to,
       class_id,
     });
 
