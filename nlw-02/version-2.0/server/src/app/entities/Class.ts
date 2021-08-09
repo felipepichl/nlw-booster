@@ -10,7 +10,7 @@ import {
 
 import { v4 as uuid } from 'uuid';
 
-import { Exclude } from 'class-transformer';
+import { Exclude, Expose } from 'class-transformer';
 
 import { User } from './User';
 import { Subject } from './Subject';
@@ -23,7 +23,7 @@ class Class {
   @Column()
   cost: number;
 
-  @Exclude()
+  // @Exclude()
   @Column()
   user_id: string;
 
@@ -31,7 +31,7 @@ class Class {
   @ManyToOne(() => User)
   user: User;
 
-  @Exclude()
+  // @Exclude()
   @Column()
   subject_id: string;
 
@@ -44,6 +44,16 @@ class Class {
 
   @UpdateDateColumn()
   updated_at: Date;
+
+  @Expose({ name: 'user' })
+  getUser(): User {
+    return this.user;
+  }
+
+  @Expose({ name: 'subject' })
+  getSubject(): Subject {
+    return this.subject;
+  }
 
   constructor() {
     if (!this.id) {

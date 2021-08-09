@@ -10,7 +10,7 @@ class CreateClassesController {
 
     const createClassesServices = new CreateClassesServices();
 
-    const classes = createClassesServices.execute({
+    const classes = await createClassesServices.execute({
       cost,
       subject_id,
       user_id,

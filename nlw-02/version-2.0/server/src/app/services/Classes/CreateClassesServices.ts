@@ -27,7 +27,7 @@ class CreateClassesServices {
       user_id,
     });
 
-    await this.classesRepository.save(classes);
+    // await this.classesRepository.save(classes);
 
     return classes;
   }
