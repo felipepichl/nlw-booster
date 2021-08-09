@@ -13,7 +13,9 @@ class CreateClassScheduleController {
       scheduleItem: schedule,
     });
 
-    return response.json().status(201);
+    return response.status(201).send({
+      message: 'Class Schedule was created',
+    });
   }
 }
 
