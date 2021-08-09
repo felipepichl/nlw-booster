@@ -6,6 +6,6 @@ const createClassesRouter = Router();
 
 const createClassesController = new CreateClassesController();
 
-createClassesRouter.post('/:subject_id', createClassesController.handle);
+createClassesRouter.post('/', createClassesController.handle);
 
 export { createClassesRouter };

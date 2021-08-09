@@ -5,8 +5,8 @@ import { ClassesRepository } from '../../repositories/ClassesRepository';
 
 interface IRequest {
   cost: number;
-  user_id: string;
   subject_id: string;
+  user_id: string;
 }
 
 class CreateClassesServices {
@@ -18,13 +18,13 @@ class CreateClassesServices {
 
   public async execute({
     cost,
-    user_id,
     subject_id,
+    user_id,
   }: IRequest): Promise<Class> {
     const classes = this.classesRepository.create({
       cost,
-      user_id,
       subject_id,
+      user_id,
     });
 
     await this.classesRepository.save(classes);
