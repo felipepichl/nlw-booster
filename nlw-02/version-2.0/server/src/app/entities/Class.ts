@@ -23,7 +23,7 @@ class Class {
   @Column()
   cost: number;
 
-  // @Exclude()
+  @Exclude()
   @Column()
   user_id: string;
 
@@ -31,7 +31,7 @@ class Class {
   @ManyToOne(() => User)
   user: User;
 
-  // @Exclude()
+  @Exclude()
   @Column()
   subject_id: string;
 

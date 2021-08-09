@@ -1,4 +1,5 @@
 import { Request, Response } from 'express';
+import { classToClass } from 'class-transformer';
 
 import { ListClassesServices } from 'app/services/Classes/ListClassesServices';
 
@@ -8,7 +9,7 @@ class ListClassesController {
 
     const classes = await listClassesServices.execute();
 
-    return response.json(classes);
+    return response.json(classToClass(classes));
   }
 }
 

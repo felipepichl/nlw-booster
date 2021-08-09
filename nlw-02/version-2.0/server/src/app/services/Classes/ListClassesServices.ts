@@ -11,7 +11,9 @@ class ListClassesServices {
   }
 
   public async execute(): Promise<Class[]> {
-    const classes = await this.classRepository.find();
+    const classes = await this.classRepository.find({
+      relations: ['user', 'subject'],
+    });
 
     return classes;
   }
