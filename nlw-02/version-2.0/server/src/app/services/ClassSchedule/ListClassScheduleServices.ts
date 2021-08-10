@@ -2,36 +2,44 @@ import { getCustomRepository, Repository } from 'typeorm';
 
 import { ClassSchedule } from '@entities/ClassSchedule';
 import { ClassScheduleRepository } from 'app/repositories/ClassScheduleRepository';
+
+import { Class } from '@entities/Class';
+import { ClassesRepository } from 'app/repositories/ClassesRepository';
+
 import { AppError } from 'app/error/AppError';
 
 interface IRequest {
   week_day: number;
-  from: number;
-  to: number;
-  class_id: string;
+  subject: string;
+  timer: string;
 }
 
 class ListClassScheduleServices {
+  private classesRepository: Repository<Class>;
+
   private classScheduleRepository: Repository<ClassSchedule>;
 
   constructor() {
     this.classScheduleRepository = getCustomRepository(ClassScheduleRepository);
+    this.classesRepository = getCustomRepository(ClassesRepository);
   }
 
   public async execute({
     week_day,
-    from,
-    to,
-    class_id,
+    subject,
+    timer,
   }: IRequest): Promise<ClassSchedule> {
-    const classSchedule = await this.classScheduleRepository.findOne({
-      where: { class_id, week_day, from, to },
-      relations: ['class'],
+    const allClasses = await this.classesRepository.find({
+      relations: ['subject'],
     });
 
-    if (!classSchedule) {
-      throw new AppError('Class Schedule does not found');
-    }
+    const allClassesWithSubjetc = allClasses.filter(
+      classes => classes.subject.title === subject,
+    );
+
+    const allClassSchedule = await this.classScheduleRepository.find({
+      relations: ['class'],
+    });
 
     return classSchedule;
   }
