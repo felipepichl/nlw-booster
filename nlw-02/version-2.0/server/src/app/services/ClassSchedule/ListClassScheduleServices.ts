@@ -1,12 +1,12 @@
-import { getCustomRepository, Repository } from 'typeorm';
+import { getCustomRepository, Repository, In, Between } from 'typeorm';
+
+// import { AppError } from 'app/error/AppError';
 
 import { ClassSchedule } from '@entities/ClassSchedule';
 import { ClassScheduleRepository } from 'app/repositories/ClassScheduleRepository';
 
-import { Class } from '@entities/Class';
-import { ClassesRepository } from 'app/repositories/ClassesRepository';
-
-import { AppError } from 'app/error/AppError';
+import convertHourToMinutes from 'app/utils/convertHourToMinutes';
+import { ListAllClassesBySubject } from '../Classes/ListAllClassesBySubject';
 
 interface IRequest {
   week_day: number;
@@ -15,29 +15,32 @@ interface IRequest {
 }
 
 class ListClassScheduleServices {
-  private classesRepository: Repository<Class>;
-
   private classScheduleRepository: Repository<ClassSchedule>;
 
   constructor() {
     this.classScheduleRepository = getCustomRepository(ClassScheduleRepository);
-    this.classesRepository = getCustomRepository(ClassesRepository);
   }
 
   public async execute({
     week_day,
     subject,
     timer,
-  }: IRequest): Promise<ClassSchedule> {
-    const allClasses = await this.classesRepository.find({
-      relations: ['subject'],
+  }: IRequest): Promise<ClassSchedule[]> {
+    const listAllClassesBySubject = new ListAllClassesBySubject();
+
+    const allClassesWithSubject = await listAllClassesBySubject.execute({
+      subject,
     });
 
-    const allClassesWithSubjetc = allClasses.filter(
-      classes => classes.subject.title === subject,
-    );
+    const allClassesIds = allClassesWithSubject.map(classes => classes.id);
 
-    const allClassSchedule = await this.classScheduleRepository.find({
+    const timesInMinutes = convertHourToMinutes(timer);
+
+    const classSchedule = await this.classScheduleRepository.find({
+      where: {
+        week_day,
+        class_id: In(allClassesIds),
+      },
       relations: ['class'],
     });
 
