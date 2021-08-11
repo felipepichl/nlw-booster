@@ -16,7 +16,7 @@ class ListAllClassesBySubject {
 
   public async execute({ subject }: IRequest): Promise<Class[]> {
     const allClasses = await this.classRepository.find({
-      relations: ['subject'],
+      relations: ['subject', 'user'],
     });
 
     const allClassesWithSubject = allClasses.filter(

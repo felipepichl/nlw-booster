@@ -49,7 +49,7 @@ class ListClassScheduleServices {
         from: LessThanOrEqual(timesInMinutes),
         to: MoreThan(timesInMinutes),
       },
-      relations: ['class'],
+      relations: ['class', 'class.subject', 'class.user'],
     });
 
     return classSchedule;

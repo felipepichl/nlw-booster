@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 
 import { ListClassScheduleServices } from 'app/services/ClassSchedule/ListClassScheduleServices';
+import { classToClass } from 'class-transformer';
 
 class ListClassScheduleController {
   public async handle(request: Request, response: Response): Promise<Response> {
@@ -18,7 +19,7 @@ class ListClassScheduleController {
       timer,
     });
 
-    return response.json(classSchadule);
+    return response.json(classToClass(classSchadule));
   }
 }
 
