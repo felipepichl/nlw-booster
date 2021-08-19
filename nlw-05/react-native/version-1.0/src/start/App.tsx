@@ -7,7 +7,7 @@ import {
 } from '@expo-google-fonts/jost';
 import AppLoading from 'expo-app-loading';
 
-import { UserIdentification } from '../pages/UserIdentification';
+import { Confirmation } from '../pages/Confirmation';
 
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -19,7 +19,7 @@ const App: React.FC = () => {
     return <AppLoading />;
   }
 
-  return <UserIdentification />;
+  return <Confirmation />;
 };
 
 registerRootComponent(App);
