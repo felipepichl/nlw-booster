@@ -6,7 +6,9 @@ import {
   Text,
   TextInput,
   KeyboardAvoidingView,
+  TouchableNativeFeedback,
   Platform,
+  Keyboard,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -46,32 +48,34 @@ const UserIdentification: React.FC = () => {
         style={style.container}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
-        <View style={style.content}>
-          <View style={style.form}>
-            <View style={style.header}>
-              <Text style={style.emoji}>{isFilled ? '😄' : '😀'}</Text>
-              <Text style={style.title}>
-                Como podemos
-                {'\n'}
-                chamar você?
-              </Text>
-            </View>
-            <TextInput
-              style={[
-                style.input,
-                (isFocused || isFilled) && { borderColor: colors.green },
-              ]}
-              placeholder="Digite um nome"
-              onBlur={handleInputBlur}
-              onFocus={handleInputFocus}
-              onChangeText={handleInputChange}
-            />
+        <TouchableNativeFeedback onPress={Keyboard.dismiss}>
+          <View style={style.content}>
+            <View style={style.form}>
+              <View style={style.header}>
+                <Text style={style.emoji}>{isFilled ? '😄' : '😀'}</Text>
+                <Text style={style.title}>
+                  Como podemos
+                  {'\n'}
+                  chamar você?
+                </Text>
+              </View>
+              <TextInput
+                style={[
+                  style.input,
+                  (isFocused || isFilled) && { borderColor: colors.green },
+                ]}
+                placeholder="Digite um nome"
+                onBlur={handleInputBlur}
+                onFocus={handleInputFocus}
+                onChangeText={handleInputChange}
+              />
 
-            <View style={style.footer}>
-              <Button onPress={handleSubmit} title="Confirmar" />
+              <View style={style.footer}>
+                <Button onPress={handleSubmit} title="Confirmar" />
+              </View>
             </View>
           </View>
-        </View>
+        </TouchableNativeFeedback>
       </KeyboardAvoidingView>
     </SafeAreaView>
   );
