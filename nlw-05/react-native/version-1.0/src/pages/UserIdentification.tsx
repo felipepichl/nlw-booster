@@ -8,6 +8,7 @@ import {
   KeyboardAvoidingView,
   Platform,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { Button } from '../components/Button';
 
@@ -31,6 +32,12 @@ const UserIdentification: React.FC = () => {
   function handleInputChange(value: string) {
     setIsFilled(!!value);
     setName(value);
+  }
+
+  const { navigate } = useNavigation();
+
+  function handleSubmit() {
+    navigate('Confirmation', { name });
   }
 
   return (
@@ -61,7 +68,7 @@ const UserIdentification: React.FC = () => {
             />
 
             <View style={style.footer}>
-              <Button />
+              <Button onPress={handleSubmit} title="Confirmar" />
             </View>
           </View>
         </View>
