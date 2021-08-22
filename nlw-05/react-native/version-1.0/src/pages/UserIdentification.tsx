@@ -22,6 +22,8 @@ const UserIdentification: React.FC = () => {
   const [isFilled, setIsFilled] = useState(false);
   const [name, setName] = useState<string>('');
 
+  const { navigate } = useNavigation();
+
   function handleInputBlur() {
     setIsFocused(false);
     setIsFilled(!!name);
@@ -36,10 +38,8 @@ const UserIdentification: React.FC = () => {
     setName(value);
   }
 
-  const { navigate } = useNavigation();
-
   function handleSubmit() {
-    navigate('Confirmation', { name });
+    navigate('Confirmation');
   }
 
   return (

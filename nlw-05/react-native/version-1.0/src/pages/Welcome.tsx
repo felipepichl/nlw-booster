@@ -8,7 +8,6 @@ import {
   Dimensions,
   View,
 } from 'react-native';
-
 import { useNavigation } from '@react-navigation/native';
 
 import { Feather } from '@expo/vector-icons';
