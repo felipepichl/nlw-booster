@@ -10,7 +10,7 @@ import fonts from '../styles/fonts';
 const Confirmation: React.FC = () => {
   const { navigate } = useNavigation();
 
-  function handleStart() {
+  function handleMoveOn() {
     navigate('PlantSelect');
   }
 
@@ -24,7 +24,7 @@ const Confirmation: React.FC = () => {
           Agora vamos começar a cuidar das suas plantinhas com muito cuidado.
         </Text>
         <View style={styles.footer}>
-          <Button title="Começar" onPress={handleStart} />
+          <Button title="Começar" onPress={handleMoveOn} />
         </View>
       </View>
     </SafeAreaView>
