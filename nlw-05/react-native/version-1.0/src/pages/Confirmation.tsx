@@ -1,6 +1,6 @@
 import React from 'react';
-import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, SafeAreaView, View, Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 import { Button } from '../components/Button';
 

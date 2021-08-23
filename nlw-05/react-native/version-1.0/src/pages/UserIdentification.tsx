@@ -43,17 +43,17 @@ const UserIdentification: React.FC = () => {
   }
 
   return (
-    <SafeAreaView style={style.container}>
+    <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView
-        style={style.container}
+        style={styles.container}
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
       >
         <TouchableNativeFeedback onPress={Keyboard.dismiss}>
-          <View style={style.content}>
-            <View style={style.form}>
-              <View style={style.header}>
-                <Text style={style.emoji}>{isFilled ? '😄' : '😀'}</Text>
-                <Text style={style.title}>
+          <View style={styles.content}>
+            <View style={styles.form}>
+              <View style={styles.header}>
+                <Text style={styles.emoji}>{isFilled ? '😄' : '😀'}</Text>
+                <Text style={styles.title}>
                   Como podemos
                   {'\n'}
                   chamar você?
@@ -61,7 +61,7 @@ const UserIdentification: React.FC = () => {
               </View>
               <TextInput
                 style={[
-                  style.input,
+                  styles.input,
                   (isFocused || isFilled) && { borderColor: colors.green },
                 ]}
                 placeholder="Digite um nome"
@@ -70,7 +70,7 @@ const UserIdentification: React.FC = () => {
                 onChangeText={handleInputChange}
               />
 
-              <View style={style.footer}>
+              <View style={styles.footer}>
                 <Button onPress={handleSubmit} title="Confirmar" />
               </View>
             </View>
@@ -83,7 +83,7 @@ const UserIdentification: React.FC = () => {
 
 export { UserIdentification };
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     width: '100%',
