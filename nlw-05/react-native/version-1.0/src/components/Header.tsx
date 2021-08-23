@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 
+import { getStatusBarHeight } from 'react-native-iphone-x-helper';
+
 import colors from '../styles/colors';
 
 const Header: React.FC = () => {
@@ -21,7 +23,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: '20',
-    // marginTop: ,''
+    marginTop: getStatusBarHeight(),
     backgroundColor: colors.red,
   },
 });
