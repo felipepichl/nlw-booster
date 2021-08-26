@@ -1,4 +1,4 @@
-import Item from '@modules/Items/infra/typeorm/entities/Item';
+import { Item } from '@modules/Items/infra/typeorm/entities/Item';
 
 export interface IItems {
   id: number;

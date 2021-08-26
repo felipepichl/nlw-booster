@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-import Item from '@modules/Items/infra/typeorm/entities/Item';
+import { Item } from '@modules/Items/infra/typeorm/entities/Item';
 import IItemsRepository from '@modules/Items/repositories/IItemsRepository';
 
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';

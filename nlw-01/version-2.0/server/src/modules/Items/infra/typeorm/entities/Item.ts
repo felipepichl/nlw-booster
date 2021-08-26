@@ -7,7 +7,7 @@ import {
 } from 'typeorm';
 
 @Entity('items')
-export default class Items {
+class Item {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -23,3 +23,5 @@ export default class Items {
   @UpdateDateColumn()
   updated_at: Date;
 }
+
+export { Item };

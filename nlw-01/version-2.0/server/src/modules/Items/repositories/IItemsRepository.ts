@@ -1,4 +1,4 @@
-import Item from '../infra/typeorm/entities/Item';
+import { Item } from '../infra/typeorm/entities/Item';
 import ICreateItemDTO from '../dtos/ICreateItemDTO';
 
 export default interface IItemsRepository {
