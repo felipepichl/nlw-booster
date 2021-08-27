@@ -7,7 +7,7 @@ import {
   UpdateDateColumn,
 } from 'typeorm';
 
-import Item from '@modules/Items/infra/typeorm/entities/Item';
+import { Item } from '@modules/items/infra/typeorm/entities/Item';
 
 @Entity('points')
 export default class Point {
