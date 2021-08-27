@@ -7,10 +7,10 @@ import { ItemsControllers } from '../controllers/ItemsController';
 
 const upload = multer(multerConfig);
 
-const userRoute = Router();
+const itemsRouter = Router();
 const itemsController = new ItemsControllers();
 
-userRoute.get('', itemsController.index);
-userRoute.post('', upload.single('image'), itemsController.create);
+itemsRouter.get('', itemsController.index);
+itemsRouter.post('', upload.single('image'), itemsController.create);
 
-export default userRoute;
+export { itemsRouter };
