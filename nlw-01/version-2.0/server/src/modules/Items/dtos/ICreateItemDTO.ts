@@ -1,4 +1,6 @@
-export default interface ICreateItemDTO {
+interface ICreateItemDTO {
   title: string;
   path: string;
 }
+
+export { ICreateItemDTO }

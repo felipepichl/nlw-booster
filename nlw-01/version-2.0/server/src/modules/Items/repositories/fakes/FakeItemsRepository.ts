@@ -1,5 +1,5 @@
 import IItemsRepository from '@modules/Items/repositories/IItemsRepository';
-import ICreateItemDTO from '@modules/Items/dtos/ICreateItemDTO';
+import { ICreateItemDTO } from '@modules/Items/dtos/ICreateItemDTO';
 
 import { Item } from '../../infra/typeorm/entities/Item';
 
