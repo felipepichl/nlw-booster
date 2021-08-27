@@ -6,7 +6,7 @@ import itemView from '@modules/Items/views/ItemsView';
 import CreateItemService from '@modules/Items/services/CreateItemService';
 import ListItemsService from '@modules/Items/services/ListItemsService';
 
-export default class ItemsControllers {
+class ItemsControllers {
   async index(request: Request, response: Response): Promise<Response> {
     const listItem = container.resolve(ListItemsService);
 
@@ -30,3 +30,5 @@ export default class ItemsControllers {
     return response.status(201).json(item);
   }
 }
+
+export { ItemsControllers };
