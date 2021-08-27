@@ -37,4 +37,4 @@ class ItemsRepository implements IItemsRepository {
   }
 }
 
-export default ItemsRepository;
+export { ItemsRepository };
