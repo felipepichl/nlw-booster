@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { itemsRouter } from '@modules/Items/infra/http/routes/items.routes';
+import { itemsRouter } from '@modules/items/infra/http/routes/items.routes';
 import pointRouter from '@modules/Points/infra/http/routes/points.routes';
 import { usersRouter } from '@modules/users/infra/http/routes/users.routes';
 

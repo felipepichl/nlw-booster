@@ -1,5 +1,5 @@
+import { ICreateItemDTO } from '@modules/items/dtos/ICreateItemDTO';
 import { Item } from '../infra/typeorm/entities/Item';
-import { ICreateItemDTO } from '../dtos/ICreateItemDTO';
 
 interface IItemsRepository {
   create(date: ICreateItemDTO): Promise<Item | undefined>;

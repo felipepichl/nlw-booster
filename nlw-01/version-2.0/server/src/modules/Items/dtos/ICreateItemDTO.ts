@@ -3,4 +3,4 @@ interface ICreateItemDTO {
   path: string;
 }
 
-export { ICreateItemDTO }
+export { ICreateItemDTO };
