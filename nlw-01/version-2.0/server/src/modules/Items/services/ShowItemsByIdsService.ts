@@ -21,4 +21,4 @@ class ShowItemsByIdsService {
   }
 }
 
-export default ShowItemsByIdsService;
+export { ShowItemsByIdsService };

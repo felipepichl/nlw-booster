@@ -1,7 +1,7 @@
 import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 
 import { FakeItemsRepository } from '../repositories/fakes/FakeItemsRepository';
-import CreateItemService from './CreateItemService';
+import { CreateItemService } from './CreateItemService';
 
 describe('CreateItem', () => {
   it('should be able to create a new item', async () => {

@@ -32,4 +32,4 @@ class CreateItemService {
   }
 }
 
-export default CreateItemService;
+export { CreateItemService };

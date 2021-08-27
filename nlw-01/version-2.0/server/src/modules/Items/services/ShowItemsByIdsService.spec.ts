@@ -1,9 +1,9 @@
 import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 
-import FakeItemsRepository from '../repositories/fakes/FakeItemsRepository';
+import { FakeItemsRepository } from '../repositories/fakes/FakeItemsRepository';
 
-import CreateItemService from './CreateItemService';
-import ShowItemsByIdsService from './ShowItemsByIdsService';
+import { CreateItemService } from './CreateItemService';
+import { ShowItemsByIdsService } from './ShowItemsByIdsService';
 
 describe('ShowItemsByIds', () => {
   it('should be able to list all items on a specific ids', async () => {

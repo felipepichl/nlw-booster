@@ -4,7 +4,7 @@ import { Item } from '@modules/Items/infra/typeorm/entities/Item';
 import { IItemsRepository } from '@modules/Items/repositories/IItemsRepository';
 
 @injectable()
-class ListItemService {
+class ListItemsService {
   constructor(
     @inject('ItemsRepository')
     private itemsRepository: IItemsRepository,
@@ -17,4 +17,4 @@ class ListItemService {
   }
 }
 
-export default ListItemService;
+export { ListItemsService };
