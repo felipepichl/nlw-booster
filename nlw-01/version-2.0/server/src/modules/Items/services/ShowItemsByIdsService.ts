@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
 import { Item } from '@modules/Items/infra/typeorm/entities/Item';
-import IItemsRepository from '@modules/Items/repositories/IItemsRepository';
+import { IItemsRepository } from '@modules/Items/repositories/IItemsRepository';
 
 interface IResquest {
   ids: number[];

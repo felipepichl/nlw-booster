@@ -1,6 +1,6 @@
 import { getRepository, Repository, In } from 'typeorm';
 
-import IItemsRepository from '@modules/Items/repositories/IItemsRepository';
+import { IItemsRepository } from '@modules/Items/repositories/IItemsRepository';
 import { ICreateItemDTO } from '@modules/Items/dtos/ICreateItemDTO';
 
 import { Item } from '../entities/Item';
