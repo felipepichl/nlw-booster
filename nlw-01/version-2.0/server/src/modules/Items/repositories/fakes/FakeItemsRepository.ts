@@ -32,4 +32,4 @@ class FakeItemsRepository implements IItemsRepository {
   }
 }
 
-export default FakeItemsRepository;
+export { FakeItemsRepository };
