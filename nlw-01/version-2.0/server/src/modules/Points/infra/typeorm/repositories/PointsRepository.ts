@@ -2,9 +2,9 @@ import { getRepository, Repository } from 'typeorm';
 import { container } from 'tsyringe';
 
 import IPointsRepository from '@modules/Points/repositories/IPointsRepository';
-import ICreatePointDTO from '@modules/Points/dtos/ICreatePointDTO';
+import { ICreatePointDTO } from '@modules/Points/dtos/ICreatePointDTO';
 
-import ShowItemsByIdsService from '@modules/Items/services/ShowItemsByIdsService';
+import { ShowItemsByIdsService } from '@modules/items/services/ShowItemsByIdsService';
 
 import Point from '../entities/Point';
 

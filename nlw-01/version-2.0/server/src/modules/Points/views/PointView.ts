@@ -1,6 +1,6 @@
 import Point from '@modules/Points/infra/typeorm/entities/Point';
 
-import itemView, { IItems } from '@modules/Items/views/ItemsView';
+import itemView, { IItems } from '@modules/items/views/ItemsView';
 
 interface IPoint {
   id: number;

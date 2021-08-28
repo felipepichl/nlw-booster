@@ -1,4 +1,4 @@
-export default interface ICreatePointDTO {
+interface ICreatePointDTO {
   name: string;
   email: string;
   whatsapp: string;
@@ -9,3 +9,5 @@ export default interface ICreatePointDTO {
   items: string;
   image: string;
 }
+
+export { ICreatePointDTO };
