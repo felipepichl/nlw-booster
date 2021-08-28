@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 
 import { Point } from '@modules/Points/infra/typeorm/entities/Point';
-import IPointsRepository from '@modules/Points/repositories/IPointsRepository';
+import { IPointsRepository } from '@modules/Points/repositories/IPointsRepository';
 
 @injectable()
 class ListPointsServices {
