@@ -1,7 +1,7 @@
 import IPointsRepository from '@modules/Points/repositories/IPointsRepository';
 import { ICreatePointDTO } from '@modules/Points/dtos/ICreatePointDTO';
 
-import Point from '../../infra/typeorm/entities/Point';
+import { Point } from '../../infra/typeorm/entities/Point';
 
 class FakePointRepository implements IPointsRepository {
   private points: Point[] = [];

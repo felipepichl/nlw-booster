@@ -1,4 +1,4 @@
-import Point from '@modules/Points/infra/typeorm/entities/Point';
+import { Point } from '@modules/Points/infra/typeorm/entities/Point';
 
 import itemView, { IItems } from '@modules/items/views/ItemsView';
 

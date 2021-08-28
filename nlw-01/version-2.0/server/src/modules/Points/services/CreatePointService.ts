@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-import Point from '@modules/Points/infra/typeorm/entities/Point';
+import { Point } from '@modules/Points/infra/typeorm/entities/Point';
 import IPointsRepository from '@modules/Points/repositories/IPointsRepository';
 
 import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';

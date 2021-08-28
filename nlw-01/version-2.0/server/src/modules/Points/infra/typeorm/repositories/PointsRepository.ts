@@ -6,7 +6,7 @@ import { ICreatePointDTO } from '@modules/Points/dtos/ICreatePointDTO';
 
 import { ShowItemsByIdsService } from '@modules/items/services/ShowItemsByIdsService';
 
-import Point from '../entities/Point';
+import { Point } from '../entities/Point';
 
 class PointRepository implements IPointsRepository {
   private ormRepository: Repository<Point>;

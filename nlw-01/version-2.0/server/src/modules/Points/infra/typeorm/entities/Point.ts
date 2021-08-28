@@ -10,7 +10,7 @@ import {
 import { Item } from '@modules/items/infra/typeorm/entities/Item';
 
 @Entity('points')
-export default class Point {
+class Point {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
@@ -48,3 +48,5 @@ export default class Point {
   @UpdateDateColumn()
   updated_at: Date;
 }
+
+export { Point };
