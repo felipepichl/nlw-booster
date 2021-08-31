@@ -1,13 +1,13 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import CreatePointService from '@modules/Points/services/CreatePointService';
-import ListPointsService from '@modules/Points//services/ListPointsService';
-import ShowPointService from '@modules/Points//services/ShowPointService';
+import { CreatePointService } from '@modules/Points/services/CreatePointService';
+import { ListPointsService } from '@modules/Points//services/ListPointsService';
+import { ShowPointService } from '@modules/Points//services/ShowPointService';
 
 import pointView from '@modules/Points/views/PointView';
 
-export default class PointsControllers {
+class PointsController {
   async index(request: Request, response: Response): Promise<Response> {
     const listPoints = container.resolve(ListPointsService);
 
@@ -83,3 +83,5 @@ export default class PointsControllers {
     */
   }
 }
+
+export { PointsController };

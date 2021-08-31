@@ -4,7 +4,7 @@ import { Point } from '@modules/Points/infra/typeorm/entities/Point';
 import { IPointsRepository } from '@modules/Points/repositories/IPointsRepository';
 
 @injectable()
-class ListPointsServices {
+class ListPointsService {
   constructor(
     @inject('PointsRepository')
     private pointsRepository: IPointsRepository,
@@ -17,4 +17,4 @@ class ListPointsServices {
   }
 }
 
-export default ListPointsServices;
+export { ListPointsService };

@@ -18,7 +18,7 @@ interface IRequest {
 }
 
 @injectable()
-class CreatePointServices {
+class CreatePointService {
   constructor(
     @inject('PointsRepository')
     private pointsRepository: IPointsRepository,
@@ -58,4 +58,4 @@ class CreatePointServices {
   }
 }
 
-export default CreatePointServices;
+export { CreatePointService };

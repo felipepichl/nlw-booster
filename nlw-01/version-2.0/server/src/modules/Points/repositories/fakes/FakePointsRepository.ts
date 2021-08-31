@@ -3,7 +3,7 @@ import { ICreatePointDTO } from '@modules/Points/dtos/ICreatePointDTO';
 
 import { Point } from '../../infra/typeorm/entities/Point';
 
-class FakePointRepository implements IPointsRepository {
+class FakePointsRepository implements IPointsRepository {
   private points: Point[] = [];
 
   public async create({
@@ -48,4 +48,4 @@ class FakePointRepository implements IPointsRepository {
   }
 }
 
-export default FakePointRepository;
+export { FakePointsRepository };

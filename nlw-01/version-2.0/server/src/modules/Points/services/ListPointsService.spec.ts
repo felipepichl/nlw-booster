@@ -1,9 +1,9 @@
 import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 
-import FakePointsRepository from '../repositories/fakes/FakePointsRepository';
+import { FakePointsRepository } from '../repositories/fakes/FakePointsRepository';
 
-import CreatePointService from './CreatePointService';
-import ListPointsServices from './ListPointsService';
+import { CreatePointService } from './CreatePointService';
+import { ListPointsService } from './ListPointsService';
 
 describe('ListPoints', () => {
   it('should be able to list all points', async () => {
@@ -15,7 +15,7 @@ describe('ListPoints', () => {
       fakeStorageProvider,
     );
 
-    const listPointsService = new ListPointsServices(fakePointsRepository);
+    const listPointsService = new ListPointsService(fakePointsRepository);
 
     const point = await createPointService.execute({
       name: 'Name Test',

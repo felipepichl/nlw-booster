@@ -1,9 +1,9 @@
 import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 
-import FakePointsRepository from '../repositories/fakes/FakePointsRepository';
+import { FakePointsRepository } from '../repositories/fakes/FakePointsRepository';
 
-import CreatePointService from './CreatePointService';
-import ShowPointService from './ShowPointService';
+import { CreatePointService } from './CreatePointService';
+import { ShowPointService } from './ShowPointService';
 
 describe('ShowPoint', () => {
   it('should be able to list on a specific point', async () => {

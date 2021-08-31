@@ -3,7 +3,7 @@ import { Router } from 'express';
 import multer from 'multer';
 import uploadConfig from '@config/upload';
 
-import PointsController from '../controllers/PointsController';
+import { PointsController } from '../controllers/PointsController';
 
 const userRoute = Router();
 const upload = multer(uploadConfig);

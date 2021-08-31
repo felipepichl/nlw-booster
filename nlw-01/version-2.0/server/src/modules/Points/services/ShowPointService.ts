@@ -21,4 +21,4 @@ class ShowPointService {
   }
 }
 
-export default ShowPointService;
+export { ShowPointService };
