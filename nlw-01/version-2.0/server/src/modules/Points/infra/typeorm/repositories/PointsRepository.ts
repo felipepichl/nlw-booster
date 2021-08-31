@@ -8,7 +8,7 @@ import { ShowItemsByIdsService } from '@modules/items/services/ShowItemsByIdsSer
 
 import { Point } from '../entities/Point';
 
-class PointRepository implements IPointsRepository {
+class PointsRepository implements IPointsRepository {
   private ormRepository: Repository<Point>;
 
   constructor() {
@@ -68,4 +68,4 @@ class PointRepository implements IPointsRepository {
   }
 }
 
-export { PointRepository };
+export { PointsRepository };
