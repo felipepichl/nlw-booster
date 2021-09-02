@@ -12,7 +12,7 @@ interface ITokenPayload {
 export function enshureAuthenticated(
   request: Request,
   response: Response,
-  _next: NextFunction,
+  next: NextFunction,
 ) {
   const authHeader = request.headers.authorization;
 
@@ -25,13 +25,13 @@ export function enshureAuthenticated(
   try {
     const decoded = verify(token, authConfig.jwt.secret);
 
+    const { sub } = decoded as ITokenPayload;
+
     request.user = {
       id: sub,
     };
 
     return next();
-
-    const { sub } = decoded as ITokenPayload;
   } catch {
     console.error('Invalid JWT Token');
   }
