@@ -16,11 +16,23 @@ export function enshureAuthenticated(
 ) {
   const authHeader = request.headers.authorization;
 
+  if (!authHeader) {
+    console.error('Token is missing');
+  }
+
   const [, token] = authHeader.split(' ');
 
   try {
     const decoded = verify(token, authConfig.jwt.secret);
 
+    request.user = {
+      id: sub,
+    };
+
+    return next();
+
     const { sub } = decoded as ITokenPayload;
-  } catch (err) {}
+  } catch {
+    console.error('Invalid JWT Token');
+  }
 }
