@@ -5,13 +5,13 @@ import uploadConfig from '@config/upload';
 
 import { PointsController } from '../controllers/PointsController';
 
-const userRoute = Router();
+const pointRouter = Router();
 const upload = multer(uploadConfig);
 
 const pointsController = new PointsController();
 
-userRoute.post('', upload.single('image'), pointsController.create);
-userRoute.get('', pointsController.index);
-userRoute.get('/:id', pointsController.show);
+pointRouter.post('', upload.single('image'), pointsController.create);
+pointRouter.get('', pointsController.index);
+pointRouter.get('/:id', pointsController.show);
 
-export default userRoute;
+export { pointRouter };
