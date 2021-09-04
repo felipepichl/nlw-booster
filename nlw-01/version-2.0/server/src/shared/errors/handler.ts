@@ -5,7 +5,7 @@ interface IValidationErrors {
   [key: string]: string[];
 }
 
-const errorHandler: ErrorRequestHandler = (error, request, response, _next) => {
+const ErrorHandler: ErrorRequestHandler = (error, request, response, _next) => {
   if (error instanceof ValidationError) {
     const errors: IValidationErrors = {};
 
@@ -21,4 +21,4 @@ const errorHandler: ErrorRequestHandler = (error, request, response, _next) => {
   return response.status(500).json({ message: 'Internal server error' });
 };
 
-export default errorHandler;
+export { ErrorHandler };
