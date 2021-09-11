@@ -1,5 +1,5 @@
-import { IPointsRepository } from '@modules/Points/repositories/IPointsRepository';
-import { ICreatePointDTO } from '@modules/Points/dtos/ICreatePointDTO';
+import { IPointsRepository } from '@modules/points/repositories/IPointsRepository';
+import { ICreatePointDTO } from '@modules/points/dtos/ICreatePointDTO';
 
 import { Point } from '../../infra/typeorm/entities/Point';
 
