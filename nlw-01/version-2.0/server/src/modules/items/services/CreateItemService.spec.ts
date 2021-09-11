@@ -1,4 +1,4 @@
-import FakeStorageProvider from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
+import { FakeStorageProvider } from '@shared/container/providers/StorageProvider/fakes/FakeStorageProvider';
 
 import { FakeItemsRepository } from '../repositories/fakes/FakeItemsRepository';
 import { CreateItemService } from './CreateItemService';
