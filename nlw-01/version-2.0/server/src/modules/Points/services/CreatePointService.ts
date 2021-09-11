@@ -3,7 +3,7 @@ import { injectable, inject } from 'tsyringe';
 import { Point } from '@modules/points/infra/typeorm/entities/Point';
 import { IPointsRepository } from '@modules/points/repositories/IPointsRepository';
 
-import IStorageProvider from '@shared/container/providers/StorageProvider/models/IStorageProvider';
+import { IStorageProvider } from '@shared/container/providers/StorageProvider/models/IStorageProvider';
 
 interface IRequest {
   name: string;

@@ -2,8 +2,8 @@ import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
 import { CreatePointService } from '@modules/points/services/CreatePointService';
-import { ListPointsService } from '@modules/points//services/ListPointsService';
-import { ShowPointService } from '@modules/points//services/ShowPointService';
+import { ListPointsService } from '@modules/points/services/ListPointsService';
+import { ShowPointService } from '@modules/points/services/ShowPointService';
 
 import pointView from '@modules/points/views/PointView';
 
