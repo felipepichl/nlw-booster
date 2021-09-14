@@ -3,16 +3,23 @@ import { FakeStorageProvider } from '@shared/container/providers/StorageProvider
 import { FakePointsRepository } from '../repositories/fakes/FakePointsRepository';
 import { CreatePointService } from './CreatePointService';
 
-describe('CreatePoint', () => {
-  it('should be able to create a new point', async () => {
-    const fakePointsRepository = new FakePointsRepository();
-    const fakeStorageProvider = new FakeStorageProvider();
+let fakePointsRepository: FakePointsRepository;
+let fakeStorageProvider: FakeStorageProvider;
 
-    const createPointService = new CreatePointService(
+let createPointService: CreatePointService;
+
+describe('CreatePoint', () => {
+  beforeEach(() => {
+    fakePointsRepository = new FakePointsRepository();
+    fakeStorageProvider = new FakeStorageProvider();
+
+    createPointService = new CreatePointService(
       fakePointsRepository,
       fakeStorageProvider,
     );
+  });
 
+  it('should be able to create a new point', async () => {
     const point = await createPointService.execute({
       name: 'Name Test',
       email: 'point@exemple.com',

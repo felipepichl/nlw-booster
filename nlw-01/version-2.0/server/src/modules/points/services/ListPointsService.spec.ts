@@ -5,18 +5,26 @@ import { FakePointsRepository } from '../repositories/fakes/FakePointsRepository
 import { CreatePointService } from './CreatePointService';
 import { ListPointsService } from './ListPointsService';
 
-describe('ListPoints', () => {
-  it('should be able to list all points', async () => {
-    const fakePointsRepository = new FakePointsRepository();
-    const fakeStorageProvider = new FakeStorageProvider();
+let fakePointsRepository: FakePointsRepository;
+let fakeStorageProvider: FakeStorageProvider;
 
-    const createPointService = new CreatePointService(
+let createPointService: CreatePointService;
+let listPointsService: ListPointsService;
+
+describe('ListPoints', () => {
+  beforeEach(() => {
+    fakePointsRepository = new FakePointsRepository();
+    fakeStorageProvider = new FakeStorageProvider();
+
+    createPointService = new CreatePointService(
       fakePointsRepository,
       fakeStorageProvider,
     );
 
-    const listPointsService = new ListPointsService(fakePointsRepository);
+    listPointsService = new ListPointsService(fakePointsRepository);
+  });
 
+  it('should be able to list all points', async () => {
     const point = await createPointService.execute({
       name: 'Name Test',
       email: 'point@exemple.com',
