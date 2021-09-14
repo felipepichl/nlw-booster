@@ -5,20 +5,26 @@ import { FakeItemsRepository } from '../repositories/fakes/FakeItemsRepository';
 import { CreateItemService } from './CreateItemService';
 import { ShowItemsByIdsService } from './ShowItemsByIdsService';
 
+let fakeItemsRepository: FakeItemsRepository;
+let fakeStorageProvider: FakeStorageProvider;
+
+let createItemService: CreateItemService;
+let showItemsByIdsService: ShowItemsByIdsService;
+
 describe('ShowItemsByIds', () => {
-  it('should be able to list all items on a specific ids', async () => {
-    const fakeItemsRepository = new FakeItemsRepository();
-    const showItemsByIdsService = new ShowItemsByIdsService(
-      fakeItemsRepository,
-    );
+  beforeEach(() => {
+    fakeItemsRepository = new FakeItemsRepository();
+    showItemsByIdsService = new ShowItemsByIdsService(fakeItemsRepository);
 
-    const fakeStorageProvider = new FakeStorageProvider();
+    fakeStorageProvider = new FakeStorageProvider();
 
-    const createItemService = new CreateItemService(
+    createItemService = new CreateItemService(
       fakeItemsRepository,
       fakeStorageProvider,
     );
+  });
 
+  it('should be able to list all items on a specific ids', async () => {
     const item1 = await createItemService.execute({
       title: 'item-title-test',
       path: 'item-path-test',
