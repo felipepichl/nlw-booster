@@ -3,16 +3,23 @@ import { FakeHashProvider } from '../providers/HashProvider/fakes/FakeHashProvid
 
 import { CreateUserServices } from './CreateUserServices';
 
-describe('CreateUser', () => {
-  it('should be able to create a new user', async () => {
-    const fakeUsersRepository = new FakeUsersRepository();
-    const fakeHashProvider = new FakeHashProvider();
+let fakeHashProvider: FakeHashProvider;
+let fakeUsersRepository: FakeUsersRepository;
 
-    const createUserServices = new CreateUserServices(
+let createUserServices: CreateUserServices;
+
+describe('CreateUser', () => {
+  beforeEach(() => {
+    fakeUsersRepository = new FakeUsersRepository();
+    fakeHashProvider = new FakeHashProvider();
+
+    createUserServices = new CreateUserServices(
       fakeHashProvider,
       fakeUsersRepository,
     );
+  });
 
+  it('should be able to create a new user', async () => {
     const user = await createUserServices.execute({
       name: 'John Due',
       email: 'johndue@example.com',
