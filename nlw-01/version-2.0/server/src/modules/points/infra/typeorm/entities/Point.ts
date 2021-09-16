@@ -1,13 +1,13 @@
 import {
   Column,
   Entity,
+  JoinColumn,
   JoinTable,
   ManyToMany,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-
-// import { Item } from '../../../../items/infra/typeorm/entities/Item';
 
 import { Item } from '@modules/items/infra/typeorm/entities/Item';
 import { User } from '@modules/users/infra/typeorm/entities/User';
@@ -44,6 +44,13 @@ class Point {
   @ManyToMany(() => Item)
   @JoinTable()
   items: Item[];
+
+  @Column()
+  user_id: string;
+
+  @ManyToOne(() => User)
+  @JoinColumn({ name: 'user_id' })
+  user: User;
 
   @UpdateDateColumn()
   created_at: Date;
