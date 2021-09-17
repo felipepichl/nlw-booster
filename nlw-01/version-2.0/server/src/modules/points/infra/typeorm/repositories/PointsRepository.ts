@@ -25,6 +25,7 @@ class PointsRepository implements IPointsRepository {
     uf,
     image,
     items,
+    user_id,
   }: ICreatePointDTO): Promise<Point | undefined> {
     const ids = items.split(',').map((item: string) => Number(item.trim()));
 
@@ -42,6 +43,7 @@ class PointsRepository implements IPointsRepository {
       uf,
       image,
       items: existentsItem,
+      user_id,
     };
 
     const point = this.ormRepository.create(data);

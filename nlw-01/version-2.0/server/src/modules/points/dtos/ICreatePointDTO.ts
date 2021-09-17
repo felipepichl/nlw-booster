@@ -8,6 +8,7 @@ interface ICreatePointDTO {
   uf: string;
   items: string;
   image: string;
+  user_id: string;
 }
 
 export { ICreatePointDTO };
