@@ -15,6 +15,7 @@ interface IRequest {
   uf: string;
   items: string;
   image: string;
+  user_id: string;
 }
 
 @injectable()
@@ -37,6 +38,7 @@ class CreatePointService {
     uf,
     items,
     image,
+    user_id,
   }: IRequest): Promise<Point> {
     const fileName = await this.storageProvider.saveFile(image);
 
@@ -50,6 +52,7 @@ class CreatePointService {
       uf,
       image: fileName,
       items,
+      user_id,
     };
 
     const point = this.pointsRepository.create(data);
