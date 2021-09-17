@@ -38,6 +38,8 @@ class PointsController {
       items,
     } = request.body;
 
+    const user_id = request.user.id;
+
     const { filename: image } = request.file as Express.Multer.File;
 
     const createPoint = container.resolve(CreatePointService);
@@ -52,6 +54,7 @@ class PointsController {
       uf,
       items,
       image,
+      user_id,
     });
 
     return response.status(201).json(point);
