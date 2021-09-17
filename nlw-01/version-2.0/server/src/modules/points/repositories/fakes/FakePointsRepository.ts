@@ -16,6 +16,7 @@ class FakePointsRepository implements IPointsRepository {
     uf,
     image,
     items,
+    user_id,
   }: ICreatePointDTO): Promise<Point | undefined> {
     const point = new Point();
 
@@ -30,6 +31,7 @@ class FakePointsRepository implements IPointsRepository {
       uf,
       image,
       items,
+      user_id,
     });
 
     this.points.push(point);
