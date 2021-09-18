@@ -1,3 +1,4 @@
+import { AppError } from '@shared/errors/AppError';
 import { FakeUsersRepository } from '../repositories/fakes/FakeUsersRepository';
 import { FakeHashProvider } from '../providers/HashProvider/fakes/FakeHashProvider';
 
@@ -41,5 +42,19 @@ describe('CreateSession', () => {
 
     expect(response).toHaveProperty('token');
     expect(response.user).toEqual(user);
+  });
+
+  it('should be able to create a new session with non existing user', async () => {
+    createSessionService = new CreateSessionServices(
+      fakeHashProvider,
+      fakeUsersRepository,
+    );
+
+    expect(
+      createSessionService.execute({
+        email: 'john.doe@example.com',
+        password: '67899876',
+      }),
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
