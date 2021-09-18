@@ -35,6 +35,7 @@ describe('ListPoints', () => {
       uf: 'TS',
       image: 'image-path',
       items: '1,2',
+      user_id: 'hash123454321',
     });
 
     const points = await listPointsService.execute();

@@ -35,6 +35,7 @@ describe('ShowPoint', () => {
       uf: 'TS',
       image: 'image-path',
       items: '1,2',
+      user_id: 'hash123454321',
     });
 
     const findPoint = await showPointService.execute({
