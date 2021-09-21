@@ -1,12 +1,11 @@
 import { registerRootComponent } from 'expo';
 import React from 'react';
-import { View, Text } from 'react-native';
+
+import { SignIn} from '../screens/SignIn'
 
 const App: React.FC = () => {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Hello World</Text>
-    </View>
+    <SignIn/>
   );
 };
 
