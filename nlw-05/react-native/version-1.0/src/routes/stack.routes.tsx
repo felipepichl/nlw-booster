@@ -3,7 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import { Welcome } from '../screens/Welcome';
 import { UserIdentification } from '../screens/UserIdentification';
-import { Confirmation } from '../pages/Confirmation';
+import { Confirmation } from '../screens/Confirmation';
 import { PlantSelect } from '../pages/PlantSelect';
 
 import colors from '../styles/colors';
