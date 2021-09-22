@@ -1,21 +1,18 @@
 import React from 'react';
 import {
-  StyleSheet,
   SafeAreaView,
   Text,
   Image,
   TouchableOpacity,
-  Dimensions,
   View,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 import { Feather } from '@expo/vector-icons';
 
-import wateringImg from '../assets/watering.png';
+import wateringImg from '../../assets/watering.png';
 
-import colors from '../styles/colors';
-import fonts from '../styles/fonts';
+import { styles } from './styles';
 
 const Welcome: React.FC = () => {
   const { navigate } = useNavigation();
@@ -57,53 +54,3 @@ const Welcome: React.FC = () => {
 };
 
 export { Welcome };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-
-  content: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    paddingHorizontal: 20,
-  },
-
-  title: {
-    fontSize: 28,
-    fontWeight: 'bold',
-    fontFamily: fonts.heading,
-    lineHeight: 34,
-    textAlign: 'center',
-    color: colors.heading,
-    marginTop: 38,
-  },
-
-  image: {
-    height: Dimensions.get('window').width * 0.7,
-  },
-
-  subtitle: {
-    textAlign: 'center',
-    fontSize: 18,
-    fontFamily: fonts.text,
-    paddingHorizontal: 20,
-    color: colors.heading,
-  },
-
-  button: {
-    backgroundColor: colors.green,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 16,
-    marginBottom: 10,
-    height: 56,
-    width: 56,
-  },
-
-  buttonIcon: {
-    fontSize: 32,
-    color: colors.white,
-  },
-});
