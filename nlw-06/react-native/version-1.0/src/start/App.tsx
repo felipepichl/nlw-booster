@@ -1,12 +1,27 @@
-import { registerRootComponent } from 'expo';
+import { AppLoading, registerRootComponent } from 'expo';
 import React from 'react';
 
-import { SignIn} from '../screens/SignIn'
+import { useFonts } from 'expo-font';
+import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
+import {
+  Rajdhani_500Medium,
+  Rajdhani_700Bold,
+} from '@expo-google-fonts/rajdhani';
+
+import { SignIn } from '../screens/SignIn';
 
 const App: React.FC = () => {
-  return (
-    <SignIn/>
-  );
+  const [fontsLoaded] = useFonts({
+    Inter_400Regular,
+    Inter_500Medium,
+    Rajdhani_500Medium,
+    Rajdhani_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+  return <SignIn />;
 };
 
 registerRootComponent(App);
