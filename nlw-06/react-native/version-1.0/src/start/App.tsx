@@ -1,5 +1,6 @@
 import { registerRootComponent } from 'expo';
 import React from 'react';
+import { StatusBar } from 'react-native';
 
 import { useFonts } from 'expo-font';
 import { Inter_400Regular, Inter_500Medium } from '@expo-google-fonts/inter';
@@ -9,6 +10,7 @@ import {
 } from '@expo-google-fonts/rajdhani';
 import AppLoading from 'expo-app-loading';
 
+import { Background } from '../components/Background';
 import { SignIn } from '../screens/SignIn';
 
 const App: React.FC = () => {
@@ -22,7 +24,16 @@ const App: React.FC = () => {
   if (!fontsLoaded) {
     return <AppLoading />;
   }
-  return <SignIn />;
+  return (
+    <Background>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+      <SignIn />
+    </Background>
+  );
 };
 
 registerRootComponent(App);
