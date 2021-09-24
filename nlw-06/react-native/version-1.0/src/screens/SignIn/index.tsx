@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import React from 'react';
 import { View, Text, Image, StatusBar } from 'react-native';
 
@@ -23,7 +24,13 @@ const SignIn: React.FC = () => {
       />
 
       <View style={styles.content}>
-        <Text style={styles.title}>Conecte-se e organize suas jogatinas </Text>
+        <Text style={styles.title}>
+          Conecte-se
+          {'\n'}
+          e organize suas
+          {'\n'}
+          jogatinas
+        </Text>
 
         <Text style={styles.subTitle}>
           Crie grupos para jogar seus games

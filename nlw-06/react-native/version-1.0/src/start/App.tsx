@@ -1,4 +1,4 @@
-import { AppLoading, registerRootComponent } from 'expo';
+import { registerRootComponent } from 'expo';
 import React from 'react';
 
 import { useFonts } from 'expo-font';
@@ -7,6 +7,7 @@ import {
   Rajdhani_500Medium,
   Rajdhani_700Bold,
 } from '@expo-google-fonts/rajdhani';
+import AppLoading from 'expo-app-loading';
 
 import { SignIn } from '../screens/SignIn';
 
