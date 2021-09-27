@@ -11,7 +11,7 @@ import {
 import AppLoading from 'expo-app-loading';
 
 import { Background } from '../components/Background';
-import { SignIn } from '../screens/SignIn';
+import { Routes } from '../routes';
 
 const App: React.FC = () => {
   const [fontsLoaded] = useFonts({
@@ -31,7 +31,7 @@ const App: React.FC = () => {
         backgroundColor="transparent"
         translucent
       />
-      <SignIn />
+      <Routes />
     </Background>
   );
 };
