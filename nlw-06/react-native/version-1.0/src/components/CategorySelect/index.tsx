@@ -1,6 +1,9 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
+
 import { categories } from '../../utils/categories';
+
+import { Category } from '../Category';
 
 import { styles } from './styles';
 
@@ -12,11 +15,13 @@ const CategorySelect: React.FC = () => {
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{ padding: 40 }}
     >
-      {
-        categories.map(category => (
-
-        ))
-      }
+      {categories.map(category => (
+        <Category
+          key={category.id}
+          title={category.title}
+          icon={category.icon}
+        />
+      ))}
     </ScrollView>
   );
 };
