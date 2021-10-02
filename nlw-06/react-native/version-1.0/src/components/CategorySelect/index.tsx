@@ -7,7 +7,13 @@ import { Category } from '../Category';
 
 import { styles } from './styles';
 
-const CategorySelect: React.FC = () => {
+interface CategorySelectProps {
+  categorySelected?: string;
+}
+
+const CategorySelect: React.FC<CategorySelectProps> = ({
+  categorySelected,
+}) => {
   return (
     <ScrollView
       horizontal
@@ -20,6 +26,7 @@ const CategorySelect: React.FC = () => {
           key={category.id}
           title={category.title}
           icon={category.icon}
+          checked={category.id === categorySelected}
         />
       ))}
     </ScrollView>
