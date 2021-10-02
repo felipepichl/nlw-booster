@@ -1,5 +1,6 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
+import { setConstantValue } from 'typescript';
 
 import { categories } from '../../utils/categories';
 
@@ -8,11 +9,13 @@ import { Category } from '../Category';
 import { styles } from './styles';
 
 interface CategorySelectProps {
-  categorySelected?: string;
+  categorySelected: string;
+  setCategory: (categoryId: string) => void;
 }
 
 const CategorySelect: React.FC<CategorySelectProps> = ({
   categorySelected,
+  setCategory,
 }) => {
   return (
     <ScrollView
@@ -27,6 +30,7 @@ const CategorySelect: React.FC<CategorySelectProps> = ({
           title={category.title}
           icon={category.icon}
           checked={category.id === categorySelected}
+          onPress={() => setCategory(category.id)}
         />
       ))}
     </ScrollView>

@@ -11,7 +11,7 @@ import { theme } from '../../global/styles/theme';
 interface CategoryProps extends RectButtonProperties {
   title: string;
   icon: React.FC<SvgProps>;
-  checked?: boolean;
+  checked: boolean;
 }
 
 const Category: React.FC<CategoryProps> = ({
