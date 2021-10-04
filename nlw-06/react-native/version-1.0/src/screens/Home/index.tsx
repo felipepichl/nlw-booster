@@ -27,6 +27,8 @@ const Home: React.FC = () => {
           categorySelected={category}
           setCategory={handleCategorySelect}
         />
+
+        <View style={styles.content} />
       </View>
     </View>
   );
