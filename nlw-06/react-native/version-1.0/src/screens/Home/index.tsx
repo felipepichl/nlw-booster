@@ -3,8 +3,8 @@ import { View } from 'react-native';
 
 import { Profile } from '../../components/Profile';
 import { ButtonAdd } from '../../components/ButtonAdd';
-
 import { CategorySelect } from '../../components/CategorySelect';
+import { ListHeader } from '../../components/ListHeader';
 
 import { styles } from './styles';
 
@@ -28,7 +28,9 @@ const Home: React.FC = () => {
           setCategory={handleCategorySelect}
         />
 
-        <View style={styles.content} />
+        <View style={styles.content}>
+          <ListHeader title="Partidas agendadas" subTitle="Total 6" />
+        </View>
       </View>
     </View>
   );
