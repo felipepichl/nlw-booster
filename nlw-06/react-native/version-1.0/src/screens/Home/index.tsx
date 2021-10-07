@@ -18,7 +18,7 @@ const Home: React.FC = () => {
       guild: {
         id: '1',
         name: 'Lendários',
-        icon: null,
+        icon: '',
         owner: true,
       },
       category: '1',
@@ -51,7 +51,7 @@ const Home: React.FC = () => {
           <FlatList
             data={appointments}
             keyExtractor={item => item.id}
-            renderItem={({ item }) => <Appointment />}
+            renderItem={({ item }) => <Appointment data={item} />}
           />
         </View>
       </View>
