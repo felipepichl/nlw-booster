@@ -52,6 +52,8 @@ const Home: React.FC = () => {
             data={appointments}
             keyExtractor={item => item.id}
             renderItem={({ item }) => <Appointment data={item} />}
+            style={styles.matches}
+            showsVerticalScrollIndicator={false}
           />
         </View>
       </View>
