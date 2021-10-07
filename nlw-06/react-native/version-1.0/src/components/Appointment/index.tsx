@@ -3,6 +3,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import { View, Text } from 'react-native';
 
 import PlayerSvg from '../../assets/player.svg';
+import CalendarSvg from '../../assets/calendar.svg';
 
 import { GuildIcon } from '../GuildIcon';
 
@@ -44,6 +45,14 @@ const Appointment: React.FC<Props> = ({ data, ...rest }) => {
           <View style={styles.header}>
             <Text style={styles.title}>{data.guild.name}</Text>
             <Text style={styles.categoty}>{category.title}</Text>
+          </View>
+
+          <View style={styles.footer}>
+            <View style={styles.dateInfo}>
+              <CalendarSvg />
+
+              <Text style={styles.date}>{data.date}</Text>
+            </View>
           </View>
 
           <View style={styles.playersInfo}>
