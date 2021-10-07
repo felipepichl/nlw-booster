@@ -1,5 +1,5 @@
 import React from 'react';
-import { RectButton } from 'react-native-gesture-handler';
+import { RectButton, RectButtonProperties } from 'react-native-gesture-handler';
 import { View, Text } from 'react-native';
 
 import PlayerSvg from '../../assets/player.svg';
@@ -15,7 +15,7 @@ import { theme } from '../../global/styles/theme';
 interface GuildProps {
   id: string;
   name: string;
-  icon: string;
+  icon: null;
   owner: boolean;
 }
 
@@ -27,7 +27,7 @@ interface AppointmentProps {
   description: string;
 }
 
-interface Props extends RectButton {
+interface Props extends RectButtonProperties {
   data: AppointmentProps;
 }
 
@@ -53,13 +53,12 @@ const Appointment: React.FC<Props> = ({ data, ...rest }) => {
 
               <Text style={styles.date}>{data.date}</Text>
             </View>
-          </View>
-
-          <View style={styles.playersInfo}>
-            <PlayerSvg fill={owner ? primary : on} />
-            <Text style={[styles.player, { color: owner ? primary : on }]}>
-              {owner ? 'Anfitrião' : 'Visitante'}
-            </Text>
+            <View style={styles.playersInfo}>
+              <PlayerSvg fill={owner ? primary : on} />
+              <Text style={[styles.player, { color: owner ? primary : on }]}>
+                {owner ? 'Anfitrião' : 'Visitante'}
+              </Text>
+            </View>
           </View>
         </View>
       </View>

@@ -18,7 +18,7 @@ const Home: React.FC = () => {
       guild: {
         id: '1',
         name: 'Lendários',
-        icon: '',
+        icon: null,
         owner: true,
       },
       category: '1',
