@@ -1,12 +1,16 @@
 import React from 'react';
-import { Image } from 'react-native';
+import { View, Image } from 'react-native';
 
-import uri from '../../assets/discord.png';
+import discord from '../../assets/discord.png';
 
 import { styles } from './styles';
 
 const GuildIcon: React.FC = () => {
-  return <Image source={{ uri }} style={styles.image} resizeMode="cover" />;
+  return (
+    <View style={styles.container}>
+      <Image source={discord} style={styles.image} resizeMode="cover" />
+    </View>
+  );
 };
 
 export { GuildIcon };

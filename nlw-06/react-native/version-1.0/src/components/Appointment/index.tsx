@@ -37,8 +37,8 @@ const Appointment: React.FC<Props> = ({ data, ...rest }) => {
   const { primary, on } = theme.colors;
 
   return (
-    <RectButton style={styles.container} {...rest}>
-      <View style={styles.content}>
+    <RectButton {...rest}>
+      <View style={styles.container}>
         <GuildIcon />
 
         <View style={styles.content}>
@@ -53,6 +53,7 @@ const Appointment: React.FC<Props> = ({ data, ...rest }) => {
 
               <Text style={styles.date}>{data.date}</Text>
             </View>
+
             <View style={styles.playersInfo}>
               <PlayerSvg fill={owner ? primary : on} />
               <Text style={[styles.player, { color: owner ? primary : on }]}>
