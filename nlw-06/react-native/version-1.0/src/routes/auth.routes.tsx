@@ -11,7 +11,7 @@ const AuthRoutes: React.FC = () => (
     headerMode="none"
     screenOptions={{
       cardStyle: {
-        backgroundColor: 'transoarent',
+        backgroundColor: 'transparent',
       },
     }}
   >

@@ -40,12 +40,12 @@ const Home: React.FC = () => {
         <ButtonAdd />
       </View>
 
-      <CategorySelect
+      {/* <CategorySelect
         categorySelected={category}
         setCategory={handleCategorySelect}
-      />
+      /> */}
 
-      <View style={styles.content}>
+      {/* <View style={styles.content}>
         <ListHeader title="Partidas agendadas" subTitle="Total 6" />
 
         <FlatList
@@ -56,7 +56,7 @@ const Home: React.FC = () => {
           style={styles.matches}
           showsVerticalScrollIndicator={false}
         />
-      </View>
+      </View> */}
     </View>
   );
 };

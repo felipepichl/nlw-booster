@@ -14,7 +14,7 @@ const Profile: React.FC = () => {
         <View style={styles.user}>
           <Text style={styles.greeting}>Olá</Text>
 
-          <Text>Felipe Pichl</Text>
+          <Text style={styles.username}>Felipe Pichl</Text>
         </View>
         <Text style={styles.message}>Today, Is day for win</Text>
       </View>
