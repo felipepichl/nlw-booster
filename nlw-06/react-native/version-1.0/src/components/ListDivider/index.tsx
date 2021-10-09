@@ -7,4 +7,4 @@ const ListDivider: React.FC = () => {
   return <View style={styles.container} />;
 };
 
-export default { ListDivider };
+export { ListDivider };
