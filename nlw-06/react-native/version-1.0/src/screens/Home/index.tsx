@@ -40,10 +40,10 @@ const Home: React.FC = () => {
         <ButtonAdd />
       </View>
 
-      {/* <CategorySelect
+      <CategorySelect
         categorySelected={category}
         setCategory={handleCategorySelect}
-      /> */}
+      />
 
       {/* <View style={styles.content}>
         <ListHeader title="Partidas agendadas" subTitle="Total 6" />
