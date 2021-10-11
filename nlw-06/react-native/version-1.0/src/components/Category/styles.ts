@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     width: 100,
     height: 116,
     borderRadius: 8,
-    justifyContent: 'space-between',
     alignItems: 'center',
+    justifyContent: 'space-between',
     paddingVertical: 20,
   },
   checked: {
