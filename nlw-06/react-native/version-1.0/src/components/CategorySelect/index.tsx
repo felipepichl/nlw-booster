@@ -10,11 +10,13 @@ import { styles } from './styles';
 interface CategorySelectProps {
   categorySelected: string;
   setCategory: (categoryId: string) => void;
+  hasChackBox?: boolean;
 }
 
 const CategorySelect: React.FC<CategorySelectProps> = ({
   categorySelected,
   setCategory,
+  hasChackBox = false,
 }) => {
   return (
     <ScrollView
@@ -30,6 +32,7 @@ const CategorySelect: React.FC<CategorySelectProps> = ({
           icon={category.icon}
           checked={category.id === categorySelected}
           onPress={() => setCategory(category.id)}
+          hasChackBox={hasChackBox}
         />
       ))}
     </ScrollView>
