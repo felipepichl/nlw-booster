@@ -8,6 +8,8 @@ import { ListHeader } from '../../components/ListHeader';
 import { Appointment } from '../../components/Appointment';
 import { ListDivider } from '../../components/ListDivider';
 
+import { Background } from '../../components/Background';
+
 import { styles } from './styles';
 
 const Home: React.FC = () => {
@@ -34,7 +36,8 @@ const Home: React.FC = () => {
   }
 
   return (
-    <View style={styles.container}>
+    <Background>
+      {/* <View style={styles.container}> */}
       <View style={styles.header}>
         <Profile />
         <ButtonAdd />
@@ -57,7 +60,8 @@ const Home: React.FC = () => {
           showsVerticalScrollIndicator={false}
         />
       </View>
-    </View>
+      {/* </View> */}
+    </Background>
   );
 };
 
