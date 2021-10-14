@@ -5,12 +5,12 @@ import { Header } from '../../components/Header';
 
 import { styles } from './styles';
 
-const AppointmentDetail: React.FC = () => {
+const AppointmentDetails: React.FC = () => {
   return (
     <Background>
-      <Header />
+      <Header title="Detalhes" />
     </Background>
   );
 };
 
-export { AppointmentDetail };
+export { AppointmentDetails };
