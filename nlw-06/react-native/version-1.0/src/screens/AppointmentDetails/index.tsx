@@ -7,6 +7,7 @@ import { Background } from '../../components/Background';
 import { Header } from '../../components/Header';
 import { ListHeader } from '../../components/ListHeader';
 import { Member } from '../../components/Member';
+import { ListDivider } from '../../components/ListDivider';
 
 import BannerImg from '../../assets/banner.png';
 
@@ -18,7 +19,7 @@ const AppointmentDetails: React.FC = () => {
     {
       id: '1',
       username: 'Felipe',
-      avatar: 'https://github.com/felipepichl.png',
+      avatar_url: 'https://github.com/felipepichl.png',
       status: 'online',
     },
   ];
@@ -48,7 +49,9 @@ const AppointmentDetails: React.FC = () => {
       <FlatList
         data={members}
         keyExtractor={item => item.id}
-        renderItem={({ item }) => <Member />}
+        renderItem={({ item }) => <Member data={item} />}
+        ItemSeparatorComponent={() => <ListDivider />}
+        style={styles.members}
       />
     </Background>
   );
