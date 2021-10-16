@@ -1,11 +1,12 @@
 import React from 'react';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { Fontisto } from '@expo/vector-icons';
-import { ImageBackground, Text, View } from 'react-native';
+import { ImageBackground, Text, View, FlatList } from 'react-native';
 
 import { Background } from '../../components/Background';
 import { Header } from '../../components/Header';
 import { ListHeader } from '../../components/ListHeader';
+import { Member } from '../../components/Member';
 
 import BannerImg from '../../assets/banner.png';
 
@@ -13,6 +14,15 @@ import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
 
 const AppointmentDetails: React.FC = () => {
+  const members = [
+    {
+      id: '1',
+      username: 'Felipe',
+      avatar: 'https://github.com/felipepichl.png',
+      status: 'online',
+    },
+  ];
+
   return (
     <Background>
       <Header
@@ -34,6 +44,12 @@ const AppointmentDetails: React.FC = () => {
       </ImageBackground>
 
       <ListHeader title="Jogadores" subTitle="Total 3" />
+
+      <FlatList
+        data={members}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => <Member />}
+      />
     </Background>
   );
 };
