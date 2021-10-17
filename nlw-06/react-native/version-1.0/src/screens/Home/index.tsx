@@ -42,12 +42,16 @@ const Home: React.FC = () => {
     navigate('AppointmentDetails');
   }
 
+  function handleAppointmenCreate() {
+    navigate('AppointmentCreate');
+  }
+
   return (
     <Background>
       {/* <View style={styles.container}> */}
       <View style={styles.header}>
         <Profile />
-        <ButtonAdd />
+        <ButtonAdd onPress={handleAppointmenCreate} />
       </View>
 
       <CategorySelect
