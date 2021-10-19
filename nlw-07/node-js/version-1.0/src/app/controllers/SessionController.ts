@@ -6,9 +6,11 @@ import { Request, Response } from 'express';
 
 class SessionController {
   public async handle(request: Request, response: Response): Promise<Response> {
-    response.redirect();
+    response.redirect(
+      `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}`,
+    );
 
-    return response.json(session);
+    return response.json({ messege: 'OK' });
   }
 }
 

@@ -6,6 +6,6 @@ const sessionRouter = Router();
 
 const sessionController = new SessionController();
 
-sessionRouter.post('', sessionController.handle);
+sessionRouter.get('', sessionController.handle);
 
 export { sessionRouter };
