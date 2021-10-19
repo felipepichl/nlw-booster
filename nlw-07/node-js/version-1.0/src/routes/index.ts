@@ -7,6 +7,6 @@ const router = Router();
 
 router.use('/users', createUserRouter);
 
-router.use('/session', sessionRouter);
+router.use('/github', sessionRouter);
 
 export default router;
