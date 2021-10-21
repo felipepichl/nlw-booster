@@ -4,9 +4,13 @@ interface IRequest {
   code: string;
 }
 
+interface IResponse {
+  access_token: string;
+}
+
 class AuthenticateUserServices {
-  public async execute({ code }: IRequest) {
-    const response = await api.post('', null, {
+  public async execute({ code }: IRequest): Promise<IResponse> {
+    const { data: accessTokenResponse } = await api.post<IResponse>('', null, {
       params: {
         client_id: process.env.GITHUB_CLIENT_ID,
         client_secret: process.env.GITHUB_CLIENT_SECRET,
@@ -17,8 +21,7 @@ class AuthenticateUserServices {
       },
     });
 
-    console.log(response.data);
-    return response.data;
+    return accessTokenResponse;
   }
 }
 
