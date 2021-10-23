@@ -1,4 +1,5 @@
 import { api } from 'services/api';
+import { prismaClient } from '../prisma';
 
 interface IRequest {
   code: string;
@@ -41,7 +42,24 @@ class AuthenticateUserServices {
       },
     );
 
-    console.log(response.data);
+    const { login, id, avatar_url, name } = response.data;
+
+    let user = await prismaClient.user.findFirst({
+      where: {
+        github_id: String(id),
+      },
+    });
+
+    if (!user) {
+      user = await prismaClient.user.create({
+        data: {
+          github_id: String(id),
+          login,
+          avatar_url,
+          name,
+        },
+      });
+    }
 
     return accessTokenResponse;
   }
