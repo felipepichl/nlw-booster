@@ -1,4 +1,6 @@
 import { api } from 'services/api';
+import { sign } from 'jsonwebtoken';
+
 import { prismaClient } from '../prisma';
 
 interface IRequest {
