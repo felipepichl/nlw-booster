@@ -3,14 +3,6 @@ import { sign } from 'jsonwebtoken';
 
 import { prismaClient } from '../prisma';
 
-interface IRequest {
-  code: string;
-}
-
-interface IAccessTokenResponse {
-  access_token: string;
-}
-
 interface IUserResponse {
   login: string;
   id: number;
@@ -18,8 +10,21 @@ interface IUserResponse {
   name: string;
 }
 
+interface IRequest {
+  code: string;
+}
+
+interface IResponse {
+  token: string;
+  user: IUserResponse;
+}
+
+interface IAccessTokenResponse {
+  access_token: string;
+}
+
 class AuthenticateUserServices {
-  public async execute({ code }: IRequest): Promise<IAccessTokenResponse> {
+  public async execute({ code }: IRequest): Promise<IResponse> {
     const { data: accessTokenResponse } = await api.post<IAccessTokenResponse>(
       '',
       null,
@@ -63,7 +68,22 @@ class AuthenticateUserServices {
       });
     }
 
-    return accessTokenResponse;
+    const token = sign(
+      {
+        user: {
+          name: user.name,
+          avatar_url: user.avatar_url,
+          id: user.id,
+        },
+      },
+      process.env.JWT_SECRET,
+      {
+        subject: user.id,
+        expiresIn: '1d',
+      },
+    );
+
+    return { token, user };
   }
 }
 
