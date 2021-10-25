@@ -5,7 +5,7 @@ import { prismaClient } from '../prisma';
 
 interface IUserResponse {
   login: string;
-  id: number;
+  id: string;
   avatar_url: string;
   name: string;
 }

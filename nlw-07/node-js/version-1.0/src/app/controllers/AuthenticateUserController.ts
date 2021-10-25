@@ -1,3 +1,4 @@
+import { AppError } from 'app/error/AppError';
 import { Request, Response } from 'express';
 
 import { AuthenticateUserServices } from '../services/AuthenticateUserServices';
@@ -10,6 +11,9 @@ class AuthenticateUserController {
 
     const result = await authenticateUserServices.execute({ code });
 
+    if (!result) {
+      throw new AppError('Error 401');
+    }
     return response.json(result);
   }
 }
