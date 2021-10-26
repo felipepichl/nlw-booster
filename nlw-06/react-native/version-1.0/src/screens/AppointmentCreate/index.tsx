@@ -6,6 +6,7 @@ import { RectButton } from 'react-native-gesture-handler';
 import { Background } from '../../components/Background';
 import { Header } from '../../components/Header';
 import { CategorySelect } from '../../components/CategorySelect';
+import { GuildIcon } from '../../components/GuildIcon';
 
 import { styles } from './styles';
 import { theme } from '../../global/styles/theme';
@@ -17,7 +18,14 @@ const AppointmentCreate: React.FC = () => {
     <Background>
       <Header title="Agendar Partida" />
 
-      <Text style={styles.label}>Categoria</Text>
+      <Text
+        style={[
+          styles.label,
+          { marginLeft: 24, marginTop: 36, marginBottom: 18 },
+        ]}
+      >
+        Categoria
+      </Text>
 
       <CategorySelect
         hasChackBox
@@ -28,7 +36,7 @@ const AppointmentCreate: React.FC = () => {
       <View style={styles.form}>
         <RectButton>
           <View style={styles.select}>
-            <View style={styles.image} />
+            <GuildIcon />
 
             <View style={styles.selectBody}>
               <Text style={styles.label}>Selecione um Servidor</Text>
