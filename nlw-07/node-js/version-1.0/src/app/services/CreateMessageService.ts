@@ -6,10 +6,18 @@ interface IRequest {
 }
 
 class CreateMessageService {
-  public async execute(): Promise<void> {
+  public async execute({ text, user_id }: IRequest) {
+    const message = await prismaClient.message.create({
+      data: {
+        text,
+        user_id,
+      },
+      include: {
+        user: true,
+      },
+    });
 
-
-    const message = await prismaClient.
+    return message;
   }
 }
 
