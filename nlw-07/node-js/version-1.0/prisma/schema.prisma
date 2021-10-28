@@ -15,6 +15,7 @@ model User {
   login       String
 
   @@map("users")
+  messages Message[]
 }
 
 model Message {
@@ -22,7 +23,8 @@ model Message {
   text        String
   created_at  DateTime @default(now())
 
-  user User @relation(fields: [userId], references: [id])
+  user User @relation(fields: [user_id], references: [id])
 
   @@map("messages")
+  user_id String
 }
