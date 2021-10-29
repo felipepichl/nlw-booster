@@ -15,6 +15,6 @@ router.use('/github', sessionRouter);
 router.use('/signin/callback', sessionCallbackRouter);
 
 router.use('/authenticate', authenticateUserRouter);
-router.use('/message', createMessageRouter);
+router.use('/messages', createMessageRouter);
 
 export default router;
