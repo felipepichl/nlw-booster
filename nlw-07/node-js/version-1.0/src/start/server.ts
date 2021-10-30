@@ -4,11 +4,17 @@ import 'reflect-metadata';
 import express, { Request, Response, NextFunction } from 'express';
 import 'express-async-errors';
 
+import { Server } from 'socket.io';
+import http from 'http';
+
 import { AppError } from 'app/error/AppError';
 
 import routes from '../routes';
 
 const app = express();
+const serverHttp = http.createServer(app);
+
+const io = new Server(serverHttp);
 
 app.use(express.json());
 app.use(routes);
