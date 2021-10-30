@@ -6,15 +6,26 @@ import 'express-async-errors';
 
 import { Server } from 'socket.io';
 import http from 'http';
+import cors from 'cors';
 
 import { AppError } from 'app/error/AppError';
 
 import routes from '../routes';
 
 const app = express();
+app.use(cors());
+
 const serverHttp = http.createServer(app);
 
-const io = new Server(serverHttp);
+const io = new Server(serverHttp, {
+  cors: {
+    origin: '*',
+  },
+});
+
+io.on('connection', socket => {
+  console.log(`User connected on socket ${socket.id}`);
+});
 
 app.use(express.json());
 app.use(routes);
@@ -30,6 +41,4 @@ app.use(
   },
 );
 
-app.listen(3333, () => {
-  console.log('Server running in port 3333');
-});
+export { serverHttp, io };
