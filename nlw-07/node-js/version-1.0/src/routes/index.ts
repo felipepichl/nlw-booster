@@ -7,15 +7,17 @@ import { sessionCallbackRouter } from '../app/routes/sessionCallback.routes';
 import { authenticateUserRouter } from '../app/routes/authenticateUser.routes';
 import { createMessageRouter } from '../app/routes/message.routes';
 import { getLastThreeMessagesRouter } from '../app/routes/getThreeMessages.routes';
+import { userProfileRouter } from '../app/routes/userProfile.routes';
 
 const router = Router();
 
 router.use('/users', createUserRouter);
+router.use('/profile', userProfileRouter);
 
 router.use('/github', sessionRouter);
 router.use('/signin/callback', sessionCallbackRouter);
-
 router.use('/authenticate', authenticateUserRouter);
+
 router.use('/messages', createMessageRouter);
 router.use('/messages/last3', getLastThreeMessagesRouter);
 
