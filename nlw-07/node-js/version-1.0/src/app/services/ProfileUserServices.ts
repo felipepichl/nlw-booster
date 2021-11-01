@@ -6,7 +6,7 @@ interface IRequest {
 
 class ProfileUserServices {
   public async execute({ user_id }: IRequest) {
-    const user = await prismaClient.user.findMany({
+    const user = await prismaClient.user.findFirst({
       where: { id: user_id },
     });
 
