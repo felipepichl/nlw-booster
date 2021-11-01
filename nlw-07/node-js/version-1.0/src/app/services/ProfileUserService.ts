@@ -4,7 +4,7 @@ interface IRequest {
   user_id: string;
 }
 
-class ProfileUserServices {
+class ProfileUserService {
   public async execute({ user_id }: IRequest) {
     const user = await prismaClient.user.findFirst({
       where: { id: user_id },
@@ -14,4 +14,4 @@ class ProfileUserServices {
   }
 }
 
-export { ProfileUserServices };
+export { ProfileUserService };

@@ -23,7 +23,7 @@ interface IAccessTokenResponse {
   access_token: string;
 }
 
-class AuthenticateUserServices {
+class AuthenticateUserService {
   public async execute({ code }: IRequest): Promise<IResponse> {
     const { data: accessTokenResponse } = await api.post<IAccessTokenResponse>(
       '',
@@ -87,4 +87,4 @@ class AuthenticateUserServices {
   }
 }
 
-export { AuthenticateUserServices };
+export { AuthenticateUserService };

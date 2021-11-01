@@ -1,15 +1,15 @@
 import { AppError } from 'app/error/AppError';
 import { Request, Response } from 'express';
 
-import { AuthenticateUserServices } from '../services/AuthenticateUserServices';
+import { AuthenticateUserService } from '../services/AuthenticateUserService';
 
 class AuthenticateUserController {
   public async handle(request: Request, response: Response): Promise<Response> {
     const { code } = request.body;
 
-    const authenticateUserServices = new AuthenticateUserServices();
+    const service = new AuthenticateUserService();
 
-    const result = await authenticateUserServices.execute({ code });
+    const result = await service.execute({ code });
 
     if (!result) {
       throw new AppError('Error 401');

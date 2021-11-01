@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
-import { GetLastThreeMessagesServices } from '../services/GetLastThreeMessagesServices';
+
+import { GetLastThreeMessagesService } from '../services/GetLastThreeMessagesService';
 
 class GetLastThreeMessagesController {
   public async handle(request: Request, response: Response): Promise<Response> {
-    const getLastThreeMessagesController = new GetLastThreeMessagesServices();
+    const service = new GetLastThreeMessagesService();
 
-    const messages = await getLastThreeMessagesController.execute();
+    const messages = await service.execute();
 
     return response.json(messages);
   }
