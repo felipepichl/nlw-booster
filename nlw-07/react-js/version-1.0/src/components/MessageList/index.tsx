@@ -1,8 +1,17 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { api } from '../../services/api';
 
 import styles from './styles.module.scss';
 
 const MessageList: React.FC = () => {
+  const [messages, setMessages] = useState();
+
+  useEffect(() => {
+    api.get('/messages/last3').then(response => {
+      setMessages(response.data)
+    })
+  }, [])
+
   return (
     <div className={styles.messageListWrapper}>
       <svg width="280" height="24" viewBox="0 0 280 24" fill="none" xmlns="http://www.w3.org/2000/svg">
