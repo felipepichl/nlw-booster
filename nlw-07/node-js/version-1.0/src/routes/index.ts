@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+import { ensureAuthenticated } from '../app/middlewares/ensureAuthenticated';
+
 import { createUserRouter } from '../app/routes/user.routes';
 import { sessionRouter } from '../app/routes/session.routes';
 import { sessionCallbackRouter } from '../app/routes/sessionCallback.routes';
@@ -18,7 +20,7 @@ router.use('/github', sessionRouter);
 router.use('/signin/callback', sessionCallbackRouter);
 router.use('/authenticate', authenticateUserRouter);
 
-router.use('/messages', createMessageRouter);
 router.use('/messages/last3', getLastThreeMessagesRouter);
+router.use('/messages', ensureAuthenticated, createMessageRouter);
 
 export default router;
