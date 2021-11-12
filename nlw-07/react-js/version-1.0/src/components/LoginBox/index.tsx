@@ -25,7 +25,7 @@ const LoginBox: React.FC = () => {
 
     const { token, user } = response.data;
 
-    localStorage.setItem('@dowhile:token', token)
+    localStorage.setItem('@dowhile:token', token);
   }
 
   useEffect(() => {
