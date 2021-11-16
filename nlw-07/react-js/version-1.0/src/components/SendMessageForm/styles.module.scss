@@ -35,5 +35,32 @@
   .userImage {
     padding: 3px;
     background: linear-gradient(100deg, #ff008e 0%, #ffcd1e 100%);
+    border-radius: 50%;
+    line-height: 0;
+  }
+
+  img {
+    width: 94px;
+    height: 94px;
+    border-radius: 50%;
+    border: 6px solid #121214;
+  }
+
+  .userName {
+    font-size: 24px;
+    line-height: 30px;
+    margin-top: 16px;
+  }
+
+  .userGithub {
+    display: flex;
+    align-items: center;
+
+    margin-top: 8px;
+    color: #c4c4cc;
+
+    svg {
+      margin-right: 8px;
+    }
   }
 }
