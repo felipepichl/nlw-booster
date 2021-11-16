@@ -25,6 +25,17 @@ const SendMessageForm: React.FC = () => {
           {user?.login}
         </span>
       </header>
+
+      <form className={styles.sendMessageForm}>
+        <label htmlFor="message">Mensagem</label>
+        <textarea 
+          name="message"
+          id="message"
+          placeholder="Qual sua expectativa para o evento?" 
+        />
+
+        <button type="submit">Enviar mensagem</button>
+      </form>
     </div>
   );
 }
