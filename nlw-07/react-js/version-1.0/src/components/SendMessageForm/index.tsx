@@ -6,11 +6,15 @@ import { VscGithubInverted, VscSignOut } from 'react-icons/vsc';
 import styles from './styles.module.scss';
 
 const SendMessageForm: React.FC = () => {
-  const { user } = useContext(AuthContext)
+  const { user, signOut } = useContext(AuthContext)
+
+  function handleSignOut() {
+    signOut();
+  }
 
   return (
     <div className={styles.sendMessageFormWrapper}>
-      <button className={styles.signOutButton}>
+      <button className={styles.signOutButton} onClick={handleSignOut}>
         <VscSignOut size="32"/>
       </button>
 
