@@ -8,13 +8,9 @@ import styles from './styles.module.scss';
 const SendMessageForm: React.FC = () => {
   const { user, signOut } = useContext(AuthContext)
 
-  function handleSignOut() {
-    signOut();
-  }
-
   return (
     <div className={styles.sendMessageFormWrapper}>
-      <button className={styles.signOutButton} onClick={handleSignOut}>
+      <button className={styles.signOutButton} onClick={signOut}>
         <VscSignOut size="32"/>
       </button>
 
