@@ -1,4 +1,4 @@
-import React, { useContext, useState, FocusEvent, FormEvent } from 'react';
+import React, { useContext, useState, FormEvent } from 'react';
 import { AuthContext } from '../../contexts/auth';
 
 import { VscGithubInverted, VscSignOut } from 'react-icons/vsc';
@@ -16,10 +16,10 @@ const SendMessageForm: React.FC = () => {
     if(!message.trim()) {
       return;
     }
+    
+    await api.post('messages', { message })
 
-    await api.post('message', {
-      message
-    })
+    setMessage('')
   }
 
   return (
@@ -40,7 +40,7 @@ const SendMessageForm: React.FC = () => {
         </span>
       </header>
 
-      <form onSubmit={handleSendMessage } className={styles.sendMessageForm}>
+      <form onSubmit={handleSendMessage} className={styles.sendMessageForm}>
         <label htmlFor="message">Mensagem</label>
         <textarea 
           name="message"
