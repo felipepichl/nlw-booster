@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+
 import { api } from '../../services/api';
 
 import styles from './styles.module.scss';
 
-interface IMessages {
+interface IMessage {
   id: string;
   text: string;
   user: {
@@ -12,8 +14,30 @@ interface IMessages {
   }
 }
 
+const messageQueue: IMessage[] = [];
+
+const socket = io('http://localhost:3333')
+
+socket.on('new_message', (newMessage: IMessage) => {
+  messageQueue.push(newMessage)
+})
+
 const MessageList: React.FC = () => {
-  const [messages, setMessages] = useState<IMessages[]>();
+  const [messages, setMessages] = useState<IMessage[]>([]);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      if (messageQueue.length > 0) {
+        setMessages(prevState => [
+          messageQueue[0],
+          prevState[0],
+          prevState[1],
+        ].filter(Boolean))
+
+        messageQueue.shift()
+      }
+    }, 3000)
+  }, [])
 
   useEffect(() => {
     api.get('messages/last3').then(response => {
