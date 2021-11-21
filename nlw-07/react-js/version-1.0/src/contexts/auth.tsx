@@ -1,12 +1,11 @@
 import { createContext, ReactNode, useEffect, useState } from 'react';
-
 import { api } from '../services/api';
 
 type User = {
   id: string;
   name: string;
-  avatar_url: string;
   login: string;
+  avatar_url: string;
 }
 
 type AuthContextData = {
@@ -15,21 +14,20 @@ type AuthContextData = {
   signOut: () => void;
 }
 
-type AuthResponse = {
-  token: string;
-  user: {
-    id: string;
-    name: string;
-    avatar_url: string;
-    login: string;
-  }
-}
-
-
 export const AuthContext = createContext({} as AuthContextData);
 
 type AuthProvider = {
   children: ReactNode;
+}
+
+type AuthResponse = {
+  token: string;
+  user: {
+    id: string;
+    avatar_url: string;
+    name: string;
+    login: string;
+  }
 }
 
 export function AuthProvider(props: AuthProvider) {
@@ -76,6 +74,7 @@ export function AuthProvider(props: AuthProvider) {
       const [urlWithouCode, githubCode] = url.split('?code=');
 
       window.history.pushState({}, '', urlWithouCode);
+      
       signIn(githubCode)
     }
   }, [])
