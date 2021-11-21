@@ -16,8 +16,8 @@ const SendMessageForm: React.FC = () => {
     if(!message.trim()) {
       return;
     }
-    
-    await api.post('messages', { message })
+
+    await api.post('messages', { text: message })
 
     setMessage('')
   }
