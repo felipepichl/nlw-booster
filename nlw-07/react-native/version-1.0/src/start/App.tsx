@@ -7,6 +7,7 @@ import {
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto';
 import AppLoading from 'expo-app-loading';
+import { StatusBar } from 'expo-status-bar';
 
 import { Home } from '../screens/Home';
 
@@ -20,7 +21,12 @@ const App: React.FC = () => {
     return <AppLoading />;
   }
 
-  return <Home />;
+  return (
+    <>
+      <StatusBar style="light" backgroundColor="transparent" translucent />
+      <Home />
+    </>
+  );
 };
 
 registerRootComponent(App);
