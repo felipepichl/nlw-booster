@@ -1,13 +1,26 @@
 import { registerRootComponent } from 'expo';
 import React from 'react';
-import { View, Text } from 'react-native';
+
+import {
+  useFonts,
+  Roboto_400Regular,
+  Roboto_700Bold,
+} from '@expo-google-fonts/roboto';
+import AppLoading from 'expo-app-loading';
+
+import { Home } from '../screens/Home';
 
 const App: React.FC = () => {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Hello World</Text>
-    </View>
-  );
+  const [fontsLoaded] = useFonts({
+    Roboto_400Regular,
+    Roboto_700Bold,
+  });
+
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+
+  return <Home />;
 };
 
 registerRootComponent(App);

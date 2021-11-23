@@ -7,4 +7,4 @@ const Home: React.FC = () => {
   return <View />;
 };
 
-export default Home;
+export { Home };
