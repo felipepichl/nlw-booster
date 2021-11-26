@@ -8,6 +8,8 @@ import { styles } from './styles';
 const Header: React.FC = () => {
   return (
     <View style={styles.container}>
+      <LogoSvg />
+
       <Text>Sair</Text>
     </View>
   );
