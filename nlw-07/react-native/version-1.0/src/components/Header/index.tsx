@@ -10,7 +10,7 @@ const Header: React.FC = () => {
     <View style={styles.container}>
       <LogoSvg />
 
-      <Text>Sair</Text>
+      <Text style={styles.logoutText}>Sair</Text>
     </View>
   );
 };
