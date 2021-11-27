@@ -1,10 +1,15 @@
 import React from 'react';
-import { View } from 'react-native';
+import { Image } from 'react-native';
 
 import { styles } from './styles';
 
 const UserPhoto: React.FC = () => {
-  return <View style={styles.container} />;
+  return (
+    <Image
+      source={{ uri: 'https://github.com/felipepichl.png' }}
+      style={styles.container}
+    />
+  );
 };
 
 export { UserPhoto };
