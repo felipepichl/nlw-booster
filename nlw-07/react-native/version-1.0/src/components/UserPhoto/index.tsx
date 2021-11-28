@@ -30,6 +30,8 @@ const UserPhoto: React.FC<Props> = ({ imageUri, sizes = 'NORMAL' }) => {
   return (
     <LinearGradient
       colors={[COLORS.PINK, COLORS.YELLOW]}
+      start={{ x: 0, y: 0.8 }}
+      end={{ x: 0.9, y: 1 }}
       style={[
         styles.container,
         {
