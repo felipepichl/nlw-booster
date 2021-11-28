@@ -12,7 +12,7 @@ const Header: React.FC = () => {
     <View style={styles.container}>
       <LogoSvg />
 
-      <UserPhoto />
+      <UserPhoto imageUri="https://github.com/felipepichl.png" />
 
       <TouchableOpacity>
         <Text style={styles.logoutText}>Sair</Text>
