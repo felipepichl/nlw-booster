@@ -12,11 +12,13 @@ const Header: React.FC = () => {
     <View style={styles.container}>
       <LogoSvg />
 
-      <UserPhoto imageUri="https://github.com/felipepichl.png" />
+      <View style={styles.logoutButton}>
+        <TouchableOpacity>
+          <Text style={styles.logoutText}>Sair</Text>
+        </TouchableOpacity>
 
-      <TouchableOpacity>
-        <Text style={styles.logoutText}>Sair</Text>
-      </TouchableOpacity>
+        <UserPhoto imageUri="https://github.com/felipepichl.png" />
+      </View>
     </View>
   );
 };
