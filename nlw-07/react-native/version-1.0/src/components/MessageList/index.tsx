@@ -12,7 +12,7 @@ const MessageList: React.FC = () => {
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="never"
     >
-      <Message />
+      {/* <Message /> */}
     </ScrollView>
   );
 };
