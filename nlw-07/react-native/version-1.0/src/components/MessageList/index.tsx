@@ -1,10 +1,20 @@
 import React from 'react';
-import { View } from 'react-native';
+import { ScrollView } from 'react-native';
+
+import { Message } from '../Message';
 
 import { styles } from './styles';
 
 const MessageList: React.FC = () => {
-  return <View style={styles.container} />;
+  return (
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={styles.content}
+      keyboardShouldPersistTaps="never"
+    >
+      <Message />
+    </ScrollView>
+  );
 };
 
 export { MessageList };

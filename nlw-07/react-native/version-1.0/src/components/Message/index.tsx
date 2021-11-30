@@ -5,21 +5,31 @@ import { UserPhoto } from '../UserPhoto';
 
 import { styles } from './styles';
 
-const Message: React.FC = () => {
+type MessageProps = {
+  id: string;
+  text: string;
+  user: {
+    name: string;
+    avatar_url: string;
+  };
+};
+
+type Props = {
+  data: MessageProps;
+};
+
+const Message: React.FC<Props> = ({ data }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.message}>Texto da mensagem</Text>
+      <Text style={styles.message}>{data.text}</Text>
 
-      <View>
-        <UserPhoto
-          imageUri="https://github.com/felipepichl.png"
-          sizes="SMALL"
-        />
+      <View style={styles.footer}>
+        <UserPhoto imageUri={data.user.avatar_url} sizes="SMALL" />
 
-        <Text style={styles.userName}>Felipe Pichl</Text>
+        <Text style={styles.userName}>{data.user.name}</Text>
       </View>
     </View>
   );
 };
 
-export { Message };
+export { Message, MessageProps };
