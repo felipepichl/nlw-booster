@@ -1,10 +1,20 @@
 import React from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, Text, ColorValue } from 'react-native';
 
 import { styles } from './styles';
 
-const Button: React.FC = () => {
-  return <View style={styles.container} />;
+type Props = {
+  title: string;
+  color: ColorValue;
+  backgroundColor: ColorValue;
+};
+
+const Button: React.FC<Props> = ({ title, color, backgroundColor }) => {
+  return (
+    <TouchableOpacity style={[styles.button, { backgroundColor }]}>
+      <Text style={[styles.title, { color }]}>{title}</Text>
+    </TouchableOpacity>
+  );
 };
 
 export { Button };
