@@ -3,8 +3,8 @@ import { FONTS } from '../../theme';
 
 const styles = StyleSheet.create({
   button: {
-    width: 48,
-    height: '100%',
+    height: 48,
+    width: '100%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
