@@ -9,6 +9,7 @@ import {
 import AppLoading from 'expo-app-loading';
 import { StatusBar } from 'expo-status-bar';
 
+import { AuthProvider } from '../hooks/auth';
 import { Home } from '../screens/Home';
 
 const App: React.FC = () => {
@@ -22,10 +23,10 @@ const App: React.FC = () => {
   }
 
   return (
-    <>
+    <AuthProvider>
       <StatusBar style="light" backgroundColor="transparent" translucent />
       <Home />
-    </>
+    </AuthProvider>
   );
 };
 
