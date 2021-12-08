@@ -4,7 +4,7 @@ import React, {
   useContext,
   useState,
 } from 'react';
-import * as AuthSession from 'expo-auth-session';
+import * as AuthSessions from 'expo-auth-session';
 
 type User = {
   id: string;
@@ -41,12 +41,20 @@ function AuthProvider({ children }: AuthProviderProps): ReactElement {
   const [isSigningIng, setIsSigningIng] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
-  const CLIENT_ID = '9acd88c69d0f2e120d4e';
-  const SCOPE = 'user';
+  const CLIENT_ID = 'a4d636f7509d9d9d61e3';
+  const SCOPE = 'read:user';
 
-  const authUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=${SCOPE}`;
+  async function signIn() {
+    const authUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=${SCOPE}`;
 
-  async function signIn() {}
+    const { params } = (await AuthSessions.startAsync({
+      authUrl,
+    })) as AuthorizationResponse;
+
+    console.log('====================================');
+    console.log(params);
+    console.log('====================================');
+  }
 
   async function signOut() {}
 
