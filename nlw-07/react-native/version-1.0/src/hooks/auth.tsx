@@ -5,8 +5,14 @@ import React, {
   useState,
 } from 'react';
 import * as AuthSessions from 'expo-auth-session';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { api } from '../services/api';
+
+const CLIENT_ID = 'a4d636f7509d9d9d61e3';
+const SCOPE = 'read:user';
+const USER_STORAGE = '@nlwheat:user';
+const TOKEN_STORAGE = '@nlwheat:token';
 
 type User = {
   id: string;
@@ -43,9 +49,6 @@ function AuthProvider({ children }: AuthProviderProps): ReactElement {
   const [isSigningIn, setIsSigningIn] = useState(false);
   const [user, setUser] = useState<User | null>(null);
 
-  const CLIENT_ID = 'a4d636f7509d9d9d61e3';
-  const SCOPE = 'read:user';
-
   async function signIn() {
     setIsSigningIn(true);
     const authUrl = `https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=${SCOPE}`;
@@ -55,7 +58,18 @@ function AuthProvider({ children }: AuthProviderProps): ReactElement {
     })) as AuthorizationResponse;
 
     if (params && params.code) {
-      const authResponse = api.get('');
+      const authResponse = await api.post('/authenticate', {
+        code: params.code,
+      });
+
+      const { user, token } = authResponse.data as AuthResponse;
+
+      api.defaults.headers.common.Authorization = `Bearer ${token}`;
+
+      await AsyncStorage.setItem(USER_STORAGE, JSON.stringify(user));
+      await AsyncStorage.setItem(TOKEN_STORAGE, JSON.stringify(token));
+
+      setUser(user);
     }
 
     setIsSigningIn(false);
