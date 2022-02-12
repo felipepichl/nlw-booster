@@ -9,7 +9,7 @@ import { Button } from '../Button';
 import { styles } from './styles';
 
 const SignInBox: React.FC = () => {
-  const { signIn } = useAuth();
+  const { signIn, isSigningIn } = useAuth();
 
   return (
     <View style={styles.container}>
@@ -19,6 +19,7 @@ const SignInBox: React.FC = () => {
         backgroundColor={COLORS.YELLOW}
         icon="github"
         onPress={signIn}
+        isLoading={isSigningIn}
       />
     </View>
   );
