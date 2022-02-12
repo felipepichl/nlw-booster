@@ -3,6 +3,7 @@ import React, {
   ReactElement,
   useContext,
   useState,
+  useEffect,
 } from 'react';
 import * as AuthSessions from 'expo-auth-session';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -46,7 +47,7 @@ type AuthorizationResponse = {
 const AuthContext = createContext({} as AuthContextData);
 
 function AuthProvider({ children }: AuthProviderProps): ReactElement {
-  const [isSigningIn, setIsSigningIn] = useState(false);
+  const [isSigningIn, setIsSigningIn] = useState(true);
   const [user, setUser] = useState<User | null>(null);
 
   async function signIn() {
@@ -76,6 +77,23 @@ function AuthProvider({ children }: AuthProviderProps): ReactElement {
   }
 
   async function signOut() {}
+
+  useEffect(() => {
+    async function loadUserStorageData() {
+      const userStorage = await AsyncStorage.getItem(USER_STORAGE);
+      const tokenStorage = await AsyncStorage.getItem(TOKEN_STORAGE);
+
+      if (userStorage && tokenStorage) {
+        api.defaults.headers.common.Authorization = `Bearer ${tokenStorage}`;
+
+        setUser(JSON.parse(userStorage));
+      }
+
+      setIsSigningIn(false);
+    }
+
+    loadUserStorageData();
+  }, []);
 
   return (
     <AuthContext.Provider value={{ signIn, signOut, isSigningIn, user }}>
