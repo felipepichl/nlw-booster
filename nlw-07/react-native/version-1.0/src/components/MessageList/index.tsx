@@ -1,37 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { ScrollView } from 'react-native';
+import { api } from '../../services/api';
 
-import { Message } from '../Message';
+import { Message, MessageProps } from '../Message';
 
 import { styles } from './styles';
 
 const MessageList: React.FC = () => {
-  const message1 = {
-    id: 'first_01',
-    text: 'A frist message',
-    user: {
-      name: 'Felipe Pichl',
-      avatar_url: 'https://github.com/felipepichl.png',
-    },
-  };
+  const [currentMessages, setCurrentMessages] = useState<MessageProps[]>([]);
 
-  const message2 = {
-    id: 'first_01',
-    text: 'A frist message',
-    user: {
-      name: 'Felipe Pichl',
-      avatar_url: 'https://github.com/felipepichl.png',
-    },
-  };
+  useEffect(() => {
+    async function fetchMssages() {
+      const response = await api.get<MessageProps[]>('/messages/last3');
 
-  const message3 = {
-    id: 'first_01',
-    text: 'A frist message',
-    user: {
-      name: 'Felipe Pichl',
-      avatar_url: 'https://github.com/felipepichl.png',
-    },
-  };
+      setCurrentMessages(response.data);
+    }
+
+    fetchMssages();
+  }, []);
 
   return (
     <ScrollView
@@ -39,9 +25,9 @@ const MessageList: React.FC = () => {
       contentContainerStyle={styles.content}
       keyboardShouldPersistTaps="never"
     >
-      <Message data={message1} />
-      <Message data={message2} />
-      <Message data={message3} />
+      {currentMessages.map(message => (
+        <Message key={message.id} data={message} />
+      ))}
     </ScrollView>
   );
 };
