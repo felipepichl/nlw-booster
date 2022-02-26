@@ -9,10 +9,14 @@ export default createGlobalStyle`
   }
   body {
     -webkit-font-smothing: antialiased;
+    background: #f8f8f8;
+    color: #29292e;
   }
-  h1, h2, h3, h4, h5, h6, strong {
-    font-weight: 500;
+
+  body, input, button, text-area {
+    font: 400 16px 'Roboto', sans-serif;
   }
+
   button {
     cursor: pointer;
   }
