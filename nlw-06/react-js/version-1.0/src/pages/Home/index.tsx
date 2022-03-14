@@ -24,7 +24,7 @@ const Home: React.FC = () => {
           <form>
             <input type="text" placeholder="Dgite o código da sala" />
 
-            <button type="submit">Entrar na sala</button>
+            {/* <button type="submit">Entrar na sala</button> */}
           </form>
         </div>
       </main>
