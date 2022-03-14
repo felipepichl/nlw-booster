@@ -1,6 +1,9 @@
 import React from 'react';
 
+import { Button } from '../../components/Button';
+
 import { Container } from './styles';
+
 import illustration from '../../assets/illustration.svg';
 import logo from '../../assets/logo.svg';
 import googleIconImg from '../../assets/google-icon.svg';
@@ -23,6 +26,8 @@ const Home: React.FC = () => {
           <div>ou entre em uma sala</div>
           <form>
             <input type="text" placeholder="Dgite o código da sala" />
+
+            <Button title="Entrar na sala" />
 
             {/* <button type="submit">Entrar na sala</button> */}
           </form>
