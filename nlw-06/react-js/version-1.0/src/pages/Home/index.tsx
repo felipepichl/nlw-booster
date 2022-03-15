@@ -1,21 +1,17 @@
 import React from 'react';
 
 import { Button } from '../../components/Button';
+import { Aside } from '../../components/Aside';
 
 import { Container } from './styles';
 
-import illustration from '../../assets/illustration.svg';
 import logo from '../../assets/logo.svg';
 import googleIconImg from '../../assets/google-icon.svg';
 
 const Home: React.FC = () => {
   return (
     <Container>
-      <aside>
-        <img src={illustration} alt="Illustration" />
-        <strong>Crie salas de Q&amp;A ao-vivo</strong>
-        <p>Tire as dúvidas da sa audiência em tempo real</p>
-      </aside>
+      <Aside />
       <main>
         <div>
           <img src={logo} alt="letmeask" />
