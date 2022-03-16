@@ -1,5 +1,7 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
+
+import { auth, firebase } from '../../services/firebase';
 
 import { Button } from '../../components/Button';
 import { Aside } from '../../components/Aside';
@@ -12,8 +14,18 @@ import googleIconImg from '../../assets/google-icon.svg';
 const Home: React.FC = () => {
   const history = useHistory();
 
-  async function navigateToNewRoom() {
-    history.push('/rooms/new');
+  async function handleCreateRoom() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    console.log(provider);
+
+    auth.signInWithPopup(provider).then(result => {
+      console.log('====================================');
+      console.log(result);
+      console.log('====================================');
+    });
+
+    // history.push('/rooms/new');
   }
 
   return (
@@ -22,7 +34,7 @@ const Home: React.FC = () => {
       <main>
         <div>
           <img src={logo} alt="letmeask" />
-          <button type="button" onClick={navigateToNewRoom}>
+          <button type="button" onClick={handleCreateRoom}>
             <img src={googleIconImg} alt="Google" />
             Crie sua sala com o Google
           </button>
