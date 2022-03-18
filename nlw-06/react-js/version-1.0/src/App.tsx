@@ -5,10 +5,21 @@ import GlobalStyles from './styles/global';
 import Routes from './routes';
 import { firebase, auth } from './services/firebase';
 
-const AuthContext = createContext({});
+type User = {
+  id: string;
+  name: string;
+  avatar: string | null;
+};
+
+type AuthContextData = {
+  user: User | null;
+  signInWithGoogle: () => void;
+};
+
+const AuthContext = createContext({} as AuthContextData);
 
 const App: React.FC = () => {
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<User | null>(null);
 
   function signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -31,7 +42,7 @@ const App: React.FC = () => {
   }
 
   return (
-    <AuthContext.Provider value={{ user }}>
+    <AuthContext.Provider value={{ user, signInWithGoogle }}>
       <GlobalStyles />
       <Routes />
     </AuthContext.Provider>
