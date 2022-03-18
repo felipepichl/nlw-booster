@@ -1,5 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
+
+import { AuthContext } from '../../App';
 
 import { Button } from '../../components/Button';
 import { Aside } from '../../components/Aside';
@@ -11,8 +13,12 @@ import googleIconImg from '../../assets/google-icon.svg';
 
 const Home: React.FC = () => {
   const history = useHistory();
+  const { user, signInWithGoogle } = useContext(AuthContext);
 
   async function handleCreateRoom() {
+    if (!user) {
+      await signInWithGoogle();
+    }
     history.push('/rooms/new');
   }
 
