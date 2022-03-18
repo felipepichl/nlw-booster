@@ -1,4 +1,4 @@
-import React, { createContext, useState } from 'react';
+import React, { createContext, useEffect, useState } from 'react';
 
 import GlobalStyles from './styles/global';
 
@@ -33,6 +33,8 @@ const App: React.FC = () => {
         throw new Error('Missing information from Google Account');
       }
 
+      localStorage.setItem('@nlw-06:user');
+
       setUser({
         id: uid,
         name: displayName,
@@ -40,6 +42,10 @@ const App: React.FC = () => {
       });
     }
   }
+
+  useEffect(() => {
+    console.log('');
+  }, []);
 
   return (
     <AuthContext.Provider value={{ user, signInWithGoogle }}>
