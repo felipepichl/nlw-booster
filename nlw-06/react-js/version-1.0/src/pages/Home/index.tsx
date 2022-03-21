@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 
-import { AuthContext } from '../../App';
+import { AuthContext } from '../../contexts/AuthContext';
 
 import { Button } from '../../components/Button';
 import { Aside } from '../../components/Aside';
