@@ -21,6 +21,24 @@ const AuthContext = createContext({} as AuthContextType);
 const App: React.FC = () => {
   const [user, setUser] = useState<User | null>(null);
 
+  useEffect(() => {
+    auth.onAuthStateChanged(operator => {
+      if (operator) {
+        const { displayName, photoURL, uid } = operator;
+
+        if (!displayName || photoURL) {
+          throw new Error('Missing information from Google Account');
+        }
+
+        setUser({
+          id: uid,
+          name: displayName,
+          avatar: photoURL,
+        });
+      }
+    });
+  }, []);
+
   async function signInWithGoogle() {
     const provider = new firebase.auth.GoogleAuthProvider();
 
@@ -33,7 +51,7 @@ const App: React.FC = () => {
         throw new Error('Missing information from Google Account');
       }
 
-      localStorage.setItem('@nlw-06:user');
+      // localStorage.setItem('@nlw-06:user', JSON.stringify(user));
 
       setUser({
         id: uid,
@@ -42,10 +60,6 @@ const App: React.FC = () => {
       });
     }
   }
-
-  useEffect(() => {
-    console.log('');
-  }, []);
 
   return (
     <AuthContext.Provider value={{ user, signInWithGoogle }}>
