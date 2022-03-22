@@ -1,7 +1,7 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { AuthContext } from '../../contexts/AuthContext';
+// import { AuthContext } from '../../contexts/AuthContext';
 
 import { Button } from '../../components/Button';
 import { Aside } from '../../components/Aside';
@@ -11,7 +11,7 @@ import { Container } from './styles';
 import logo from '../../assets/logo.svg';
 
 const NewRoom: React.FC = () => {
-  const { user } = useContext(AuthContext);
+  // const { user } = useContext(AuthContext);
 
   return (
     <Container>

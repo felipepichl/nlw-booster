@@ -13,13 +13,13 @@ type AuthContextType = {
   signInWithGoogle: () => Promise<void>;
 };
 
-type AuthProvider = {
+type AuthProviderProps = {
   children: ReactNode;
 };
 
 const AuthContext = createContext({} as AuthContextType);
 
-function AuthProvider({ children }: AuthProvider) {
+function AuthContextProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ function AuthProvider({ children }: AuthProvider) {
     if (result.user) {
       const { displayName, photoURL, uid } = result.user;
 
-      if (!displayName || photoURL) {
+      if (!displayName || !photoURL) {
         throw new Error('Missing information from Google Account');
       }
 
@@ -71,4 +71,4 @@ function AuthProvider({ children }: AuthProvider) {
   );
 }
 
-export { AuthProvider, AuthContext };
+export { AuthContextProvider, AuthContext };
