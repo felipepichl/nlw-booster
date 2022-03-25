@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
@@ -23,6 +23,10 @@ const Home: React.FC = () => {
     history.push('/rooms/new');
   }
 
+  function handleJoinRoom(event: FormEvent) {
+    event.preventDefault();
+  }
+
   return (
     <Container>
       <Aside />
@@ -34,7 +38,7 @@ const Home: React.FC = () => {
             Crie sua sala com o Google
           </button>
           <div>ou entre em uma sala</div>
-          <form>
+          <form onSubmit={handleJoinRoom}>
             <input type="text" placeholder="Digite o código da sala" />
 
             <Button title="Entrar na sala" />
