@@ -27,7 +27,7 @@ function AuthContextProvider({ children }: AuthProviderProps) {
       if (operator) {
         const { displayName, photoURL, uid } = operator;
 
-        if (!displayName || photoURL) {
+        if (!displayName || !photoURL) {
           throw new Error('Missing information from Google Account');
         }
 

@@ -7,7 +7,7 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 const Button: React.FC<ButtonProps> = ({ title }) => {
-  return <Container type="button">{title}</Container>;
+  return <Container>{title}</Container>;
 };
 
 export { Button };

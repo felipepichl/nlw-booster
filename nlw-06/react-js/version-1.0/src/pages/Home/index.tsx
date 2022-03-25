@@ -19,6 +19,7 @@ const Home: React.FC = () => {
     if (!user) {
       await signInWithGoogle();
     }
+
     history.push('/rooms/new');
   }
 

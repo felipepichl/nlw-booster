@@ -1,5 +1,5 @@
 import React, { FormEvent, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 import { database } from '../../services/firebase';
 import { useAuth } from '../../hooks/useAuth';
@@ -14,6 +14,7 @@ import logo from '../../assets/logo.svg';
 const NewRoom: React.FC = () => {
   const [newRoom, setNewRoom] = useState('');
   const { user } = useAuth();
+  const history = useHistory();
 
   async function handleCreateNewRoom(event: FormEvent) {
     event.preventDefault();
@@ -24,10 +25,12 @@ const NewRoom: React.FC = () => {
 
     const roomRef = database.ref('rooms');
 
-    const firebaseRoom = roomRef.push({
+    const firebaseRoom = await roomRef.push({
       title: newRoom,
       authorId: user?.id,
     });
+
+    history.push(`/rooms/${firebaseRoom.key}`);
   }
 
   return (
@@ -45,7 +48,7 @@ const NewRoom: React.FC = () => {
               value={newRoom}
             />
 
-            <Button title="Criar sala" />
+            <Button title="Criar sala" type="submit" />
           </form>
 
           <p>
