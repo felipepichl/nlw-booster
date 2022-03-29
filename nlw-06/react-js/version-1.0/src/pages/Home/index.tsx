@@ -32,10 +32,6 @@ const Home: React.FC = () => {
       return;
     }
 
-    console.log('====================================');
-    console.log(roomCode);
-    console.log('====================================');
-
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     // return will be false ! convert in true
