@@ -1,7 +1,9 @@
 import React from 'react';
 
 import logoImg from '../../assets/logo.svg';
+
 import { Button } from '../../components/Button';
+import { RoomCode } from '../../components/RoomCode';
 
 import { Container, Content, RoomTitle, FormFooter } from './styles';
 
@@ -11,7 +13,7 @@ const Room: React.FC = () => {
       <header>
         <Content>
           <img src={logoImg} alt="Logo" />
-          <div>codigo</div>
+          <RoomCode />
         </Content>
       </header>
 

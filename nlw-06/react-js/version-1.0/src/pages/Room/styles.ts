@@ -19,7 +19,7 @@ export const Container = styled.div`
         background: #fefefe;
         box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
         resize: vertical;
-        max-height: 130px;
+        min-height: 130px;
       }
     }
   }
