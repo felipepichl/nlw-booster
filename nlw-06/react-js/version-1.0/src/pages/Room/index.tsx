@@ -28,8 +28,8 @@ const Room: React.FC = () => {
             <span>
               For send a question,
               <button type="button">SignIn</button>
-              <Button type="submit" title="Send a question" />
             </span>
+            <Button type="submit" title="Send a question" />
           </FormFooter>
         </form>
       </main>

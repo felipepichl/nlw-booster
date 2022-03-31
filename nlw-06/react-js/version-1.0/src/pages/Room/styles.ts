@@ -77,6 +77,7 @@ export const FormFooter = styled.div`
       text-decoration: underline;
       font-size: 14px;
       font-weight: 500;
+      margin-left: 2px;
     }
   }
 `;
