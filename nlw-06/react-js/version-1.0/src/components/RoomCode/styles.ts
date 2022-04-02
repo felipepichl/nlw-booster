@@ -10,12 +10,13 @@ export const Container = styled.button`
 
   display: flex;
 
-  div {
+  > div {
     background: #835afd;
     padding: 0 12px;
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100%;
   }
 
   span {

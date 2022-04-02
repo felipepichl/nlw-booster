@@ -32,7 +32,7 @@ export const Content = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  img {
+  > img {
     margin-right: 45px;
   }
 `;
@@ -70,7 +70,7 @@ export const FormFooter = styled.div`
     color: #737380;
     font-weight: 500;
 
-    button {
+    > button {
       background: transparent;
       border: none;
       color: #835afd;
