@@ -4,13 +4,22 @@ import copyImg from '../../assets/copy.svg';
 
 import { Container } from './styles';
 
-const RoomCode: React.FC = () => {
+type RoomCodeProps = {
+  code: string;
+};
+
+const RoomCode: React.FC<RoomCodeProps> = ({ code }) => {
+  function copyRoomCodeToClipboard() {
+    navigator.clipboard.writeText(code);
+  }
+
+  // eslint-disable-next-line prettier/prettier
   return (
-    <Container>
+    <Container onClick={copyRoomCodeToClipboard}>
       <div>
         <img src={copyImg} alt="" />
       </div>
-      <span>Room Id</span>
+      <span>{code}</span>
     </Container>
   );
 };

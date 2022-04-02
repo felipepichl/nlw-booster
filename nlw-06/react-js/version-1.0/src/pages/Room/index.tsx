@@ -13,7 +13,7 @@ const Room: React.FC = () => {
       <header>
         <Content>
           <img src={logoImg} alt="Logo" />
-          <RoomCode />
+          <RoomCode code="-Mz0vw-kYAvSoskHu6oN" />
         </Content>
       </header>
 
