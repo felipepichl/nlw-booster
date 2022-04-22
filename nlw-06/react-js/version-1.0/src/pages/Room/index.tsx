@@ -8,7 +8,7 @@ import { RoomCode } from '../../components/RoomCode';
 import { useAuth } from '../../hooks/useAuth';
 import { database } from '../../services/firebase';
 
-import { Container, Content, RoomTitle, FormFooter } from './styles';
+import { Container, Content, RoomTitle, FormFooter, UserInfo } from './styles';
 
 type RoomParams = {
   id: string;
@@ -42,6 +42,8 @@ const Room: React.FC = () => {
     };
 
     await database.ref(`rooms/${roomId}/questions`).push(question);
+
+    setNewQuestion('');
   }
 
   return (
@@ -67,10 +69,17 @@ const Room: React.FC = () => {
           />
 
           <FormFooter>
-            <span>
-              For send a question,
-              <button type="button">SignIn</button>
-            </span>
+            {user ? (
+              <UserInfo>
+                <img src={user.avatar} alt={user.name} />
+                <span>{user.name}</span>
+              </UserInfo>
+            ) : (
+              <span>
+                For send a question,
+                <button type="button">SignIn</button>
+              </span>
+            )}
             <Button type="submit" title="Send a question" disabled={!user} />
           </FormFooter>
         </form>
