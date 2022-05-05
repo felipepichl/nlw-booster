@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, { FormEvent, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import logoImg from '../../assets/logo.svg';
@@ -10,6 +10,30 @@ import { database } from '../../services/firebase';
 
 import { Container, Content, RoomTitle, FormFooter, UserInfo } from './styles';
 
+type FirebaseQuestions = Record<
+  string,
+  {
+    author: {
+      name: string;
+      avatar: string;
+    };
+    content: string;
+    isAnswered: boolean;
+    isHighlighted: boolean;
+  }
+>;
+
+type Questions = {
+  id: string;
+  author: {
+    name: string;
+    avatar: string;
+  };
+  content: string;
+  isAnswered: boolean;
+  isHighlighted: boolean;
+};
+
 type RoomParams = {
   id: string;
 };
@@ -19,6 +43,30 @@ const Room: React.FC = () => {
   const params = useParams<RoomParams>();
   const roomId = params.id;
   const [newQuestion, setNewQuestion] = useState('');
+  const [questions, setQuestions] = useState<Questions[]>([]);
+
+  useEffect(() => {
+    const roomRef = database.ref(`rooms/${roomId}`);
+
+    roomRef.once('value', room => {
+      const databaseRoom = room.val();
+      const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
+
+      const parsedQuestions = Object.entries(firebaseQuestions).map(
+        ([key, value]) => {
+          return {
+            id: key,
+            author: value.author,
+            content: value.content,
+            isAnswered: value.isAnswered,
+            isHighlighted: value.isHighlighted,
+          };
+        },
+      );
+
+      setQuestions(parsedQuestions);
+    });
+  }, [roomId]);
 
   async function handleNewQuestion(event: FormEvent) {
     event.preventDefault();
