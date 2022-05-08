@@ -44,6 +44,7 @@ const Room: React.FC = () => {
   const roomId = params.id;
   const [newQuestion, setNewQuestion] = useState('');
   const [questions, setQuestions] = useState<Questions[]>([]);
+  const [title, setTitle] = useState('');
 
   useEffect(() => {
     const roomRef = database.ref(`rooms/${roomId}`);
@@ -64,6 +65,7 @@ const Room: React.FC = () => {
         },
       );
 
+      setTitle(databaseRoom.title);
       setQuestions(parsedQuestions);
     });
   }, [roomId]);
@@ -105,8 +107,11 @@ const Room: React.FC = () => {
 
       <main>
         <RoomTitle>
-          <h1>Sala React</h1>
-          <span>4 perguntas</span>
+          <h1>
+            Sala
+            {title}
+          </h1>
+          {questions.length > 0 && <span> {questions.length} pergunta(s)</span>}
         </RoomTitle>
 
         <form onSubmit={handleNewQuestion}>
