@@ -1,13 +1,9 @@
-import { useState } from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React from 'react';
 
-function App() {
-  const [count, setCount] = useState(0)
+import { Widget } from './components/Widget'
 
-  return (
-    <button>OK</button>
-  )
+const App: React.FC = () => {
+  return <Widget/>;
 }
 
-export default App
+export { App };
