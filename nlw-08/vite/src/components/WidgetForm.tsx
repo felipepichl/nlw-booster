@@ -7,7 +7,10 @@ const WidgetForm: React.FC = () => {
       p-4 realtive 
       rounded-2xl 
       mb-4 flex 
-      flex-col'
+      flex-col
+      shadow-lg
+      w-[calc(100vw-2rem)]
+      md:w-auto'
     />
   )
 }
