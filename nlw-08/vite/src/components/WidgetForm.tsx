@@ -1,5 +1,5 @@
 import React from 'react';
-import CloseButton from './CloseButton';
+import { CloseButton } from './CloseButton';
 
 const WidgetForm: React.FC = () => {
   return (
@@ -28,4 +28,4 @@ const WidgetForm: React.FC = () => {
   )
 }
 
-export default WidgetForm;
+export { WidgetForm };

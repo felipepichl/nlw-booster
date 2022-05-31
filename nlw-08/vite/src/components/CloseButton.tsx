@@ -17,4 +17,4 @@ const CloseButton: React.FC = () => {
   );
 }
 
-export default CloseButton;
+export { CloseButton };
