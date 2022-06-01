@@ -1,6 +1,18 @@
 import React from 'react';
 import { CloseButton } from './CloseButton';
 
+const feedBackType = {
+  BUG: {
+    title: 'Problema'
+  },
+  IDEA: {
+    title: 'Idea'
+  },
+  OTHERS: {
+    title: 'Outro'
+  }, 
+}
+
 const WidgetForm: React.FC = () => {
   return (
     <div className='
@@ -19,7 +31,9 @@ const WidgetForm: React.FC = () => {
         <CloseButton />
       </header>
 
-      <p>Hello World</p>
+      <div className='flex py-8 gap-2 w-full'>
+        <button></button>
+      </div>
 
       <footer className='text-xs text-neutral-400'>
         Feito com 💜 pela <a className="underline underline-offset-2" href="https://rocketseat.com.br">Rocketseat</a>
