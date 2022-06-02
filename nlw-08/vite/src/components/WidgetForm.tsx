@@ -1,26 +1,49 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { CloseButton } from './CloseButton';
 
-const feedBackType = {
+import bug from '../assets/bug.svg';
+import idea from '../assets/idea.svg';
+import thought from '../assets/thought.svg';
+
+const feedBackTypes = {
   BUG: {
-    title: 'Problema'
+    title: 'Problema',
+    img: {
+      source: bug,
+      alt: 'Imagem de um inseto'
+    }
   },
   IDEA: {
-    title: 'Idea'
+    title: 'Idea',
+    img: {
+      source: idea,
+      alt: 'Imagem de uma lâmpada'
+    }
   },
   OTHERS: {
-    title: 'Outro'
+    title: 'Outro',
+    img: {
+      source: thought,
+      alt: 'Imagem de um balão de pensamento'
+    }
   }, 
 }
 
+type FeedBackType = keyof typeof feedBackTypes;
+
 const WidgetForm: React.FC = () => {
+  const [feedBackType, setFeedBackType] = useState<FeedBackType | null>(null);
+
   return (
     <div className='
       bg-zinc-900 
-      p-4 realtive 
+      p-4 
+      realtive 
       rounded-2xl 
-      mb-4 flex 
+      mb-4 
+      flex 
       flex-col
+      items-center
       shadow-lg
       w-[calc(100vw-2rem)]
       md:w-auto'
@@ -32,7 +55,34 @@ const WidgetForm: React.FC = () => {
       </header>
 
       <div className='flex py-8 gap-2 w-full'>
-        <button></button>
+        { Object.entries(feedBackTypes).map(([key, value]) => {
+          return (
+            <button 
+              className='
+                bg-zinc-800 
+                rounded-lg 
+                py-5 
+                w-24 
+                flex-1
+                flex 
+                flex-col 
+                items-center 
+                gap-2 
+                border-2 
+                border-transparent
+                hover:border-brand-500
+                focus:border-x-brand-500
+                focus:outline-none
+              '
+              key={key}
+              onClick={() => setFeedBackType(key as FeedBackType)}
+              type='button'
+            >
+              <img src={value.img.source} alt={value.img.alt} />
+              <span>{value.title}</span>
+            </button>
+          )
+        }) }
       </div>
 
       <footer className='text-xs text-neutral-400'>
