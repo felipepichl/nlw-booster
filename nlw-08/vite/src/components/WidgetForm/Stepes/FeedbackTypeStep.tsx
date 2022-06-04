@@ -1,8 +1,12 @@
 import React from 'react';
 
-type FeedbackTypesStepProps {}
+import { feedBackTypes, FeedBackType } from '..';
 
-const FeedbackTypesStep: React.FC = () => {
+interface FeedbackTypesStepProps {
+  onFeedbackTypeChanged: (type: FeedBackType) => void;
+}
+
+const FeedbackTypesStep: React.FC<FeedbackTypesStepProps> = ({ onFeedbackTypeChanged }) => {
   return (
     <div className='flex py-8 gap-2 w-full'>
           { Object.entries(feedBackTypes).map(([key, value]) => {
@@ -25,7 +29,7 @@ const FeedbackTypesStep: React.FC = () => {
                   focus:outline-none
                 '
                 key={key}
-                onClick={() => setFeedBackType(key as FeedBackType)}
+                onClick={() => onFeedbackTypeChanged(key as FeedBackType)}
                 type='button'
               >
                 <img src={value.img.source} alt={value.img.alt} />
