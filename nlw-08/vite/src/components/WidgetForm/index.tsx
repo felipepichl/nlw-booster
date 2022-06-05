@@ -36,6 +36,10 @@ export type FeedBackType = keyof typeof feedBackTypes;
 const WidgetForm: React.FC = () => {
   const [feedBackType, setFeedBackType] = useState<FeedBackType | null>(null);
 
+  function handleRestartFeedback() {
+    setFeedBackType(null);
+  }
+
   return (
     <div className='
       bg-zinc-900 
@@ -54,7 +58,10 @@ const WidgetForm: React.FC = () => {
       {!feedBackType ? (
         <FeedbackTypesStep onFeedbackTypeChanged={setFeedBackType} />
       ) : (
-        <FeedbackContentStep />
+        <FeedbackContentStep 
+          feedbackType={feedBackType} 
+          onFeedbackRestarRequested={handleRestartFeedback}  
+        />
       )}
 
       <footer className='text-xs text-neutral-400'>
