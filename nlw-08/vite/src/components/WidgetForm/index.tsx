@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { CloseButton } from '../CloseButton';
 
 import { FeedbackTypesStep } from './Stepes/FeedbackTypeStep';
+import { FeedbackContentStep } from './Stepes/FeedbackContentStep'
 
 import bug from '../../assets/bug.svg';
 import idea from '../../assets/idea.svg';
@@ -50,16 +50,11 @@ const WidgetForm: React.FC = () => {
       w-[calc(100vw-2rem)]
       md:w-auto'
     >
-      <header>
-        <span className='text-xl leading-6'>Deixe seu feedback</span>
-
-        <CloseButton />
-      </header>
 
       {!feedBackType ? (
         <FeedbackTypesStep onFeedbackTypeChanged={setFeedBackType} />
       ) : (
-        <p>Hello</p>
+        <FeedbackContentStep />
       )}
 
       <footer className='text-xs text-neutral-400'>
