@@ -4,9 +4,13 @@
     "build": "tsc",
     "dev:server": " ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/shared/infra/http/start/server.ts",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "test": "jest"
+    "test": "jest",
+    "prisma:generate": "prisma generate --schema=./src/shared/infra/prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate dev --schema=./src/shared/infra/prisma/schema.prisma",
+    "prisma:studio": "prisma studio --schema=./src/shared/infra/prisma/schema.prisma"
   },
   "dependencies": {
+    "@prisma/client": "^4.6.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -18,7 +22,7 @@
     "sqlite3": "^5.0.2",
     "tsyringe": "^4.6.0",
     "typeorm": "^0.2.29",
-    "uuid": "^8.3.2",
+    "uuid": "^9.0.0",
     "yup": "^0.32.8"
   },
   "devDependencies": {
