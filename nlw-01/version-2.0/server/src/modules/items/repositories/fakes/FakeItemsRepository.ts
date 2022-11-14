@@ -1,7 +1,7 @@
 import { IItemsRepository } from '@modules/items/repositories/IItemsRepository';
 import { ICreateItemDTO } from '@modules/items/dtos/ICreateItemDTO';
 
-import { Item } from '../../infra/typeorm/entities/Item';
+import { Item } from '../../infra/prisma/models/Item';
 
 class FakeItemsRepository implements IItemsRepository {
   private items: Item[] = [];
@@ -12,7 +12,7 @@ class FakeItemsRepository implements IItemsRepository {
   }: ICreateItemDTO): Promise<Item | undefined> {
     const item = new Item();
 
-    Object.assign(item, { id: Math.floor(Math.random() * 100), title, path });
+    Object.assign(item, { title, path });
 
     this.items.push(item);
 
@@ -23,7 +23,7 @@ class FakeItemsRepository implements IItemsRepository {
     return this.items;
   }
 
-  public async findAllByIds(ids: number[]): Promise<Item[] | undefined> {
+  public async findAllByIds(ids: string[]): Promise<Item[] | undefined> {
     const items = ids.map(id => {
       return this.items.find(item => item.id === id);
     });
