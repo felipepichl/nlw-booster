@@ -1,10 +1,10 @@
 import { injectable, inject } from 'tsyringe';
 
-import { Item } from '@modules/items/infra/typeorm/entities/Item';
+import { Item } from '@modules/items/infra/prisma/models/Item';
 import { IItemsRepository } from '@modules/items/repositories/IItemsRepository';
 
 interface IResquest {
-  ids: number[];
+  ids: string[];
 }
 
 @injectable()

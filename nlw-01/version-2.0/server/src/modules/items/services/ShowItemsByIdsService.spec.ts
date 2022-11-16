@@ -35,7 +35,7 @@ describe('ShowItemsByIds', () => {
       path: 'item-path-test',
     });
 
-    const ids: number[] = [];
+    const ids: string[] = [];
 
     ids.push(item1.id, item2.id);
 
