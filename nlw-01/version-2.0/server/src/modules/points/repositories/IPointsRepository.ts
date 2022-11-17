@@ -1,4 +1,4 @@
-import { Point } from '../infra/typeorm/entities/Point';
+import { Point } from '../infra/prisma/models/Point';
 import { ICreatePointDTO } from '../dtos/ICreatePointDTO';
 
 interface IPointsRepository {

@@ -1,0 +1,3 @@
+class PointsRepository {}
+
+export { PointsRepository };
