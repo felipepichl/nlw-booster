@@ -1,7 +1,7 @@
 import { IPointsRepository } from '@modules/points/repositories/IPointsRepository';
 import { ICreatePointDTO } from '@modules/points/dtos/ICreatePointDTO';
 
-import { Point } from '../../infra/typeorm/entities/Point';
+import { Point } from '../../infra/prisma/models/Point';
 
 class FakePointsRepository implements IPointsRepository {
   private points: Point[] = [];
@@ -21,7 +21,6 @@ class FakePointsRepository implements IPointsRepository {
     const point = new Point();
 
     Object.assign(point, {
-      id: Math.floor(Math.random() * 100),
       name,
       email,
       whatsapp,
@@ -40,7 +39,7 @@ class FakePointsRepository implements IPointsRepository {
   }
 
   public async findOne(id: string): Promise<Point | undefined> {
-    const findPoint = this.points.find(point => point.id === Number(id));
+    const findPoint = this.points.find(point => point.id === id);
 
     return findPoint;
   }
