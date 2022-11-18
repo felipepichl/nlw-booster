@@ -40,8 +40,8 @@ model Point {
   name      String
   email     String @unique()
   whatsapp  String @unique()
-  latitude  String
-  longitude String
+  latitude  Float
+  longitude Float
   city      String
   uf        String
   image     String

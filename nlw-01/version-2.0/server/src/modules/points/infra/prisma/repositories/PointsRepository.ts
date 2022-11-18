@@ -32,11 +32,13 @@ class PointsRepository implements IPointsRepository {
         longitude,
         city,
         uf,
-        point_items: items,
+        // point_items: items,
         image,
         fk_user_id: user_id,
       },
     });
+
+    return result;
   }
 
   findOne(id: string): Promise<Point> {

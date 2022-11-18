@@ -10,9 +10,9 @@ class Point implements IPoint {
 
   whatsapp: string;
 
-  latitude: string;
+  latitude: number;
 
-  longitude: string;
+  longitude: number;
 
   city: string;
 
