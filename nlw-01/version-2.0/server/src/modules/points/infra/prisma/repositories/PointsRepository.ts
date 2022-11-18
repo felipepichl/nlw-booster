@@ -1,4 +1,7 @@
 import { PrismaClient } from '@prisma/client';
+import { container } from 'tsyringe';
+
+import { ShowItemsByIdsService } from '@modules/items/services/ShowItemsByIdsService';
 
 import { ICreatePointDTO } from '../../../dtos/ICreatePointDTO';
 import { IPointsRepository } from '../../../repositories/IPointsRepository';
@@ -23,6 +26,12 @@ class PointsRepository implements IPointsRepository {
     image,
     user_id,
   }: ICreatePointDTO): Promise<Point> {
+    const ids = items.split(',').map((item: string) => item.trim());
+
+    const showItemsByIdsService = container.resolve(ShowItemsByIdsService);
+
+    const existentsItem = await showItemsByIdsService.execute({ ids });
+
     const result = await this.prisma.point.create({
       data: {
         name,
@@ -32,9 +41,12 @@ class PointsRepository implements IPointsRepository {
         longitude,
         city,
         uf,
-        // point_items: items,
         image,
         fk_user_id: user_id,
+
+        point_items: {
+          connect: existentsItem,
+        },
       },
     });
 
