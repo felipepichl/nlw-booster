@@ -5,7 +5,7 @@ import authConfig from '@config/authConfig';
 import { AppError } from '@shared/errors/AppError';
 
 import { sign } from 'jsonwebtoken';
-import { User } from '../infra/typeorm/entities/User';
+import { User } from '../infra/prisma/models/User';
 import { IUsersRepository } from '../repositories/IUsersRepository';
 import { IHashProvider } from '../providers/HashProvider/models/IHashProvider';
 

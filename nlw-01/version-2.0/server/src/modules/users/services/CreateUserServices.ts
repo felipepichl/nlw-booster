@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-import { User } from '../infra/typeorm/entities/User';
+import { User } from '../infra/prisma/models/User';
 
 import { IUsersRepository } from '../repositories/IUsersRepository';
 import { IHashProvider } from '../providers/HashProvider/models/IHashProvider';
