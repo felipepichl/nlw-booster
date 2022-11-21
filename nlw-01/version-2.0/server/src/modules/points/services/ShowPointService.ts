@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 
-import { Point } from '@modules/points/infra/typeorm/entities/Point';
+import { Point } from '@modules/points/infra/prisma/models/Point';
 import { IPointsRepository } from '@modules/points/repositories/IPointsRepository';
 
 interface IRequest {

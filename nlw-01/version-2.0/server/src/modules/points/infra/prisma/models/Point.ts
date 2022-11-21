@@ -27,7 +27,7 @@ class Point implements IPoint {
   fk_user_id: string;
 
   constructor() {
-    if (this.id) {
+    if (!this.id) {
       this.id = uuid();
     }
   }
