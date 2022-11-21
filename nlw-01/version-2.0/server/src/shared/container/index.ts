@@ -6,10 +6,10 @@ import { IItemsRepository } from '@modules/items/repositories/IItemsRepository';
 import { ItemsRepository } from '@modules/items/infra/prisma/repositories/ItemsRepository';
 
 import { IPointsRepository } from '@modules/points/repositories/IPointsRepository';
-import { PointsRepository } from '@modules/points/infra/typeorm/repositories/PointsRepository';
+import { PointsRepository } from '@modules/points/infra/prisma/repositories/PointsRepository';
 
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
-import { UsersRepository } from '@modules/users/infra/typeorm/repositories/UsersRepository';
+import { UsersRepository } from '@modules/users/infra/prisma/repositories/UsersRepository';
 
 container.registerSingleton<IItemsRepository>(
   'ItemsRepository',
