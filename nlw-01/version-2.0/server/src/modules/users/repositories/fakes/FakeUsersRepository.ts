@@ -1,6 +1,4 @@
-import { v4 as uuid } from 'uuid';
-
-import { User } from '@modules/users/infra/typeorm/entities/User';
+import { User } from '@modules/users/infra/prisma/models/User';
 import { IUsersRepository } from '../IUsersRepository';
 
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
@@ -11,7 +9,7 @@ class FakeUsersRepository implements IUsersRepository {
   public async create(userData: ICreateUserDTO): Promise<User> {
     const user = new User();
 
-    Object.assign(user, { id: uuid() }, userData);
+    Object.assign(user, userData);
 
     this.users.push(user);
 
