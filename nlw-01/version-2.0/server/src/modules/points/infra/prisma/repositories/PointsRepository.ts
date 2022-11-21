@@ -53,12 +53,18 @@ class PointsRepository implements IPointsRepository {
     return result;
   }
 
-  findOne(id: string): Promise<Point> {
-    throw new Error('Method not implemented.');
+  async findOne(id: string): Promise<Point> {
+    const result = await this.prisma.point.findFirst({
+      where: { id },
+    });
+
+    return result;
   }
 
-  findAll(): Promise<Point[]> {
-    throw new Error('Method not implemented.');
+  async findAll(): Promise<Point[]> {
+    const result = await this.prisma.point.findMany();
+
+    return result;
   }
 }
 
