@@ -3,9 +3,13 @@
   "scripts": {
     "build": "tsc",
     "dev:server": " ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/start/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js"
+    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "prisma:generate": "prisma generate --schema=./src/shared/infra/prisma/schema.prisma",
+    "prisma:migrate": "prisma migrate dev --schema=./src/shared/infra/prisma/schema.prisma",
+    "prisma:studio": "prisma studio --schema=./src/shared/infra/prisma/schema.prisma"
   },
   "dependencies": {
+    "@prisma/client": "^4.6.1",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
     "class-transformer": "^0.4.0",
