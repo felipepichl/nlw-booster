@@ -1,6 +1,8 @@
 import { AppError } from '@shared/errors/AppError';
+
 import { User } from '../../infra/prisma/models/User';
-import { IUserRepository } from '../../repositories/IUserRepository';
+import { IUsersRepository } from '../../repositories/IUsersRepository';
+import { IHashProvider } from '../../provider/HashProvider/models/IHashProvider';
 
 interface IRequest {
   username: string;
@@ -10,7 +12,10 @@ interface IRequest {
 }
 
 class CreateUserServices {
-  constructor(private usersRepository: IUserRepository) {}
+  constructor(
+    private usersRepository: IUsersRepository,
+    private hashProvider: IHashProvider,
+  ) {}
 
   async execute({
     username,
@@ -24,10 +29,12 @@ class CreateUserServices {
       throw new AppError('User already exists');
     }
 
+    const passwordHash = await this.hashProvider.geneteHash(password);
+
     const user = await this.usersRepository.create({
       username,
       email,
-      password,
+      password: passwordHash,
       whatsapp,
     });
 
