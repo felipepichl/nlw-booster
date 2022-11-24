@@ -1,8 +1,8 @@
 import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
 import { User } from '../../infra/prisma/models/User';
-import { IUserRepository } from '../IUserRepository';
+import { IUsersRepository } from '../IUsersRepository';
 
-class UserRepositoryInMemory implements IUserRepository {
+class UsersRepositoryInMemory implements IUsersRepository {
   users: User[] = [];
 
   async create({
@@ -25,4 +25,4 @@ class UserRepositoryInMemory implements IUserRepository {
   }
 }
 
-export { UserRepositoryInMemory };
+export { UsersRepositoryInMemory };
