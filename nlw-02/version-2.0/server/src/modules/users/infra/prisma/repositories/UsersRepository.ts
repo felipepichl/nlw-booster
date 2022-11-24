@@ -12,14 +12,18 @@ class UsersRepository implements IUsersRepository {
 
   async create(data: ICreateUserDTO): Promise<User> {
     const result = await this.prisma.user.create({
-      data: {},
+      data,
     });
 
     return result;
   }
 
-  findByEmail(email: string): Promise<User> {
-    throw new Error('Method not implemented.');
+  async findByEmail(email: string): Promise<User> {
+    const result = await this.prisma.user.findFirst({
+      where: { email },
+    });
+
+    return result;
   }
 }
 
