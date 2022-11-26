@@ -7,7 +7,7 @@ class AuthProviderInMemory implements IAuthProvider {
   async auth(login: string): Promise<IAuthDTO> {
     const userInMemory = {
       name: 'User Test',
-      username: 'user_test',
+      username: login,
       bio: 'A great user test',
       avatar: 'https://example.com/user_test.png',
     };
