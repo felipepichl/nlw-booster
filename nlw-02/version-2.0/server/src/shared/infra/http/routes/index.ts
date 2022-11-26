@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { createUserRouter } from '../../../../app/routes/user.routes';
+import { usersRouter } from '@modules/users/infra/http/routes/users.routes';
 import { sessionRouter } from '../../../../app/routes/session.routes';
 import { createSubjectRouter } from '../../../../app/routes/subject.routes';
 import { createClassesRouter } from '../../../../app/routes/classes.routes';
@@ -8,7 +8,7 @@ import { createClassScheduleRouter } from '../../../../app/routes/classSchedule.
 
 const router = Router();
 
-router.use('/users', createUserRouter);
+router.use('/users', usersRouter);
 
 router.use('/session', sessionRouter);
 

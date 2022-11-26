@@ -4,8 +4,6 @@ import { classToClass } from 'class-transformer';
 import { AppError } from 'app/error/AppError';
 import * as Yup from 'yup';
 
-import { CreateUsersWithGithubServices } from 'app/services/Users/CreateUsersWithGithubServices';
-
 class CreateUsersController {
   public async handle(request: Request, response: Response): Promise<Response> {
     const { username, email, password, whatsapp } = request.body;
@@ -21,7 +19,7 @@ class CreateUsersController {
       throw new AppError('Validations Failed');
     }
 
-    const createUsersWithGithubServices = new CreateUsersWithGithubServices();
+    // const createUsersWithGithubServices = new CreateUsersWithGithubServices();
 
     const user = await createUsersWithGithubServices.execute({
       username,
