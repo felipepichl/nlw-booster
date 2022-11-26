@@ -12,7 +12,7 @@ interface IRequest {
   whatsapp: string;
 }
 
-class CreateUserServices {
+class CreateUserUseCase {
   constructor(
     private usersRepository: IUsersRepository,
     private hashProvider: IHashProvider,
@@ -53,4 +53,4 @@ class CreateUserServices {
   }
 }
 
-export { CreateUserServices };
+export { CreateUserUseCase };

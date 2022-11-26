@@ -1,13 +1,13 @@
 import { AppError } from '@shared/errors/AppError';
 
 import { UsersRepositoryInMemory } from '../../repositories/in-memory/UsersRepositoryInMemory';
-import { CreateUserServices } from './CreateUserServices';
+import { CreateUserUseCase } from './CreateUserUseCase';
 
 import { HashProviderInMemory } from '../../provider/HashProvider/in-memory/HashProviderInMemory';
 import { AuthProviderInMemory } from '../../provider/AuthProvider/in-memory/AuthProviderInMemory';
 
 let usersRepositoryInMemory: UsersRepositoryInMemory;
-let createUserServices: CreateUserServices;
+let createUserUseCase: CreateUserUseCase;
 let hashProviderInMemory: HashProviderInMemory;
 let authProviderInMemory: AuthProviderInMemory;
 
@@ -17,7 +17,7 @@ describe('Create User', () => {
     hashProviderInMemory = new HashProviderInMemory();
     authProviderInMemory = new AuthProviderInMemory();
 
-    createUserServices = new CreateUserServices(
+    createUserUseCase = new CreateUserUseCase(
       usersRepositoryInMemory,
       hashProviderInMemory,
       authProviderInMemory,
@@ -27,7 +27,7 @@ describe('Create User', () => {
   it('should be able to create a new user', async () => {
     await authProviderInMemory.auth('github_user');
 
-    const user = await createUserServices.execute({
+    const user = await createUserUseCase.execute({
       username: 'user_test',
       email: 'test@teste.com',
       password: 'hash123',
@@ -39,13 +39,13 @@ describe('Create User', () => {
 
   it('should not be able to create a new user with email exists', async () => {
     expect(async () => {
-      await createUserServices.execute({
+      await createUserUseCase.execute({
         username: 'user_test',
         email: 'test@teste.com',
         password: 'hash123',
         whatsapp: '55999998888',
       });
-      await createUserServices.execute({
+      await createUserUseCase.execute({
         username: 'user_test',
         email: 'test@teste.com',
         password: 'hash123',
@@ -56,7 +56,7 @@ describe('Create User', () => {
 
   it('should be able to create a user with Github', async () => {
     expect(async () => {
-      await createUserServices.execute({
+      await createUserUseCase.execute({
         username: 'user_test',
         email: 'test@teste.com',
         password: 'hash123',

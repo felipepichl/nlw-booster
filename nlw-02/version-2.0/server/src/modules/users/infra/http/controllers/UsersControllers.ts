@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { CreateUserServices } from '../../../useCases/createUsers/CreateUserServices';
+import { CreateUserUseCase } from '../../../useCases/createUsers/CreateUserUseCase';
 
 class UsersControllerss {
   public async handle(request: Request, response: Response): Promise<Response> {
     const { username, email, password, whatsapp } = request.body;
 
-    // const createUsersWithGithubServices = new CreateUsersWithGithubServices();
+    const createUserUseCase = container.resolve(CreateUserUseCase);
 
-    const user = await createUsersWithGithubServices.execute({
+    const user = await createUserUseCase.execute({
       username,
       email,
       password,
