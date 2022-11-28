@@ -1,3 +1,4 @@
+import { injectable, inject } from 'tsyringe';
 import { AppError } from '@shared/errors/AppError';
 
 import { User } from '../../infra/prisma/models/User';
@@ -12,10 +13,14 @@ interface IRequest {
   whatsapp: string;
 }
 
+@injectable()
 class CreateUserUseCase {
   constructor(
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+    @inject('HashProvider')
     private hashProvider: IHashProvider,
+    @inject('AuthProvider')
     private authProvider: IAuthProvider,
   ) {}
 
