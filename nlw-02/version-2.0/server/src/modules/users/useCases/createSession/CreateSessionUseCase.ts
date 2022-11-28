@@ -25,9 +25,25 @@ class CreateSessionUseCase {
   async execute({ email, password }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findByEmail(email);
 
-    if (user) {
-      throw new AppError('Email or password does not match');
+    if (!user) {
+      throw new AppError('Incorrect Email/Password combination');
     }
+
+    const passwordHashed = await this.hashProvider.compareHash(
+      password,
+      user.password,
+    );
+
+    if (passwordHashed) {
+      throw new AppError('Incorrect Email/Password combination');
+    }
+
+    const response: IResponse = {
+      user,
+      token: '',
+    };
+
+    return response;
   }
 }
 
