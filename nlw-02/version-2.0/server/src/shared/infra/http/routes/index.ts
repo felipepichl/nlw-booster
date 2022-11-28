@@ -1,7 +1,7 @@
 import { Router } from 'express';
 
 import { usersRouter } from '@modules/users/infra/http/routes/users.routes';
-import { sessionRouter } from '../../../../app/routes/session.routes';
+import { sessionRouter } from '@modules/users/infra/http/routes/session.routes';
 import { createSubjectRouter } from '../../../../app/routes/subject.routes';
 import { createClassesRouter } from '../../../../app/routes/classes.routes';
 import { createClassScheduleRouter } from '../../../../app/routes/classSchedule.routes';
