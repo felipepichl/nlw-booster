@@ -1,4 +1,4 @@
-import { AppError } from 'app/error/AppError';
+import { AppError } from '@shared/errors/AppError';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
 import { IHashProvider } from '../../provider/HashProvider/models/IHashProvider';
 
@@ -26,7 +26,7 @@ class CreateSessionUseCase {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new AppError('Incorrect Email/Password combination');
+      throw new AppError('Incorrect Email/Password combination', 401);
     }
 
     const passwordHashed = await this.hashProvider.compareHash(
@@ -34,8 +34,8 @@ class CreateSessionUseCase {
       user.password,
     );
 
-    if (passwordHashed) {
-      throw new AppError('Incorrect Email/Password combination');
+    if (!passwordHashed) {
+      throw new AppError('Incorrect Email/Password combination', 401);
     }
 
     const response: IResponse = {
