@@ -1,4 +1,9 @@
+import { injectable, inject } from 'tsyringe';
+import { sign } from 'jsonwebtoken';
+
 import { AppError } from '@shared/errors/AppError';
+
+import auth from '@config/auth';
 import { IUsersRepository } from '../../repositories/IUsersRepository';
 import { IHashProvider } from '../../provider/HashProvider/models/IHashProvider';
 
@@ -16,9 +21,12 @@ interface IResponse {
   token: string;
 }
 
+@injectable()
 class CreateSessionUseCase {
   constructor(
+    @inject('UsersRepository')
     private usersRepository: IUsersRepository,
+    @inject('HashProvider')
     private hashProvider: IHashProvider,
   ) {}
 
@@ -38,9 +46,16 @@ class CreateSessionUseCase {
       throw new AppError('Incorrect Email/Password combination', 401);
     }
 
+    const { secret, expiresIn } = auth.jwt;
+
+    const token = sign({}, secret, {
+      subject: user.id,
+      expiresIn,
+    });
+
     const response: IResponse = {
       user,
-      token: '',
+      token,
     };
 
     return response;
