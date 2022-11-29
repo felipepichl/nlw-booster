@@ -1,3 +1,4 @@
+import { AppError } from '@shared/errors/AppError';
 import { SubjectsRepositoryInMemory } from '../../repositories/in-memory/SubjectsRepositoryInMemory';
 
 import { CreateSubjectUseCase } from './CreateSubjectUseCase';
@@ -18,5 +19,17 @@ describe('Create Subjects', () => {
     });
 
     expect(subject).toHaveProperty('id');
+  });
+
+  it('should not be able to create a new subject with exists title', async () => {
+    expect(async () => {
+      await createSubjectUseCase.execute({
+        title: 'subject_test',
+      });
+
+      await createSubjectUseCase.execute({
+        title: 'subject_test',
+      });
+    }).rejects.toBeInstanceOf(AppError);
   });
 });
