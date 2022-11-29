@@ -22,3 +22,13 @@ model User {
 
   @@map("users")
 }
+
+model Subject {
+  id     String @id @default(uuid())
+  titile String @unique()
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("subjects")
+}
