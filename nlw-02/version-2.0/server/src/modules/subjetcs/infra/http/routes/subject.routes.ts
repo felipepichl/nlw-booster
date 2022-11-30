@@ -2,17 +2,17 @@ import { Router } from 'express';
 
 import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
 
-import { SubjectsController } from '../controllers/SubjectsController';
+import { CreateSubjectsController } from '../controllers/CreateSubjectsController';
 import { ListSubjectsController } from '../controllers/ListSubjectsController';
 
 const subjectsRouter = Router();
 
-const subjectsController = new SubjectsController();
+const createSubjectsController = new CreateSubjectsController();
 const listSubjectsController = new ListSubjectsController();
 
 subjectsRouter.use(ensureAuthenticated);
 
-subjectsRouter.post('', subjectsController.handle);
+subjectsRouter.post('', createSubjectsController.handle);
 subjectsRouter.get('', listSubjectsController.handle);
 
 export { subjectsRouter };

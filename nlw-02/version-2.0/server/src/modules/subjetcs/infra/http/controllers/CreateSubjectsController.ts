@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 
 import { CreateSubjectUseCase } from '../../../useCases/createSubjects/CreateSubjectUseCase';
 
-class SubjectsController {
+class CreateSubjectsController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { title } = request.body;
 
@@ -17,4 +17,4 @@ class SubjectsController {
   }
 }
 
-export { SubjectsController };
+export { CreateSubjectsController };
