@@ -1,3 +1,5 @@
+import { inject, injectable } from 'tsyringe';
+
 import { AppError } from '@shared/errors/AppError';
 
 import { ISubjetcsRepository } from '../../repositories/ISubjetcsRepository';
@@ -7,8 +9,12 @@ interface IRequest {
   title: string;
 }
 
+@injectable()
 class CreateSubjectUseCase {
-  constructor(private subjectsRepository: ISubjetcsRepository) {}
+  constructor(
+    @inject('SubjectsRepository')
+    private subjectsRepository: ISubjetcsRepository,
+  ) {}
 
   async execute({ title }: IRequest): Promise<Subject> {
     const subjectAlreadyExists = await this.subjectsRepository.listByName(
