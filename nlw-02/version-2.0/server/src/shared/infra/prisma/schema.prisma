@@ -24,8 +24,8 @@ model User {
 }
 
 model Subject {
-  id     String @id @default(uuid())
-  titile String @unique()
+  id    String @id @default(uuid())
+  title String @unique()
 
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
