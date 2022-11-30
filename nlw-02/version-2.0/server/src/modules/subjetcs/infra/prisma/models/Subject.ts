@@ -4,7 +4,7 @@ import { Subject as ISubject } from '@prisma/client';
 class Subject implements ISubject {
   id: string;
 
-  titile: string;
+  title: string;
 
   created_at: Date;
 

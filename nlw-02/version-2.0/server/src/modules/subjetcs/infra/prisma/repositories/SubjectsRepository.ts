@@ -18,14 +18,22 @@ class SubjectsRepository implements ISubjetcsRepository {
         title,
       },
     });
+
+    return result;
   }
 
-  list(): Promise<Subject[]> {
-    throw new Error('Method not implemented.');
+  async list(): Promise<Subject[]> {
+    const result = await this.prisma.subject.findMany();
+
+    return result;
   }
 
-  listByName(title: string): Promise<Subject> {
-    throw new Error('Method not implemented.');
+  async listByName(title: string): Promise<Subject> {
+    const result = await this.prisma.subject.findFirst({
+      where: { title },
+    });
+
+    return result;
   }
 }
 
