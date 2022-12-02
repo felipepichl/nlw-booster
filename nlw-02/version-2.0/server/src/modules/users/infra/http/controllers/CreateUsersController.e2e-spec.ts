@@ -6,11 +6,15 @@ describe('E2E Users', () => {
 
   it('should be able to create a new user', async () => {
     const response = await request(app).post('/users').send({
-      username: 'user_test',
+      username: 'felipepichl',
       email: 'test@teste.com',
       password: 'hash123',
       whatsapp: '55999998888',
     });
+
+    console.log('====================================');
+    console.log(response.error);
+    console.log('====================================');
 
     expect(response.status).toBe(201);
   });
