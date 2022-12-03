@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { CreateUserUseCase } from '../../../useCases/createUsers/CreateUserUseCase';
+import { CreateUserUseCase } from '../../../../useCases/createUsers/CreateUserUseCase';
 
-class UsersControllerss {
+class CreateUsersControllers {
   public async handle(request: Request, response: Response): Promise<Response> {
     const { username, email, password, whatsapp } = request.body;
 
@@ -20,4 +20,4 @@ class UsersControllerss {
   }
 }
 
-export { UsersControllerss };
+export { CreateUsersControllers };
