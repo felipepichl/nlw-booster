@@ -1,8 +1,8 @@
 interface IAuthDTO {
   name: string;
-  username: string;
+  login: string;
   bio: string;
-  avatar: string;
+  avatar_url: string;
 }
 
 export { IAuthDTO };

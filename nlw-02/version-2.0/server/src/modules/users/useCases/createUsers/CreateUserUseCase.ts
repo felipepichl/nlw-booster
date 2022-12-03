@@ -38,9 +38,9 @@ class CreateUserUseCase {
 
     const passwordHash = await this.hashProvider.geneteHash(password);
 
-    const { name, avatar, bio } = await this.authProvider.auth(username);
+    const { name, avatar_url, bio } = await this.authProvider.auth(username);
 
-    if (!name || !avatar || !bio) {
+    if (!name || !avatar_url || !bio) {
       throw new AppError('Github information does not found');
     }
 
@@ -49,7 +49,7 @@ class CreateUserUseCase {
       username,
       email,
       password: passwordHash,
-      avatar,
+      avatar: avatar_url,
       bio,
       whatsapp,
     });
