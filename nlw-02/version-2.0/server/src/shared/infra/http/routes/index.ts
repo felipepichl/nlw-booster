@@ -10,7 +10,7 @@ import { subjectsRouter } from '@modules/subjetcs/infra/http/routes/subject.rout
 const router = Router();
 
 router.use('/users', usersRouter);
-router.use('/session', sessionRouter);
+router.use('/sessions', sessionRouter);
 router.use('/subjects', subjectsRouter);
 
 // router.use('/classes', createClassesRouter);
