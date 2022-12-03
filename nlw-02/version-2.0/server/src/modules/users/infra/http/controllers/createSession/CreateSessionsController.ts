@@ -1,9 +1,9 @@
 import { Request, Response } from 'express';
 import { container } from 'tsyringe';
 
-import { CreateSessionUseCase } from '../../../useCases/createSession/CreateSessionUseCase';
+import { CreateSessionUseCase } from '../../../../useCases/createSession/CreateSessionUseCase';
 
-class SessionsController {
+class CreateSessionsController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { email, password } = request.body;
 
@@ -18,4 +18,4 @@ class SessionsController {
   }
 }
 
-export { SessionsController };
+export { CreateSessionsController };
