@@ -1,12 +1,11 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 
-import express, { Request, Response, NextFunction } from 'express';
-import 'express-async-errors';
+import express, { Request, Response, NextFunction } from "express";
+import "express-async-errors";
 
-import { AppError } from '../../../errors/AppError';
-
-import routes from '../routes';
-import '@shared/container';
+import { AppError } from "../../../errors/AppError";
+import routes from "../routes";
+import "@shared/container";
 
 const app = express();
 
@@ -21,7 +20,7 @@ app.use(
     return response.status(500).json({
       message: `Internal server error ${err.message}`,
     });
-  },
+  }
 );
 
 export { app };

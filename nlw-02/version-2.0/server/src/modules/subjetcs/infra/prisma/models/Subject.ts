@@ -1,5 +1,5 @@
-import { v4 as uuid } from 'uuid';
-import { Subject as ISubject } from '@prisma/client';
+import { Subject as ISubject } from "@prisma/client";
+import { v4 as uuid } from "uuid";
 
 class Subject implements ISubject {
   id: string;

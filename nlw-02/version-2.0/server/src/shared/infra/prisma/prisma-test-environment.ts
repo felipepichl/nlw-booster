@@ -1,22 +1,20 @@
-import dotenv from 'dotenv';
-import NodeEnvironment from 'jest-environment-node';
-import { exec } from 'node:child_process';
-import util from 'node:util';
-import crypto from 'node:crypto';
-
-import fs from 'fs';
-import path from 'path';
-
 import type {
   EnvironmentContext,
   JestEnvironmentConfig,
-} from '@jest/environment';
+} from "@jest/environment";
+import dotenv from "dotenv";
+import fs from "fs";
+import NodeEnvironment from "jest-environment-node";
+import { exec } from "node:child_process";
+import crypto from "node:crypto";
+import util from "node:util";
+import path from "path";
 
-dotenv.config({ path: '.env.testing' });
+dotenv.config({ path: ".env.testing" });
 
 const execSync = util.promisify(exec);
 
-const prismaBinary = './node_modules/.bin/prisma';
+const prismaBinary = "./node_modules/.bin/prisma";
 
 export default class PrismaTestEnvironment extends NodeEnvironment {
   private schema: string;
@@ -28,7 +26,7 @@ export default class PrismaTestEnvironment extends NodeEnvironment {
 
     this.schema = `test_${crypto.randomUUID()}.db`;
     this.connectionString = `file:./${this.schema}`;
-    this.prismaLocation = '--schema=./src/shared/infra/prisma/schema.prisma';
+    this.prismaLocation = "--schema=./src/shared/infra/prisma/schema.prisma";
   }
 
   async setup() {
@@ -41,6 +39,6 @@ export default class PrismaTestEnvironment extends NodeEnvironment {
   }
 
   async teardown() {
-    fs.unlinkSync(path.join(__dirname, '..', 'prisma', this.schema));
+    fs.unlinkSync(path.join(__dirname, "..", "prisma", this.schema));
   }
 }

@@ -1,13 +1,13 @@
-import { inject, injectable } from 'tsyringe';
+import { inject, injectable } from "tsyringe";
 
-import { ISubjetcsRepository } from '../../repositories/ISubjetcsRepository';
-import { Subject } from '../../infra/prisma/models/Subject';
+import { Subject } from "../../infra/prisma/models/Subject";
+import { ISubjetcsRepository } from "../../repositories/ISubjetcsRepository";
 
 @injectable()
 class ListSubjectsUseCase {
   constructor(
-    @inject('SubjectsRepository')
-    private subjectsRepository: ISubjetcsRepository,
+    @inject("SubjectsRepository")
+    private subjectsRepository: ISubjetcsRepository
   ) {}
 
   async execute(): Promise<Subject[]> {

@@ -1,9 +1,9 @@
-import { Router } from 'express';
+import { Router } from "express";
 
-import { ensureAuthenticated } from '@shared/infra/http/middlewares/ensureAuthenticated';
+import { ensureAuthenticated } from "@shared/infra/http/middlewares/ensureAuthenticated";
 
-import { CreateSubjectsController } from '../controllers/CreateSubjectsController';
-import { ListSubjectsController } from '../controllers/ListSubjectsController';
+import { CreateSubjectsController } from "../controllers/CreateSubjectsController";
+import { ListSubjectsController } from "../controllers/ListSubjectsController";
 
 const subjectsRouter = Router();
 
@@ -12,7 +12,7 @@ const listSubjectsController = new ListSubjectsController();
 
 subjectsRouter.use(ensureAuthenticated);
 
-subjectsRouter.post('', createSubjectsController.handle);
-subjectsRouter.get('', listSubjectsController.handle);
+subjectsRouter.post("", createSubjectsController.handle);
+subjectsRouter.get("", listSubjectsController.handle);
 
 export { subjectsRouter };

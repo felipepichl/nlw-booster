@@ -1,6 +1,6 @@
-import { hash, compare } from 'bcryptjs';
+import { hash, compare } from "bcryptjs";
 
-import { IHashProvider } from '../models/IHashProvider';
+import { IHashProvider } from "../models/IHashProvider";
 
 class BCryptHashProvider implements IHashProvider {
   async geneteHash(payload: string): Promise<string> {

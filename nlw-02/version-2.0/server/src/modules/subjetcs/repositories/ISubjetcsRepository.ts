@@ -1,5 +1,5 @@
-import { Subject } from '../infra/prisma/models/Subject';
-import { ICreateSubjectDTO } from '../dtos/ICreateSubjectDTO';
+import { ICreateSubjectDTO } from "../dtos/ICreateSubjectDTO";
+import { Subject } from "../infra/prisma/models/Subject";
 
 interface ISubjetcsRepository {
   create(data: ICreateSubjectDTO): Promise<Subject>;

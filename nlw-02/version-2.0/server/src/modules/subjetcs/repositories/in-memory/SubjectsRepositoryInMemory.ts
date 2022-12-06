@@ -1,6 +1,6 @@
-import { Subject } from '../../infra/prisma/models/Subject';
-import { ICreateSubjectDTO } from '../../dtos/ICreateSubjectDTO';
-import { ISubjetcsRepository } from '../ISubjetcsRepository';
+import { ICreateSubjectDTO } from "../../dtos/ICreateSubjectDTO";
+import { Subject } from "../../infra/prisma/models/Subject";
+import { ISubjetcsRepository } from "../ISubjetcsRepository";
 
 class SubjectsRepositoryInMemory implements ISubjetcsRepository {
   subjects: Subject[] = [];
@@ -20,7 +20,7 @@ class SubjectsRepositoryInMemory implements ISubjetcsRepository {
   }
 
   async listByName(title: string): Promise<Subject> {
-    return this.subjects.find(subject => subject.title === title);
+    return this.subjects.find((subject) => subject.title === title);
   }
 }
 

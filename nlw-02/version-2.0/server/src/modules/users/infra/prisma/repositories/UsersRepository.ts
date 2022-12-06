@@ -1,11 +1,11 @@
-import { ICreateUserDTO } from '@modules/users/dtos/ICreateUserDTO';
-import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
-import { User } from '../models/User';
+import { ICreateUserDTO } from "@modules/users/dtos/ICreateUserDTO";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 
-import { prisma } from '@shared/infra/prisma'
+import { prisma } from "@shared/infra/prisma";
+
+import { User } from "../models/User";
 
 class UsersRepository implements IUsersRepository {
-
   async create(data: ICreateUserDTO): Promise<User> {
     const result = await prisma.user.create({
       data,

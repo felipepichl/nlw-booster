@@ -1,4 +1,4 @@
-import { IHashProvider } from '../models/IHashProvider';
+import { IHashProvider } from "../models/IHashProvider";
 
 class HashProviderInMemory implements IHashProvider {
   async geneteHash(payload: string): Promise<string> {

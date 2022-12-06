@@ -1,10 +1,10 @@
-import { container } from 'tsyringe';
+import { container } from "tsyringe";
 
-import { IHashProvider } from './HashProvider/models/IHashProvider';
-import { BCryptHashProvider } from './HashProvider/implementations/BCryptHashProvider';
-import { IAuthProvider } from './AuthProvider/models/IAuthProvider';
-import { GithubAuthProvider } from './AuthProvider/implementations/GithubAuthProvider';
+import { GithubAuthProvider } from "./AuthProvider/implementations/GithubAuthProvider";
+import { IAuthProvider } from "./AuthProvider/models/IAuthProvider";
+import { BCryptHashProvider } from "./HashProvider/implementations/BCryptHashProvider";
+import { IHashProvider } from "./HashProvider/models/IHashProvider";
 
-container.registerSingleton<IHashProvider>('HashProvider', BCryptHashProvider);
+container.registerSingleton<IHashProvider>("HashProvider", BCryptHashProvider);
 
-container.registerSingleton<IAuthProvider>('AuthProvider', GithubAuthProvider);
+container.registerSingleton<IAuthProvider>("AuthProvider", GithubAuthProvider);

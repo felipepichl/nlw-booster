@@ -1,9 +1,9 @@
-import { inject, injectable } from 'tsyringe';
+import { inject, injectable } from "tsyringe";
 
-import { AppError } from '@shared/errors/AppError';
+import { AppError } from "@shared/errors/AppError";
 
-import { ISubjetcsRepository } from '../../repositories/ISubjetcsRepository';
-import { Subject } from '../../infra/prisma/models/Subject';
+import { Subject } from "../../infra/prisma/models/Subject";
+import { ISubjetcsRepository } from "../../repositories/ISubjetcsRepository";
 
 interface IRequest {
   title: string;
@@ -12,17 +12,17 @@ interface IRequest {
 @injectable()
 class CreateSubjectUseCase {
   constructor(
-    @inject('SubjectsRepository')
-    private subjectsRepository: ISubjetcsRepository,
+    @inject("SubjectsRepository")
+    private subjectsRepository: ISubjetcsRepository
   ) {}
 
   async execute({ title }: IRequest): Promise<Subject> {
     const subjectAlreadyExists = await this.subjectsRepository.listByName(
-      title,
+      title
     );
 
     if (subjectAlreadyExists) {
-      throw new AppError('Subject already exists');
+      throw new AppError("Subject already exists");
     }
 
     const subject = await this.subjectsRepository.create({

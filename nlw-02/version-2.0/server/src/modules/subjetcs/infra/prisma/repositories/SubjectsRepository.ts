@@ -1,12 +1,10 @@
-import { Subject } from '../models/Subject';
+import { prisma } from "@shared/infra/prisma";
 
-import { ISubjetcsRepository } from '../../../repositories/ISubjetcsRepository';
-import { ICreateSubjectDTO } from '../../../dtos/ICreateSubjectDTO';
-
-import { prisma } from '@shared/infra/prisma'
+import { ICreateSubjectDTO } from "../../../dtos/ICreateSubjectDTO";
+import { ISubjetcsRepository } from "../../../repositories/ISubjetcsRepository";
+import { Subject } from "../models/Subject";
 
 class SubjectsRepository implements ISubjetcsRepository {
-
   async create({ title }: ICreateSubjectDTO): Promise<Subject> {
     const result = await prisma.subject.create({
       data: {

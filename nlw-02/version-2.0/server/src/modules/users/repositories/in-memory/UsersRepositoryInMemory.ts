@@ -1,6 +1,6 @@
-import { ICreateUserDTO } from '../../dtos/ICreateUserDTO';
-import { User } from '../../infra/prisma/models/User';
-import { IUsersRepository } from '../IUsersRepository';
+import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
+import { User } from "../../infra/prisma/models/User";
+import { IUsersRepository } from "../IUsersRepository";
 
 class UsersRepositoryInMemory implements IUsersRepository {
   users: User[] = [];
@@ -21,7 +21,7 @@ class UsersRepositoryInMemory implements IUsersRepository {
   }
 
   async findByEmail(email: string): Promise<User> {
-    return this.users.find(user => user.email === email);
+    return this.users.find((user) => user.email === email);
   }
 }
 

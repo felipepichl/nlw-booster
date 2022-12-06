@@ -1,20 +1,20 @@
-import { IAuthDTO } from '../dtos/IAuthDTO';
-import { IAuthProvider } from '../models/IAuthProvider';
+import { IAuthDTO } from "../dtos/IAuthDTO";
+import { IAuthProvider } from "../models/IAuthProvider";
 
 class AuthProviderInMemory implements IAuthProvider {
   users: IAuthDTO[] = [];
 
   async auth(login: string): Promise<IAuthDTO> {
     const userInMemory = {
-      name: 'User Test',
+      name: "User Test",
       login,
-      bio: 'A great user test',
-      avatar_url: 'https://example.com/user_test.png',
+      bio: "A great user test",
+      avatar_url: "https://example.com/user_test.png",
     };
 
     this.users.push(userInMemory);
 
-    return this.users.find(user => user.login === login);
+    return this.users.find((user) => user.login === login);
   }
 }
 

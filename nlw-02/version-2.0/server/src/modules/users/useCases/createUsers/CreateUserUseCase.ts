@@ -1,10 +1,11 @@
-import { injectable, inject } from 'tsyringe';
-import { AppError } from '@shared/errors/AppError';
+import { injectable, inject } from "tsyringe";
 
-import { User } from '../../infra/prisma/models/User';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
-import { IHashProvider } from '../../provider/HashProvider/models/IHashProvider';
-import { IAuthProvider } from '../../provider/AuthProvider/models/IAuthProvider';
+import { AppError } from "@shared/errors/AppError";
+
+import { User } from "../../infra/prisma/models/User";
+import { IAuthProvider } from "../../provider/AuthProvider/models/IAuthProvider";
+import { IHashProvider } from "../../provider/HashProvider/models/IHashProvider";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
   username: string;
@@ -16,12 +17,12 @@ interface IRequest {
 @injectable()
 class CreateUserUseCase {
   constructor(
-    @inject('UsersRepository')
+    @inject("UsersRepository")
     private usersRepository: IUsersRepository,
-    @inject('HashProvider')
+    @inject("HashProvider")
     private hashProvider: IHashProvider,
-    @inject('AuthProvider')
-    private authProvider: IAuthProvider,
+    @inject("AuthProvider")
+    private authProvider: IAuthProvider
   ) {}
 
   async execute({
@@ -33,7 +34,7 @@ class CreateUserUseCase {
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
     if (userAlreadyExists) {
-      throw new AppError('User already exists');
+      throw new AppError("User already exists");
     }
 
     const passwordHash = await this.hashProvider.geneteHash(password);
@@ -41,7 +42,7 @@ class CreateUserUseCase {
     const { name, avatar_url, bio } = await this.authProvider.auth(username);
 
     if (!name || !avatar_url || !bio) {
-      throw new AppError('Github information does not found');
+      throw new AppError("Github information does not found");
     }
 
     const user = await this.usersRepository.create({

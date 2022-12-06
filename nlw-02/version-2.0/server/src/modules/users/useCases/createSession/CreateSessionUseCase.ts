@@ -1,11 +1,11 @@
-import { injectable, inject } from 'tsyringe';
-import { sign } from 'jsonwebtoken';
+import auth from "@config/auth";
+import { sign } from "jsonwebtoken";
+import { injectable, inject } from "tsyringe";
 
-import { AppError } from '@shared/errors/AppError';
+import { AppError } from "@shared/errors/AppError";
 
-import auth from '@config/auth';
-import { IUsersRepository } from '../../repositories/IUsersRepository';
-import { IHashProvider } from '../../provider/HashProvider/models/IHashProvider';
+import { IHashProvider } from "../../provider/HashProvider/models/IHashProvider";
+import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
   email: string;
@@ -24,26 +24,26 @@ interface IResponse {
 @injectable()
 class CreateSessionUseCase {
   constructor(
-    @inject('UsersRepository')
+    @inject("UsersRepository")
     private usersRepository: IUsersRepository,
-    @inject('HashProvider')
-    private hashProvider: IHashProvider,
+    @inject("HashProvider")
+    private hashProvider: IHashProvider
   ) {}
 
   async execute({ email, password }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findByEmail(email);
 
     if (!user) {
-      throw new AppError('Incorrect Email/Password combination', 401);
+      throw new AppError("Incorrect Email/Password combination", 401);
     }
 
     const passwordHashed = await this.hashProvider.compareHash(
       password,
-      user.password,
+      user.password
     );
 
     if (!passwordHashed) {
-      throw new AppError('Incorrect Email/Password combination', 401);
+      throw new AppError("Incorrect Email/Password combination", 401);
     }
 
     const { secret, expiresIn } = auth.jwt;
