@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { container } from "tsyringe";
 
-import { CreateSubjectUseCase } from "../../../useCases/createSubjects/CreateSubjectUseCase";
+import { CreateSubjectUseCase } from "../../../../useCases/createSubjects/CreateSubjectUseCase";
 
 class CreateSubjectsController {
   async handle(request: Request, response: Response): Promise<Response> {
