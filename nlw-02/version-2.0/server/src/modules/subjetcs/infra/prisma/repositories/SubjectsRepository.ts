@@ -1,19 +1,14 @@
-import { PrismaClient } from '@prisma/client';
-
 import { Subject } from '../models/Subject';
 
 import { ISubjetcsRepository } from '../../../repositories/ISubjetcsRepository';
 import { ICreateSubjectDTO } from '../../../dtos/ICreateSubjectDTO';
 
-class SubjectsRepository implements ISubjetcsRepository {
-  prisma: PrismaClient;
+import { prisma } from '@shared/infra/prisma'
 
-  constructor() {
-    this.prisma = new PrismaClient();
-  }
+class SubjectsRepository implements ISubjetcsRepository {
 
   async create({ title }: ICreateSubjectDTO): Promise<Subject> {
-    const result = await this.prisma.subject.create({
+    const result = await prisma.subject.create({
       data: {
         title,
       },
@@ -23,13 +18,13 @@ class SubjectsRepository implements ISubjetcsRepository {
   }
 
   async list(): Promise<Subject[]> {
-    const result = await this.prisma.subject.findMany();
+    const result = await prisma.subject.findMany();
 
     return result;
   }
 
   async listByName(title: string): Promise<Subject> {
-    const result = await this.prisma.subject.findFirst({
+    const result = await prisma.subject.findFirst({
       where: { title },
     });
 

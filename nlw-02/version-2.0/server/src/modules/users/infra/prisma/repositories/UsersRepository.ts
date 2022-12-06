@@ -1,17 +1,13 @@
 import { ICreateUserDTO } from '@modules/users/dtos/ICreateUserDTO';
 import { IUsersRepository } from '@modules/users/repositories/IUsersRepository';
-import { PrismaClient } from '@prisma/client';
 import { User } from '../models/User';
 
-class UsersRepository implements IUsersRepository {
-  prisma: PrismaClient;
+import { prisma } from '@shared/infra/prisma'
 
-  constructor() {
-    this.prisma = new PrismaClient();
-  }
+class UsersRepository implements IUsersRepository {
 
   async create(data: ICreateUserDTO): Promise<User> {
-    const result = await this.prisma.user.create({
+    const result = await prisma.user.create({
       data,
     });
 
@@ -19,7 +15,7 @@ class UsersRepository implements IUsersRepository {
   }
 
   async findByEmail(email: string): Promise<User> {
-    const result = await this.prisma.user.findFirst({
+    const result = await prisma.user.findFirst({
       where: { email },
     });
 
