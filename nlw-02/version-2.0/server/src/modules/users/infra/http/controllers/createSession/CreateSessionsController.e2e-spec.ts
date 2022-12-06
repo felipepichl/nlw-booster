@@ -1,35 +1,32 @@
-import { hash } from 'bcryptjs';
-import request from 'supertest';
+import { hash } from "bcryptjs";
+import request from "supertest";
 
-import { app } from '@shared/infra/http/start/app';
+import { app } from "@shared/infra/http/start/app";
+import { prisma } from "@shared/infra/prisma";
 
-
-import { prisma } from '@shared/infra/prisma'
-
-describe('E2E Sessions', () => {
+describe("E2E Sessions", () => {
   beforeEach(async () => {
+    const passwordHash = await hash("hash123", 8);
 
-    const passwordHash = await hash('hash123', 8)
-
-    const result = await prisma.user.create({
+    await prisma.user.create({
       data: {
-        name: 'Teste',
-        username: 'felipepichl',
-        email: 'test@teste.com',
+        name: "Teste",
+        username: "felipepichl",
+        email: "test@teste.com",
         password: passwordHash,
-        avatar: 'https://example.com/user_test.png',
-        bio: 'A great user test',
-        whatsapp: '55999998888',
-      }
+        avatar: "https://example.com/user_test.png",
+        bio: "A great user test",
+        whatsapp: "55999998888",
+      },
     });
-  })
+  });
 
-  it('should be able to create a new session', async () => {
-    const responseToken = await request(app).post('/sessions').send({
-      email: 'test@teste.com',
-      password: 'hash123',
+  it("should be able to create a new session", async () => {
+    const responseToken = await request(app).post("/sessions").send({
+      email: "test@teste.com",
+      password: "hash123",
     });
 
-    expect(responseToken.body).toHaveProperty('token');
+    expect(responseToken.body).toHaveProperty("token");
   });
 });
