@@ -13,7 +13,7 @@ class CreateSubjectsController {
       title,
     });
 
-    return response.json(subject);
+    return response.status(201).json({ subject });
   }
 }
 
