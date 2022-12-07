@@ -20,6 +20,8 @@ model User {
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 
+  Class Class[]
+
   @@map("users")
 }
 
@@ -30,5 +32,23 @@ model Subject {
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 
+  Class Class[]
+
   @@map("subjects")
+}
+
+model Class {
+  id   String @id @default(uuid())
+  cost Float
+
+  user       User   @relation(fields: [fk_user_id], references: [id])
+  fk_user_id String
+
+  subject       Subject @relation(fields: [fk_subject_id], references: [id])
+  fk_subject_id String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+  userId     String
+  subjectId  String
 }
