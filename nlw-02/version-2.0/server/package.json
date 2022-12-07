@@ -3,7 +3,6 @@
   "scripts": {
     "build": "tsc",
     "dev:server": " ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/shared/infra/http/start/server.ts",
-    "typeorm": "ts-node-dev ./node_modules/typeorm/cli.js",
     "prisma:generate": "prisma generate --schema=./src/shared/infra/prisma/schema.prisma",
     "prisma:migrate": "prisma migrate dev --schema=./src/shared/infra/prisma/schema.prisma",
     "prisma:studio": "prisma studio --schema=./src/shared/infra/prisma/schema.prisma",
@@ -14,19 +13,16 @@
     "@prisma/client": "^4.6.1",
     "axios": "^1.2.0",
     "bcryptjs": "^2.4.3",
-    "class-transformer": "^0.5.1",
     "dotenv": "^16.0.3",
     "express": "^4.17.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
-    "pg": "^8.5.1",
     "prisma": "^4.6.1",
     "reflect-metadata": "^0.1.13",
     "sqlite3": "^5.0.2",
     "tsyringe": "^4.7.0",
     "typeorm": "^0.3.10",
-    "uuid": "^9.0.0",
-    "yup": "^0.32.9"
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
