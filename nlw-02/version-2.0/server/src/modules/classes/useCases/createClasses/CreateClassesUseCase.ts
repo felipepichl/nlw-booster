@@ -1,3 +1,5 @@
+import { inject, injectable } from "tsyringe";
+
 import { Class } from "../../infra/prisma/models/Class";
 import { IClassesRepository } from "../../repositories/IClassesRepository";
 
@@ -7,8 +9,12 @@ interface IRequest {
   user_id: string;
 }
 
+@injectable()
 class CreateClassesUseCase {
-  constructor(private classesRepository: IClassesRepository) {}
+  constructor(
+    @inject("ClassesRepository")
+    private classesRepository: IClassesRepository
+  ) {}
 
   async execute({ cost, subject_id, user_id }: IRequest): Promise<Class> {
     const classes = await this.classesRepository.create({
