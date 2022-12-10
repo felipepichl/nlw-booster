@@ -38,17 +38,23 @@ describe("[E2E] - Create Classes", () => {
         Authorization: `Bearer ${token}`,
       });
 
-    const response = await request(app)
-      .post("/classes")
-      .send({
-        cost: 100,
-        subject_id: "",
-      })
+    const responseSubject = await request(app)
+      .get("/subjects")
       .set({
         Authorization: `Bearer ${token}`,
       });
 
-    console.log(response.body);
+    const { id: subject_id } = responseSubject.body[0];
+
+    const response = await request(app)
+      .post("/classes")
+      .send({
+        cost: 100,
+        subject_id,
+      })
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
 
     expect(response.status).toBe(201);
     expect(response.body.error).toBeFalsy();
