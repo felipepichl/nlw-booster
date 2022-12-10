@@ -1,6 +1,5 @@
 import { hash } from "bcryptjs";
 import request from "supertest";
-import { v4 as uuid } from "uuid";
 
 import { app } from "@shared/infra/http/start/app";
 import { prisma } from "@shared/infra/prisma";
@@ -30,9 +29,14 @@ describe("[E2E] - Create Classes", () => {
 
     const { token } = responseToken.body;
 
-    await request(app).post("/subjects").send({
-      title: "title_test",
-    });
+    await request(app)
+      .post("/subjects")
+      .send({
+        title: "title_test",
+      })
+      .set({
+        Authorization: `Bearer ${token}`,
+      });
 
     const response = await request(app)
       .post("/classes")
