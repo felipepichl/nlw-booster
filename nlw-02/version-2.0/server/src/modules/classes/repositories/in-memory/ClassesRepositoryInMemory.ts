@@ -6,10 +6,18 @@ import { IClassesRepository } from "../IClassesRepository";
 class ClassesRepositoryInMemory implements IClassesRepository {
   private classes: Class[] = [];
 
-  async create(data: ICreateClassesDTO): Promise<Class> {
+  async create({
+    cost,
+    subject_id,
+    user_id,
+  }: ICreateClassesDTO): Promise<Class> {
     const objectClass = new Class();
 
-    Object.assign(data, objectClass);
+    Object.assign(objectClass, {
+      cost,
+      fk_subject_id: subject_id,
+      fk_user_id: user_id,
+    });
 
     this.classes.push(objectClass);
 
