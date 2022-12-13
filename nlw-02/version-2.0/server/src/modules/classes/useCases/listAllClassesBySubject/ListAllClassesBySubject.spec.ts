@@ -21,9 +21,15 @@ describe("List Classes by Subject", () => {
   });
 
   it("should be able to list all clsses by subject id", async () => {
+    const subject = await subjectsRepositoryInMemory.create({
+      title: "Subject_test",
+    });
+
+    const { id } = subject;
+
     await classesRepositoryInMemory.create({
       cost: 100,
-      subject_id: "subject_id",
+      subject_id: id,
       user_id: "user_id",
     });
 
