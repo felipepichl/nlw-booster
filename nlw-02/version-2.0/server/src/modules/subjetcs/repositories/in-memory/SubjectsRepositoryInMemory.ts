@@ -22,6 +22,10 @@ class SubjectsRepositoryInMemory implements ISubjetcsRepository {
   async listByName(title: string): Promise<Subject> {
     return this.subjects.find((subject) => subject.title === title);
   }
+
+  async listById(id: string): Promise<Subject> {
+    return this.subjects.find((subject) => subject.id === id);
+  }
 }
 
 export { SubjectsRepositoryInMemory };

@@ -28,6 +28,14 @@ class SubjectsRepository implements ISubjetcsRepository {
 
     return result;
   }
+
+  async listById(id: string): Promise<Subject> {
+    const result = await prisma.subject.findFirst({
+      where: { id },
+    });
+
+    return result;
+  }
 }
 
 export { SubjectsRepository };
