@@ -1,3 +1,5 @@
+import { AppError } from "@shared/errors/AppError";
+
 import { ClassesRepositoryInMemory } from "../../repositories/in-memory/ClassesRepositoryInMemory";
 import { ListAllClassesBySubject } from "./ListAllClassesBySubject";
 
@@ -24,7 +26,14 @@ describe("List Classes by Subject", () => {
       subject_id: "subject_id",
     });
 
-    console.log(allClasses);
     expect(allClasses[0]).toHaveProperty("id");
+  });
+
+  it("should not be able to list all clsses by wrong subject id", async () => {
+    await expect(
+      listAllClassesBySubject.execute({
+        subject_id: "subject_id",
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
