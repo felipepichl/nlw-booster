@@ -8,7 +8,7 @@ class SubjectsRepositoryInMemory implements ISubjetcsRepository {
   async create({ title }: ICreateSubjectDTO): Promise<Subject> {
     const subject = new Subject();
 
-    Object.assign(subject, title);
+    Object.assign(subject, { title });
 
     this.subjects.push(subject);
 
