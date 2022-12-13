@@ -1,17 +1,22 @@
+import { SubjectsRepositoryInMemory } from "@modules/subjetcs/repositories/in-memory/SubjectsRepositoryInMemory";
+
 import { AppError } from "@shared/errors/AppError";
 
 import { ClassesRepositoryInMemory } from "../../repositories/in-memory/ClassesRepositoryInMemory";
 import { ListAllClassesBySubject } from "./ListAllClassesBySubject";
 
 let classesRepositoryInMemory: ClassesRepositoryInMemory;
+let subjectsRepositoryInMemory: SubjectsRepositoryInMemory;
 let listAllClassesBySubject: ListAllClassesBySubject;
 
 describe("List Classes by Subject", () => {
   beforeEach(() => {
     classesRepositoryInMemory = new ClassesRepositoryInMemory();
+    subjectsRepositoryInMemory = new SubjectsRepositoryInMemory();
 
     listAllClassesBySubject = new ListAllClassesBySubject(
-      classesRepositoryInMemory
+      classesRepositoryInMemory,
+      subjectsRepositoryInMemory
     );
   });
 
