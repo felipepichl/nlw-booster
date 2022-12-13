@@ -22,7 +22,7 @@ describe("List Classes by Subject", () => {
 
   it("should be able to list all clsses by subject id", async () => {
     const subject = await subjectsRepositoryInMemory.create({
-      title: "Subject_test",
+      title: "subject_test",
     });
 
     const { id } = subject;
@@ -34,7 +34,7 @@ describe("List Classes by Subject", () => {
     });
 
     const allClasses = await listAllClassesBySubject.execute({
-      subject_id: "subject_id",
+      subject_id: id,
     });
 
     expect(allClasses[0]).toHaveProperty("id");

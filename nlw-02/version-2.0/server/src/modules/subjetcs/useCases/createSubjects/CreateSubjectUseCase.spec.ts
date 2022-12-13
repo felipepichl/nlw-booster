@@ -18,8 +18,6 @@ describe("Create Subjects", () => {
       title: "subject_test",
     });
 
-    console.log(subject);
-
     expect(subject).toHaveProperty("id");
   });
 
