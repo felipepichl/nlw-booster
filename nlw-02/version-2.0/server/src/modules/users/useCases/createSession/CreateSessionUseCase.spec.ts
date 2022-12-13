@@ -40,40 +40,40 @@ describe("Create Session", () => {
   });
 
   it("should not be able to create a new session with wrong email", async () => {
-    expect(async () => {
-      await usersRepositoryInMemory.create({
-        name: "User Test",
-        username: "user_test",
-        email: "test@test.com",
-        password: "hash123",
-        avatar: "https://example.com/user_test.png",
-        bio: "A great bio",
-        whatsapp: "55999998888",
-      });
+    await usersRepositoryInMemory.create({
+      name: "User Test",
+      username: "user_test",
+      email: "test@test.com",
+      password: "hash123",
+      avatar: "https://example.com/user_test.png",
+      bio: "A great bio",
+      whatsapp: "55999998888",
+    });
 
-      await createSessionUseCase.execute({
+    await expect(
+      createSessionUseCase.execute({
         email: "worn_email@wrong.com",
         password: "hash123",
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   it("should not be able to create a new session with wrong password", async () => {
-    expect(async () => {
-      await usersRepositoryInMemory.create({
-        name: "User Test",
-        username: "user_test",
-        email: "test@test.com",
-        password: "hash123",
-        avatar: "https://example.com/user_test.png",
-        bio: "A great bio",
-        whatsapp: "55999998888",
-      });
+    await usersRepositoryInMemory.create({
+      name: "User Test",
+      username: "user_test",
+      email: "test@test.com",
+      password: "hash123",
+      avatar: "https://example.com/user_test.png",
+      bio: "A great bio",
+      whatsapp: "55999998888",
+    });
 
-      await createSessionUseCase.execute({
+    await expect(
+      createSessionUseCase.execute({
         email: "test@test.com",
         password: "wrong_password",
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 });

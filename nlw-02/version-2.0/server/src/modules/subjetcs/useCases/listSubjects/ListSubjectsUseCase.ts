@@ -11,7 +11,9 @@ class ListSubjectsUseCase {
   ) {}
 
   async execute(): Promise<Subject[]> {
-    return this.subjectsRepository.list();
+    const subjects = await this.subjectsRepository.list();
+
+    return subjects;
   }
 }
 

@@ -24,7 +24,7 @@ describe("Create User", () => {
   });
 
   it("should be able to create a new user", async () => {
-    await authProviderInMemory.auth("github_user");
+    // await authProviderInMemory.auth("github_user");
 
     const user = await createUserUseCase.execute({
       username: "user_test",
