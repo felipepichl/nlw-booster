@@ -11,7 +11,7 @@ let hashProviderInMemory: HashProviderInMemory;
 let authProviderInMemory: AuthProviderInMemory;
 
 describe("Create User", () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     usersRepositoryInMemory = new UsersRepositoryInMemory();
     hashProviderInMemory = new HashProviderInMemory();
     authProviderInMemory = new AuthProviderInMemory();
@@ -21,11 +21,10 @@ describe("Create User", () => {
       hashProviderInMemory,
       authProviderInMemory
     );
+    await authProviderInMemory.auth("github_user");
   });
 
   it("should be able to create a new user", async () => {
-    // await authProviderInMemory.auth("github_user");
-
     const user = await createUserUseCase.execute({
       username: "user_test",
       email: "test@teste.com",
@@ -37,30 +36,31 @@ describe("Create User", () => {
   });
 
   it("should not be able to create a new user with email exists", async () => {
-    expect(async () => {
-      await createUserUseCase.execute({
+    await createUserUseCase.execute({
+      username: "user_test",
+      email: "test@teste.com",
+      password: "hash123",
+      whatsapp: "55999998888",
+    });
+
+    await expect(
+      createUserUseCase.execute({
         username: "user_test",
         email: "test@teste.com",
         password: "hash123",
         whatsapp: "55999998888",
-      });
-      await createUserUseCase.execute({
-        username: "user_test",
-        email: "test@teste.com",
-        password: "hash123",
-        whatsapp: "55999998888",
-      });
-    }).rejects.toBeInstanceOf(AppError);
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 
   it("should be able to create a user with Github", async () => {
-    expect(async () => {
-      await createUserUseCase.execute({
-        username: "user_test",
-        email: "test@teste.com",
-        password: "hash123",
-        whatsapp: "55999998888",
-      });
-    }).rejects.toBeInstanceOf(AppError);
+    const user = await createUserUseCase.execute({
+      username: "github_use",
+      email: "test@teste.com",
+      password: "hash123",
+      whatsapp: "55999998888",
+    });
+
+    expect(user).toHaveProperty("id");
   });
 });
