@@ -42,6 +42,7 @@ class CreateUserUseCase {
     const { name, avatar_url, bio } = await this.authProvider.auth(username);
 
     if (!name || !avatar_url || !bio) {
+      console.log("here");
       throw new AppError("Github information does not found");
     }
 

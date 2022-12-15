@@ -21,12 +21,11 @@ describe("Create User", () => {
       hashProviderInMemory,
       authProviderInMemory
     );
-    await authProviderInMemory.auth("github_user");
   });
 
   it("should be able to create a new user", async () => {
     const user = await createUserUseCase.execute({
-      username: "user_test",
+      username: "login_test",
       email: "test@teste.com",
       password: "hash123",
       whatsapp: "55999998888",
@@ -37,7 +36,7 @@ describe("Create User", () => {
 
   it("should not be able to create a new user with email exists", async () => {
     await createUserUseCase.execute({
-      username: "user_test",
+      username: "login_test",
       email: "test@teste.com",
       password: "hash123",
       whatsapp: "55999998888",
@@ -53,14 +52,14 @@ describe("Create User", () => {
     ).rejects.toBeInstanceOf(AppError);
   });
 
-  it("should be able to create a user with Github", async () => {
-    const user = await createUserUseCase.execute({
-      username: "github_use",
-      email: "test@teste.com",
-      password: "hash123",
-      whatsapp: "55999998888",
-    });
-
-    expect(user).toHaveProperty("id");
+  it("should not be able to create a user with wrong Github", async () => {
+    await expect(
+      createUserUseCase.execute({
+        username: "wrong_login",
+        email: "test@teste.com",
+        password: "hash123",
+        whatsapp: "55999998888",
+      })
+    ).rejects.toBeInstanceOf(AppError);
   });
 });
