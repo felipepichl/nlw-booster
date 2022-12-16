@@ -5,7 +5,9 @@ class ListAllClasses {
   constructor(private classesRepository: IClassesRepository) {}
 
   async execute(): Promise<Class[]> {
-    return null;
+    const allClasses = await this.classesRepository.listClasses();
+
+    return allClasses;
   }
 }
 
