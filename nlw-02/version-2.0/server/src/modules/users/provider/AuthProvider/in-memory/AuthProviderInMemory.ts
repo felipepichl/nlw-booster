@@ -4,7 +4,7 @@ import { IAuthProvider } from "../models/IAuthProvider";
 class AuthProviderInMemory implements IAuthProvider {
   users: IAuthDTO[] = [];
 
-  async auth(login: string): Promise<IAuthDTO> {
+  async auth(login: string): Promise<IAuthDTO | undefined> {
     const userInMemory = {
       name: "User Test",
       login: "login_test",

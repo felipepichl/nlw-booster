@@ -39,12 +39,13 @@ class CreateUserUseCase {
 
     const passwordHash = await this.hashProvider.geneteHash(password);
 
-    const { name, avatar_url, bio } = await this.authProvider.auth(username);
+    const userAuth = await this.authProvider.auth(username);
 
-    if (!name || !avatar_url || !bio) {
-      console.log("here");
+    if (!userAuth) {
       throw new AppError("Github information does not found");
     }
+
+    const { name, avatar_url, bio } = userAuth;
 
     const user = await this.usersRepository.create({
       name,
