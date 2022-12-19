@@ -49,8 +49,6 @@ describe("[E2E] - List all Classes", () => {
         Authorization: `Bearer ${token}`,
       });
 
-    console.log(response.body);
-
     expect(response.body.error).toBeFalsy();
     expect(response.status).toBe(200);
   });
