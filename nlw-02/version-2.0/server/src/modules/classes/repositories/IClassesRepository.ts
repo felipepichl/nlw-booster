@@ -4,6 +4,7 @@ import { Class } from "../infra/prisma/models/Class";
 interface IClassesRepository {
   create(data: ICreateClassesDTO): Promise<Class>;
   listAllClassesBySubject(subject_id: string): Promise<Class[]>;
+  listAllClassesBySubjectTitle(subject_title: string): Promise<Class[]>;
   listClasses(): Promise<Class[]>;
 }
 

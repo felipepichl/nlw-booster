@@ -30,6 +30,12 @@ class ClassesRepositoryInMemory implements IClassesRepository {
     );
   }
 
+  async listAllClassesBySubjectTitle(subject_title: string): Promise<Class[]> {
+    return this.classes.filter(
+      (objectClass) => objectClass.subject.title === subject_title
+    );
+  }
+
   async listClasses(): Promise<Class[]> {
     return this.classes;
   }
