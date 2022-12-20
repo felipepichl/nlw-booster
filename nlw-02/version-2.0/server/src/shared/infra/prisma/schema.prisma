@@ -50,5 +50,22 @@ model Class {
   created_at DateTime @default(now())
   updated_at DateTime @default(now())
 
+  ClassSchedule ClassSchedule[]
+
   @@map("classes")
+}
+
+model ClassSchedule {
+  id       String @id @default(uuid())
+  week_day Float
+  from     Float
+  to       Float
+
+  class       Class  @relation(fields: [fk_class_id], references: [id])
+  fk_class_id String
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now())
+
+  @@map("class_Schedules")
 }
