@@ -10,7 +10,7 @@ class Class implements IClass {
   fk_user_id: string;
 
   fk_subject_id: string;
-  subject: Subject;
+  subject?: Subject;
 
   created_at: Date;
 

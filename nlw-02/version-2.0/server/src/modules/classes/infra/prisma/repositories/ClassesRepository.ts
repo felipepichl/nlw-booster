@@ -28,6 +28,17 @@ class ClassesRepository implements IClassesRepository {
 
     return result;
   }
+  async listAllClassesBySubjectTitle(subject_title: string): Promise<Class[]> {
+    const result = await prisma.class.findMany({
+      where: {
+        subject: {
+          title: subject_title,
+        },
+      },
+    });
+
+    return result;
+  }
   async listClasses(): Promise<Class[]> {
     const result = await prisma.class.findMany();
 
