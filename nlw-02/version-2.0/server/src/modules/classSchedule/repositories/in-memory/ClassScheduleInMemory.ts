@@ -1,3 +1,4 @@
+import { ClassesRepositoryInMemory } from "@modules/classes/repositories/in-memory/ClassesRepositoryInMemory";
 import { ICreateClassSchedule } from "@modules/classSchedule/dtos/ICreateClassSchedule";
 import { ClassSchedule } from "@modules/classSchedule/infra/prisma/ClassSchedule";
 
@@ -21,9 +22,11 @@ class ClassScheduleInMemory implements IClassScheduleRepository {
     time: string
   ): Promise<ClassSchedule[]> {
     /**
-     * List all classes with sibject_id and with map return all ids in a array
+     * List all classes with sibject_title and with map return all ids in a array
      * in result insert this array Ex: fk_class_id = IN(allClassesIds)
      */
+
+    // const allClassesWithSubject = await Cl
 
     return this.classSchedules.filter(
       (classSchedule) => classSchedule.week_day === Number(week_day)
