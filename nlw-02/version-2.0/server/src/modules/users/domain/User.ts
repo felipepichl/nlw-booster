@@ -1,5 +1,7 @@
+import { Replace } from "@shared/helpers/Replace";
+
 interface IUserProps {
-  id: string;
+  // id: string;
   name: string;
   username: string;
   email: string;
@@ -14,13 +16,23 @@ interface IUserProps {
 class User {
   private props: IUserProps;
 
-  public set id(id: string) {
-    this.props.id = id;
+  constructor(
+    props: Replace<IUserProps, { createdAt?: Date; updatedAt?: Date }>
+  ) {
+    this.props = {
+      ...props,
+      createdAt: props.createdAt ?? new Date(),
+      updatedAt: props.updatedAt ?? new Date(),
+    };
   }
 
-  public get id(): string {
-    return this.props.id;
-  }
+  // public set id(id: string) {
+  //   this.props.id = id;
+  // }
+
+  // public get id(): string {
+  //   return this.props.id;
+  // }
 
   public set name(name: string) {
     this.props.name = name;
@@ -78,16 +90,8 @@ class User {
     return this.props.whatsapp;
   }
 
-  public set createdAt(createdAt: Date) {
-    this.props.createdAt = createdAt;
-  }
-
   public get createdAt(): Date {
     return this.props.createdAt;
-  }
-
-  public set updatedAt(updatedAt: Date) {
-    this.props.updatedAt = updatedAt;
   }
 
   public get updatedAt(): Date {
