@@ -1,23 +1,18 @@
-import { ICreateUserDTO } from "../../dtos/ICreateUserDTO";
-import { User } from "../../infra/prisma/models/User";
+import { User } from "@modules/users/domain/User";
+
 import { IUsersRepository } from "../IUsersRepository";
 
 class UsersRepositoryInMemory implements IUsersRepository {
   users: User[] = [];
 
-  async create({
-    username,
-    email,
-    password,
-    whatsapp,
-  }: ICreateUserDTO): Promise<User> {
-    const user = new User();
+  async create(user: User): Promise<User> {
+    const objectUser = new User(user);
 
-    Object.assign(user, { username, email, password, whatsapp });
+    Object.assign(objectUser);
 
-    this.users.push(user);
+    this.users.push(objectUser);
 
-    return user;
+    return objectUser;
   }
 
   async findByEmail(email: string): Promise<User> {
