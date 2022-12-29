@@ -1,8 +1,8 @@
+import { User } from "@modules/users/domain/User";
 import { injectable, inject } from "tsyringe";
 
 import { AppError } from "@shared/errors/AppError";
 
-import { User } from "../../infra/prisma/models/User";
 import { IAuthProvider } from "../../provider/AuthProvider/models/IAuthProvider";
 import { IHashProvider } from "../../provider/HashProvider/models/IHashProvider";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
@@ -12,6 +12,10 @@ interface IRequest {
   email: string;
   password: string;
   whatsapp: string;
+}
+
+interface IResponse {
+  user: User;
 }
 
 @injectable()
@@ -30,7 +34,7 @@ class CreateUserUseCase {
     email,
     password,
     whatsapp,
-  }: IRequest): Promise<User> {
+  }: IRequest): Promise<IResponse> {
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
     if (userAlreadyExists) {
@@ -47,7 +51,7 @@ class CreateUserUseCase {
 
     const { name, avatar_url, bio } = userAuth;
 
-    const user = await this.usersRepository.create({
+    const user = new User({
       name,
       username,
       email,
@@ -57,7 +61,11 @@ class CreateUserUseCase {
       whatsapp,
     });
 
-    return user;
+    await this.usersRepository.create(user);
+
+    return {
+      user,
+    };
   }
 }
 
