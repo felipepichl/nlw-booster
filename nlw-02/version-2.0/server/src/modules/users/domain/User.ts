@@ -1,7 +1,6 @@
 import { Replace } from "@shared/helpers/Replace";
 
 interface IUserProps {
-  // id: string;
   name: string;
   username: string;
   email: string;
@@ -25,14 +24,6 @@ class User {
       updatedAt: props.updatedAt ?? new Date(),
     };
   }
-
-  // public set id(id: string) {
-  //   this.props.id = id;
-  // }
-
-  // public get id(): string {
-  //   return this.props.id;
-  // }
 
   public set name(name: string) {
     this.props.name = name;
