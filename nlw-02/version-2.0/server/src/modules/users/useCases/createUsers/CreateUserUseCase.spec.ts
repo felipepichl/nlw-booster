@@ -24,14 +24,15 @@ describe("Create User", () => {
   });
 
   it("should be able to create a new user", async () => {
-    const user = await createUserUseCase.execute({
+    const { user } = await createUserUseCase.execute({
       username: "login_test",
       email: "test@teste.com",
       password: "hash123",
       whatsapp: "55999998888",
     });
 
-    expect(user).toHaveProperty("id");
+    expect(usersRepositoryInMemory.users).toHaveLength(1);
+    expect(usersRepositoryInMemory.users[0]).toEqual(user);
   });
 
   it("should not be able to create a new user with email exists", async () => {
