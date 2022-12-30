@@ -1,11 +1,11 @@
 import { User } from "@modules/users/domain/User";
+import { IAuthProvider } from "@modules/users/provider/AuthProvider/models/IAuthProvider";
+import { IHashProvider } from "@modules/users/provider/HashProvider/models/IHashProvider";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { injectable, inject } from "tsyringe";
 
+import { IUseCase } from "@shared/core/domain/UseCase";
 import { AppError } from "@shared/errors/AppError";
-
-import { IAuthProvider } from "../../provider/AuthProvider/models/IAuthProvider";
-import { IHashProvider } from "../../provider/HashProvider/models/IHashProvider";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
   username: string;
@@ -19,7 +19,7 @@ interface IResponse {
 }
 
 @injectable()
-class CreateUserUseCase {
+class CreateUserUseCase implements IUseCase<IRequest, IResponse> {
   constructor(
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
@@ -29,12 +29,9 @@ class CreateUserUseCase {
     private authProvider: IAuthProvider
   ) {}
 
-  async execute({
-    username,
-    email,
-    password,
-    whatsapp,
-  }: IRequest): Promise<IResponse> {
+  async execute(request?: IRequest): Promise<IResponse> {
+    const { username, email, password, whatsapp } = request;
+
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
     if (userAlreadyExists) {
