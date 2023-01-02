@@ -1,4 +1,5 @@
 import { AggregateRoot } from "@shared/core/domain/AggregateRoot";
+import { UniqueEntityID } from "@shared/core/domain/UniqueEntityID";
 
 interface IUserProps {
   name: string;
@@ -40,6 +41,15 @@ class User extends AggregateRoot<IUserProps> {
   get whatsapp(): string {
     return this.props.whatsapp;
   }
+
+  private constructor(props: IUserProps, id?: UniqueEntityID) {
+    super(props, id);
+  }
+
+  // public static create(props: IUserProps, id?: UniqueEntityID): Resul<User> {
+
+  // }
+  // ToDo Result
 }
 
 export { User };
