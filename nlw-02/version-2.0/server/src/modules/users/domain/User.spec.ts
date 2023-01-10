@@ -1,8 +1,10 @@
-import { User } from "./User";
+import { User } from "./_User";
 
 describe("Users", () => {
   it("should be able to create a new user", () => {
-    const user = new User({
+    // const user = new User({});
+
+    User.create({
       name: "User Test",
       username: "user.test",
       email: "user@test.com",

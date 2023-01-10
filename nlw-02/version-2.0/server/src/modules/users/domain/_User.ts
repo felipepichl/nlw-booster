@@ -1,5 +1,6 @@
 import { AggregateRoot } from "@shared/core/domain/AggregateRoot";
 import { UniqueEntityID } from "@shared/core/domain/UniqueEntityID";
+import { Replace } from "@shared/helpers/Replace";
 
 interface IUserProps {
   name: string;
@@ -42,14 +43,36 @@ class User extends AggregateRoot<IUserProps> {
     return this.props.whatsapp;
   }
 
-  private constructor(props: IUserProps, id?: UniqueEntityID) {
-    super(props, id);
+  private constructor(
+    props: Replace<IUserProps, { createdAt?: Date; updatedAt?: Date }>,
+    id?: UniqueEntityID
+  ) {
+    super(
+      // eslint-disable-next-line no-param-reassign
+      (props = {
+        ...props,
+        createdAt: props.createdAt ?? new Date(),
+        updatedAt: props.updatedAt ?? new Date(),
+      }),
+      id
+    );
   }
 
-  // public static create(props: IUserProps, id?: UniqueEntityID): Resul<User> {
-
+  // constructor(
+  //   props: Replace<IUserProps, { createdAt?: Date; updatedAt?: Date }>
+  // ) {
+  //   this.props = {
+  //     ...props,
+  //     createdAt: props.createdAt ?? new Date(),
+  //     updatedAt: props.updatedAt ?? new Date(),
+  //   };
   // }
-  // ToDo Result
+
+  public static create(props: IUserProps, id?: UniqueEntityID): User {
+    const user = new User(props, id);
+
+    return user;
+  }
 }
 
 export { User };
