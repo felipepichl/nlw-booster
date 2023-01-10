@@ -1,16 +1,17 @@
 import { User } from "@modules/users/domain/User";
-import { ICreateUserDTO } from "@modules/users/dtos/ICreateUserDTO";
 import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 
 import { prisma } from "@shared/infra/prisma";
 
-class UsersRepository implements IUsersRepository {
-  async create(data: ICreateUserDTO): Promise<void> {
-    const result = await prisma.user.create({
-      data,
-    });
+import { UsersMappers } from "../mappers/UsersMappers";
 
-    return result;
+class UsersRepository implements IUsersRepository {
+  async create(user: User): Promise<void> {
+    const raw = UsersMappers.toPrisma(user);
+
+    await prisma.user.create({
+      data: raw,
+    });
   }
 
   async findByEmail(email: string): Promise<User> {
@@ -18,7 +19,7 @@ class UsersRepository implements IUsersRepository {
       where: { email },
     });
 
-    return result;
+    return UsersMappers.toDomain(result);
   }
 }
 
