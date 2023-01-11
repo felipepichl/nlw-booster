@@ -14,7 +14,9 @@ interface IUserProps {
   updatedAt: Date;
 }
 
-class User extends AggregateRoot<IUserProps> {
+class User extends AggregateRoot<
+  Replace<IUserProps, { createdAt?: Date; updatedAt?: Date }>
+> {
   get name(): string {
     return this.props.name;
   }
@@ -43,19 +45,8 @@ class User extends AggregateRoot<IUserProps> {
     return this.props.whatsapp;
   }
 
-  private constructor(
-    props: Replace<IUserProps, { createdAt?: Date; updatedAt?: Date }>,
-    id?: UniqueEntityID
-  ) {
-    super(
-      // eslint-disable-next-line no-param-reassign
-      (props = {
-        ...props,
-        createdAt: props.createdAt ?? new Date(),
-        updatedAt: props.updatedAt ?? new Date(),
-      }),
-      id
-    );
+  private constructor(props, id?: UniqueEntityID) {
+    super(props, id);
   }
 
   // constructor(
