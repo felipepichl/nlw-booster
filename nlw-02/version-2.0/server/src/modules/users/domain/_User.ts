@@ -14,9 +14,11 @@ interface IUserProps {
   updatedAt: Date;
 }
 
-class User extends AggregateRoot<
-  Replace<IUserProps, { createdAt?: Date; updatedAt?: Date }>
-> {
+class User extends AggregateRoot<IUserProps> {
+  private constructor(props: IUserProps, id?: UniqueEntityID) {
+    super(props, id);
+  }
+
   get name(): string {
     return this.props.name;
   }
@@ -45,22 +47,19 @@ class User extends AggregateRoot<
     return this.props.whatsapp;
   }
 
-  private constructor(props, id?: UniqueEntityID) {
-    super(props, id);
-  }
-
-  // constructor(
-  //   props: Replace<IUserProps, { createdAt?: Date; updatedAt?: Date }>
-  // ) {
-  //   this.props = {
-  //     ...props,
-  //     createdAt: props.createdAt ?? new Date(),
-  //     updatedAt: props.updatedAt ?? new Date(),
-  //   };
-  // }
-
-  public static create(props: IUserProps, id?: UniqueEntityID): User {
-    const user = new User(props, id);
+  public static create(
+    props: Replace<IUserProps, { createdAt?: Date; updatedAt?: Date }>,
+    id?: UniqueEntityID
+  ): User {
+    const user = new User(
+      // eslint-disable-next-line no-param-reassign
+      (props = {
+        ...props,
+        createdAt: props.createdAt ?? new Date(),
+        updatedAt: props.updatedAt ?? new Date(),
+      }),
+      id
+    );
 
     return user;
   }

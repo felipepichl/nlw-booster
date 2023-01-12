@@ -12,9 +12,11 @@ describe("Users", () => {
       avatar: "http://avatar.com",
       bio: "A great bio",
       whatsapp: "555-666-77",
-      createdAt: new Date(),
-      updatedAt: new Date(),
+      // createdAt: new Date(),
+      // updatedAt: new Date(),
     });
+
+    console.log(user);
 
     expect(user).toBeTruthy();
   });
