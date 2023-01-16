@@ -1,3 +1,5 @@
+import { AggregateRoot } from "@shared/core/domain/AggregateRoot";
+import { UniqueEntityID } from "@shared/core/domain/UniqueEntityID";
 import { Replace } from "@shared/helpers/Replace";
 
 interface IUserProps {
@@ -12,53 +14,54 @@ interface IUserProps {
   updatedAt: Date;
 }
 
-class User {
-  private props: IUserProps;
-
-  constructor(
-    props: Replace<IUserProps, { createdAt?: Date; updatedAt?: Date }>
-  ) {
-    this.props = {
-      ...props,
-      createdAt: props.createdAt ?? new Date(),
-      updatedAt: props.updatedAt ?? new Date(),
-    };
+class User extends AggregateRoot<IUserProps> {
+  private constructor(props: IUserProps, id?: UniqueEntityID) {
+    super(props, id);
   }
 
-  public get name(): string {
+  get name(): string {
     return this.props.name;
   }
 
-  public get username(): string {
+  get username(): string {
     return this.props.username;
   }
 
-  public get email(): string {
+  get email(): string {
     return this.props.email;
   }
 
-  public get password(): string {
+  get password(): string {
     return this.props.password;
   }
 
-  public get avatar(): string {
+  get avatar(): string {
     return this.props.avatar;
   }
 
-  public get bio(): string {
+  get bio(): string {
     return this.props.bio;
   }
 
-  public get whatsapp(): string {
+  get whatsapp(): string {
     return this.props.whatsapp;
   }
 
-  public get createdAt(): Date {
-    return this.props.createdAt;
-  }
+  public static create(
+    props: Replace<IUserProps, { createdAt?: Date; updatedAt?: Date }>,
+    id?: UniqueEntityID
+  ): User {
+    const user = new User(
+      // eslint-disable-next-line no-param-reassign
+      (props = {
+        ...props,
+        createdAt: props.createdAt ?? new Date(),
+        updatedAt: props.updatedAt ?? new Date(),
+      }),
+      id
+    );
 
-  public get updatedAt(): Date {
-    return this.props.updatedAt;
+    return user;
   }
 }
 

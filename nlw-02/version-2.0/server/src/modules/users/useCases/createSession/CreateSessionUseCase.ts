@@ -49,7 +49,7 @@ class CreateSessionUseCase {
     const { secret, expiresIn } = auth.jwt;
 
     const token = sign({}, secret, {
-      subject: user.id,
+      subject: user.id.toString(),
       expiresIn,
     });
 

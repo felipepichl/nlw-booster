@@ -10,8 +10,6 @@ class UsersMappers {
     avatar,
     bio,
     whatsapp,
-    createdAt,
-    updatedAt,
   }: User) {
     return {
       name,
@@ -21,13 +19,11 @@ class UsersMappers {
       avatar,
       bio,
       whatsapp,
-      createdAt,
-      updatedAt,
     };
   }
 
   static toDomain(raw: RawUser): User {
-    return new User({
+    return User.create({
       name: raw.name,
       username: raw.username,
       email: raw.email,

@@ -48,7 +48,7 @@ class CreateUserUseCase implements IUseCase<IRequest, IResponse> {
 
     const { name, avatar_url, bio } = userAuth;
 
-    const user = new User({
+    const user = User.create({
       name,
       username,
       email,
