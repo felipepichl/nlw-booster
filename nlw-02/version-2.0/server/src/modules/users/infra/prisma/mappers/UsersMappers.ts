@@ -23,17 +23,7 @@ class UsersMappers {
   }
 
   static toDomain(raw: RawUser): User {
-    return User.create({
-      name: raw.name,
-      username: raw.username,
-      email: raw.email,
-      password: raw.password,
-      avatar: raw.avatar,
-      bio: raw.bio,
-      whatsapp: raw.whatsapp,
-      createdAt: raw.createdAt,
-      updatedAt: raw.updatedAt,
-    });
+    return User.create(raw);
   }
 }
 

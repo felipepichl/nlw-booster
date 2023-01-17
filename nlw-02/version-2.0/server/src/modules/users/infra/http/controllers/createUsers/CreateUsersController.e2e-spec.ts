@@ -11,6 +11,8 @@ describe("E2E Users", () => {
       whatsapp: "55999998888",
     });
 
+    console.log(response.body);
+
     expect(response.status).toBe(201);
   });
 });

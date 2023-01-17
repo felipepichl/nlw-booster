@@ -19,6 +19,10 @@ class UsersRepository implements IUsersRepository {
       where: { email },
     });
 
+    if (!result) {
+      return null;
+    }
+
     return UsersMappers.toDomain(result);
   }
 }
