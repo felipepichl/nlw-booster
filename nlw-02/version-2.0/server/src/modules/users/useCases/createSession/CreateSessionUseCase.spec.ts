@@ -1,3 +1,5 @@
+import { User } from "@modules/users/domain/User";
+
 import { AppError } from "@shared/errors/AppError";
 
 import { HashProviderInMemory } from "../../provider/HashProvider/in-memory/HashProviderInMemory";
@@ -7,6 +9,7 @@ import { CreateSessionUseCase } from "./CreateSessionUseCase";
 let usersRepositoryInMemory: UsersRepositoryInMemory;
 let hashProviderInMemory: HashProviderInMemory;
 let createSessionUseCase: CreateSessionUseCase;
+let user: User;
 
 describe("Create Session", () => {
   beforeEach(() => {
@@ -17,10 +20,8 @@ describe("Create Session", () => {
       usersRepositoryInMemory,
       hashProviderInMemory
     );
-  });
 
-  it("should be able to create a new session", async () => {
-    const user = await usersRepositoryInMemory.create({
+    user = User.create({
       name: "User Test",
       username: "user_test",
       email: "test@test.com",
@@ -29,6 +30,10 @@ describe("Create Session", () => {
       bio: "A great bio",
       whatsapp: "55999998888",
     });
+  });
+
+  it("should be able to create a new session", async () => {
+    await usersRepositoryInMemory.create(user);
 
     const response = await createSessionUseCase.execute({
       email: "test@test.com",
@@ -40,16 +45,6 @@ describe("Create Session", () => {
   });
 
   it("should not be able to create a new session with wrong email", async () => {
-    await usersRepositoryInMemory.create({
-      name: "User Test",
-      username: "user_test",
-      email: "test@test.com",
-      password: "hash123",
-      avatar: "https://example.com/user_test.png",
-      bio: "A great bio",
-      whatsapp: "55999998888",
-    });
-
     await expect(
       createSessionUseCase.execute({
         email: "worn_email@wrong.com",
@@ -59,16 +54,6 @@ describe("Create Session", () => {
   });
 
   it("should not be able to create a new session with wrong password", async () => {
-    await usersRepositoryInMemory.create({
-      name: "User Test",
-      username: "user_test",
-      email: "test@test.com",
-      password: "hash123",
-      avatar: "https://example.com/user_test.png",
-      bio: "A great bio",
-      whatsapp: "55999998888",
-    });
-
     await expect(
       createSessionUseCase.execute({
         email: "test@test.com",

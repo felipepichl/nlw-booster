@@ -34,8 +34,6 @@ class CreateUserUseCase implements IUseCase<IRequest, IResponse> {
 
     const userAlreadyExists = await this.usersRepository.findByEmail(email);
 
-    console.log("find");
-
     if (userAlreadyExists) {
       throw new AppError("User already exists");
     }
