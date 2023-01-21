@@ -1,11 +1,11 @@
 import auth from "@config/auth";
+import { IHashProvider } from "@modules/users/provider/HashProvider/models/IHashProvider";
+import { IUsersRepository } from "@modules/users/repositories/IUsersRepository";
 import { sign } from "jsonwebtoken";
-import { injectable, inject } from "tsyringe";
+import { inject, injectable } from "tsyringe";
 
+import { IUseCase } from "@shared/core/domain/UseCase";
 import { AppError } from "@shared/errors/AppError";
-
-import { IHashProvider } from "../../provider/HashProvider/models/IHashProvider";
-import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
   email: string;
@@ -22,7 +22,7 @@ interface IResponse {
 }
 
 @injectable()
-class CreateSessionUseCase {
+class CreateSessionUseCase implements IUseCase<IRequest, IResponse> {
   constructor(
     @inject("UsersRepository")
     private usersRepository: IUsersRepository,
@@ -53,12 +53,10 @@ class CreateSessionUseCase {
       expiresIn,
     });
 
-    const response: IResponse = {
+    return {
       user,
       token,
     };
-
-    return response;
   }
 }
 
