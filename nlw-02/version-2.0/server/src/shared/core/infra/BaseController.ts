@@ -21,6 +21,18 @@ abstract class BaseController {
   ): express.Response {
     return response.status(code).json({ message });
   }
+
+  public ok<T>(dto?: T): express.Response {
+    if (dto) {
+      return this.response.status(200).json({ dto });
+    }
+
+    return this.response.sendStatus(200);
+  }
+
+  public created(): express.Response {
+    return this.response.sendStatus(201);
+  }
 }
 
 export { BaseController };
