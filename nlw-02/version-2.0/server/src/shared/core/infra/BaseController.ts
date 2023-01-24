@@ -5,7 +5,22 @@ abstract class BaseController {
 
   protected response: express.Response;
 
-  protected abstract handle(): Promise<void | any>;
+  protected abstract handleImp(): Promise<void | any>;
+
+  public handle(request: express.Request, response: express.Response): void {
+    this.request = request;
+    this.response = response;
+
+    this.handleImp();
+  }
+
+  public static jsonResponse(
+    response: express.Response,
+    code: number,
+    message: string
+  ): express.Response {
+    return response.status(code).json({ message });
+  }
 }
 
 export { BaseController };
