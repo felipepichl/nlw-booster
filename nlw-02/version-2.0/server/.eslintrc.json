@@ -24,6 +24,7 @@
     "camelcase": "off",
     "no-underscore-dangle": "off",
     "import/no-unresolved": "error",
+    "no-param-reassign": "off",
     "@typescript-eslint/naming-convention": [
       "error",
       {

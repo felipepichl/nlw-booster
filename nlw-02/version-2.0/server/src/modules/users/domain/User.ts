@@ -52,7 +52,6 @@ class User extends AggregateRoot<IUserProps> {
     id?: UniqueEntityID
   ): User {
     const user = new User(
-      // eslint-disable-next-line no-param-reassign
       (props = {
         ...props,
         createdAt: props.createdAt ?? new Date(),

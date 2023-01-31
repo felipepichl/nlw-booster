@@ -1,38 +1,16 @@
-import { v4 as uuid } from "uuid";
-
+import { AggregateRoot } from "@shared/core/domain/AggregateRoot";
+import { UniqueEntityID } from "@shared/core/domain/UniqueEntityID";
 import { Replace } from "@shared/helpers/Replace";
 
 interface ISubjectProps {
-  id: string;
   title: string;
-
   createdAt: Date;
   updatedAt: Date;
 }
 
-class Subject {
-  private props: ISubjectProps;
-
-  constructor(
-    props: Replace<
-      ISubjectProps,
-      { id?: string; createdAt?: Date; updatedAt?: Date }
-    >
-  ) {
-    this.props = {
-      ...props,
-      id: props.id ?? uuid(),
-      createdAt: props.createdAt ?? new Date(),
-      updatedAt: props.updatedAt ?? new Date(),
-    };
-  }
-
-  public set id(id: string) {
-    this.props.id = id;
-  }
-
-  public get id() {
-    return this.props.id;
+class Subject extends AggregateRoot<ISubjectProps> {
+  private constructor(props: ISubjectProps, id?: UniqueEntityID) {
+    super(props, id);
   }
 
   public set title(title: string) {
@@ -41,6 +19,22 @@ class Subject {
 
   public get title() {
     return this.props.title;
+  }
+
+  public static create(
+    props: Replace<ISubjectProps, { createdAt?: Date; updatedAt?: Date }>,
+    id?: UniqueEntityID
+  ): Subject {
+    const subject = new Subject(
+      (props = {
+        ...props,
+        createdAt: props.createdAt ?? new Date(),
+        updatedAt: props.updatedAt ?? new Date(),
+      }),
+      id
+    );
+
+    return subject;
   }
 }
 
