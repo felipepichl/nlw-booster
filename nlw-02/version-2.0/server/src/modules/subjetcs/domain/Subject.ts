@@ -1,4 +1,5 @@
 import { AggregateRoot } from "@shared/core/domain/AggregateRoot";
+import { IUniqueEntityCreate } from "@shared/core/domain/UniqueEntityCreate";
 import { UniqueEntityID } from "@shared/core/domain/UniqueEntityID";
 import { Replace } from "@shared/helpers/Replace";
 
@@ -8,7 +9,10 @@ interface ISubjectProps {
   updatedAt: Date;
 }
 
-class Subject extends AggregateRoot<ISubjectProps> {
+class Subject
+  extends AggregateRoot<ISubjectProps>
+  implements IUniqueEntityCreate<Subject>
+{
   private constructor(props: ISubjectProps, id?: UniqueEntityID) {
     super(props, id);
   }
@@ -21,7 +25,7 @@ class Subject extends AggregateRoot<ISubjectProps> {
     return this.props.title;
   }
 
-  public static create(
+  create(
     props: Replace<ISubjectProps, { createdAt?: Date; updatedAt?: Date }>,
     id?: UniqueEntityID
   ): Subject {
