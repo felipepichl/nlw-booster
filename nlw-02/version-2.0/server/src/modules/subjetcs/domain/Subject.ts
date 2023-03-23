@@ -37,9 +37,24 @@ class Subject
       }),
       id
     );
-
     return subject;
   }
+
+  // create(
+  //   props: Replace<ISubjectProps, { createdAt?: Date; updatedAt?: Date }>,
+  //   id?: UniqueEntityID
+  // ): Subject {
+  //   const subject = new Subject(
+  //     (props = {
+  //       ...props,
+  //       createdAt: props.createdAt ?? new Date(),
+  //       updatedAt: props.updatedAt ?? new Date(),
+  //     }),
+  //     id
+  //   );
+
+  //   return subject;
+  // }
 }
 
 export { Subject };
