@@ -1,6 +1,6 @@
 import { AggregateRoot } from "@shared/core/domain/AggregateRoot";
+import { ICreateProps } from "@shared/core/domain/ICreateProps";
 import { UniqueEntityID } from "@shared/core/domain/UniqueEntityID";
-import { Replace } from "@shared/helpers/Replace";
 
 interface IUserProps {
   name: string;
@@ -47,10 +47,7 @@ class User extends AggregateRoot<IUserProps> {
     return this.props.whatsapp;
   }
 
-  public static create(
-    props: Replace<IUserProps, { createdAt?: Date; updatedAt?: Date }>,
-    id?: UniqueEntityID
-  ): User {
+  public static create({ props, id }: ICreateProps<IUserProps>): User {
     const user = new User(
       (props = {
         ...props,
