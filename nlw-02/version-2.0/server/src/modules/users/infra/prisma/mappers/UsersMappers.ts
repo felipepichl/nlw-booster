@@ -23,7 +23,9 @@ class UsersMappers {
   }
 
   static toDomain(raw: RawUser): User {
-    return User.create(raw);
+    return User.create({
+      props: raw,
+    });
   }
 }
 
