@@ -12,8 +12,6 @@ describe("Users", () => {
       whatsapp: "555-666-77",
     });
 
-    console.log(user);
-
     expect(user).toBeTruthy();
   });
 });

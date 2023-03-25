@@ -1,6 +1,6 @@
 import { Subject } from "./Subject";
 
-describe("Subjects", () => {
+describe("Create Subject", () => {
   it("should be able to create a new subject", () => {
     const subject = Subject.create({
       props: {
