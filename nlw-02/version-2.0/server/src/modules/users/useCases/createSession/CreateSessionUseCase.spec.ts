@@ -22,13 +22,15 @@ describe("Create Session", () => {
     );
 
     user = User.create({
-      name: "User Test",
-      username: "user_test",
-      email: "test@test.com",
-      password: "hash123",
-      avatar: "https://example.com/user_test.png",
-      bio: "A great bio",
-      whatsapp: "55999998888",
+      props: {
+        name: "User Test",
+        username: "user_test",
+        email: "test@test.com",
+        password: "hash123",
+        avatar: "https://example.com/user_test.png",
+        bio: "A great bio",
+        whatsapp: "55999998888",
+      },
     });
   });
 

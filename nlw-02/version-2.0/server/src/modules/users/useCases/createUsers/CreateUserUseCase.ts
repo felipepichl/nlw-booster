@@ -49,13 +49,15 @@ class CreateUserUseCase implements IUseCase<IRequest, IResponse> {
     const { name, avatar_url, bio } = userAuth;
 
     const user = User.create({
-      name,
-      username,
-      email,
-      password: passwordHash,
-      avatar: avatar_url,
-      bio,
-      whatsapp,
+      props: {
+        name,
+        username,
+        email,
+        password: passwordHash,
+        avatar: avatar_url,
+        bio,
+        whatsapp,
+      },
     });
 
     await this.usersRepository.create(user);
