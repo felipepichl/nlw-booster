@@ -13,15 +13,11 @@ class Subject extends AggregateRoot<ISubjectProps> {
     super(props, id);
   }
 
-  public set title(title: string) {
-    this.props.title = title;
-  }
-
-  public get title() {
+  get title() {
     return this.props.title;
   }
 
-  public static create({ props, id }: ICreateProps<ISubjectProps>): Subject {
+  static create({ props, id }: ICreateProps<ISubjectProps>): Subject {
     const subject = new Subject(
       (props = {
         ...props,

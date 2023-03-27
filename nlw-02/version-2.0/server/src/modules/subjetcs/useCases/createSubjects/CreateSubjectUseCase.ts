@@ -2,7 +2,7 @@ import { inject, injectable } from "tsyringe";
 
 import { AppError } from "@shared/errors/AppError";
 
-import { Subject } from "../../infra/prisma/models/Subject";
+import { Subject } from "../../domain/Subject";
 import { ISubjetcsRepository } from "../../repositories/ISubjetcsRepository";
 
 interface IRequest {
@@ -25,9 +25,13 @@ class CreateSubjectUseCase {
       throw new AppError("Subject already exists");
     }
 
-    const subject = await this.subjectsRepository.create({
-      title,
+    const subject = Subject.create({
+      props: {
+        title,
+      },
     });
+
+    await this.subjectsRepository.create(subject);
 
     return subject;
   }

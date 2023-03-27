@@ -1,24 +1,23 @@
 import { prisma } from "@shared/infra/prisma";
 
-import { ICreateSubjectDTO } from "../../../dtos/ICreateSubjectDTO";
+import { Subject } from "../../../domain/Subject";
 import { ISubjetcsRepository } from "../../../repositories/ISubjetcsRepository";
-import { Subject } from "../models/Subject";
 
 class SubjectsRepository implements ISubjetcsRepository {
-  async create({ title }: ICreateSubjectDTO): Promise<Subject> {
+  async create(subject: Subject): Promise<Subject> {
     const result = await prisma.subject.create({
       data: {
-        title,
+        title: subject.title,
       },
     });
 
-    return result;
+    return null;
   }
 
   async list(): Promise<Subject[]> {
     const result = await prisma.subject.findMany();
 
-    return result;
+    return null;
   }
 
   async listByName(title: string): Promise<Subject> {
@@ -26,7 +25,7 @@ class SubjectsRepository implements ISubjetcsRepository {
       where: { title },
     });
 
-    return result;
+    return null;
   }
 
   async listById(id: string): Promise<Subject> {
@@ -34,7 +33,7 @@ class SubjectsRepository implements ISubjetcsRepository {
       where: { id },
     });
 
-    return result;
+    return null;
   }
 }
 

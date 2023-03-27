@@ -1,15 +1,10 @@
-import { ICreateSubjectDTO } from "../../dtos/ICreateSubjectDTO";
-import { Subject } from "../../infra/prisma/models/Subject";
+import { Subject } from "../../domain/Subject";
 import { ISubjetcsRepository } from "../ISubjetcsRepository";
 
 class SubjectsRepositoryInMemory implements ISubjetcsRepository {
   subjects: Subject[] = [];
 
-  async create({ title }: ICreateSubjectDTO): Promise<Subject> {
-    const subject = new Subject();
-
-    Object.assign(subject, { title });
-
+  async create(subject: Subject): Promise<Subject> {
     this.subjects.push(subject);
 
     return subject;
@@ -24,7 +19,7 @@ class SubjectsRepositoryInMemory implements ISubjetcsRepository {
   }
 
   async listById(id: string): Promise<Subject> {
-    return this.subjects.find((subject) => subject.id === id);
+    return this.subjects.find((subject) => subject.id.toString() === id);
   }
 }
 
