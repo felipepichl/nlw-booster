@@ -2,22 +2,23 @@ import { prisma } from "@shared/infra/prisma";
 
 import { Subject } from "../../../domain/Subject";
 import { ISubjetcsRepository } from "../../../repositories/ISubjetcsRepository";
+import { SubjectsMappers } from "../mappers/SubjetcMapper";
 
 class SubjectsRepository implements ISubjetcsRepository {
   async create(subject: Subject): Promise<Subject> {
+    const { props: raw } = SubjectsMappers.toPrisma(subject);
+
     const result = await prisma.subject.create({
-      data: {
-        title: subject.title,
-      },
+      data: raw,
     });
 
-    return null;
+    return SubjectsMappers.toDomain(result);
   }
 
   async list(): Promise<Subject[]> {
     const result = await prisma.subject.findMany();
 
-    return null;
+    return SubjectsMappers.toDomain(result);
   }
 
   async listByName(title: string): Promise<Subject> {
@@ -25,7 +26,7 @@ class SubjectsRepository implements ISubjetcsRepository {
       where: { title },
     });
 
-    return null;
+    return SubjectsMappers.toDomain(result);
   }
 
   async listById(id: string): Promise<Subject> {
@@ -33,7 +34,7 @@ class SubjectsRepository implements ISubjetcsRepository {
       where: { id },
     });
 
-    return null;
+    return SubjectsMappers.toDomain(result);
   }
 }
 
