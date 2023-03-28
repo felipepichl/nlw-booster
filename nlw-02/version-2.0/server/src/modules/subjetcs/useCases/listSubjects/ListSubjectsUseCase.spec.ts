@@ -1,3 +1,5 @@
+import { Subject } from "@modules/subjetcs/domain/Subject";
+
 import { SubjectsRepositoryInMemory } from "../../repositories/in-memory/SubjectsRepositoryInMemory";
 import { ListSubjectsUseCase } from "./ListSubjectsUseCase";
 
@@ -12,11 +14,17 @@ describe("List Subjects", () => {
   });
 
   it("should be able to list all subjects", async () => {
-    const subject = await subjectsRepositoryInMemory.create({});
+    const subject = Subject.create({
+      props: {
+        title: "Subject test",
+      },
+    });
+
+    const subjectCreated = await subjectsRepositoryInMemory.create(subject);
 
     const subjects = await listSubjectsUseCase.execute();
 
-    expect(subject).toHaveProperty("id");
+    expect(subjectCreated).toHaveProperty("id");
     expect(subjects).toContainEqual(subject);
   });
 });
