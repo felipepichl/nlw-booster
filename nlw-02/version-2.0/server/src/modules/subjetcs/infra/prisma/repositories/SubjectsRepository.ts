@@ -18,7 +18,7 @@ class SubjectsRepository implements ISubjetcsRepository {
   async list(): Promise<Subject[]> {
     const result = await prisma.subject.findMany();
 
-    return SubjectsMappers.toDomain(result);
+    return result.map(SubjectsMappers.toDomain);
   }
 
   async listByName(title: string): Promise<Subject> {

@@ -11,14 +11,12 @@ describe("List Subjects", () => {
     listSubjectsUseCase = new ListSubjectsUseCase(subjectsRepositoryInMemory);
   });
 
-  // it("should be able to list all subjects", async () => {
-  //   const subject = await subjectsRepositoryInMemory.create({
+  it("should be able to list all subjects", async () => {
+    const subject = await subjectsRepositoryInMemory.create({});
 
-  //   });
+    const subjects = await listSubjectsUseCase.execute();
 
-  //   const subjects = await listSubjectsUseCase.execute();
-
-  //   expect(subject).toHaveProperty("id");
-  //   expect(subjects).toContainEqual(subject);
-  // });
+    expect(subject).toHaveProperty("id");
+    expect(subjects).toContainEqual(subject);
+  });
 });
