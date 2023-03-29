@@ -6,7 +6,7 @@ class SubjectMapper implements IMapper {
   toPersistence<Subject>(object: Subject): Subject {
     return object;
   }
-  toDomain<L, Subject>(raw: L): Subject {
+  toDomain<Subject, Subject>(raw: L): Subject {
     throw new Error("Method not implemented.");
   }
 }

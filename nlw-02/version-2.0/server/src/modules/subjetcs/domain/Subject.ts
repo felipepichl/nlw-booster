@@ -4,8 +4,8 @@ import { UniqueEntityID } from "@shared/core/domain/UniqueEntityID";
 
 interface ISubjectProps {
   title: string;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 class Subject extends AggregateRoot<ISubjectProps> {
@@ -21,8 +21,8 @@ class Subject extends AggregateRoot<ISubjectProps> {
     const subject = new Subject(
       (props = {
         ...props,
-        createdAt: props.createdAt ?? new Date(),
-        updatedAt: props.updatedAt ?? new Date(),
+        created_at: props.created_at ?? new Date(),
+        updated_at: props.updated_at ?? new Date(),
       }),
       id
     );
