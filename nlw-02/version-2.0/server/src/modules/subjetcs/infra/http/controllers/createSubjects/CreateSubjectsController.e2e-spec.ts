@@ -38,6 +38,8 @@ describe("[E2E] - Create Subjects", () => {
         Authorization: `Bearer ${token}`,
       });
 
+    // console.log(response);
+
     expect(response.status).toBe(201);
   });
 });

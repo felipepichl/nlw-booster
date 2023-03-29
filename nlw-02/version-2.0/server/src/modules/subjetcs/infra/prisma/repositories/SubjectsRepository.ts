@@ -26,6 +26,10 @@ class SubjectsRepository implements ISubjetcsRepository {
       where: { title },
     });
 
+    if (!result) {
+      return null;
+    }
+
     return SubjectsMappers.toDomain(result);
   }
 

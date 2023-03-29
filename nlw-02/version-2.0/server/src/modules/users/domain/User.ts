@@ -10,8 +10,8 @@ interface IUserProps {
   avatar: string;
   bio: string;
   whatsapp: string;
-  createdAt: Date;
-  updatedAt: Date;
+  created_at: Date;
+  updated_at: Date;
 }
 
 class User extends AggregateRoot<IUserProps> {
@@ -51,8 +51,8 @@ class User extends AggregateRoot<IUserProps> {
     const user = new User(
       (props = {
         ...props,
-        createdAt: props.createdAt ?? new Date(),
-        updatedAt: props.updatedAt ?? new Date(),
+        created_at: props.created_at ?? new Date(),
+        updated_at: props.updated_at ?? new Date(),
       }),
       id
     );
