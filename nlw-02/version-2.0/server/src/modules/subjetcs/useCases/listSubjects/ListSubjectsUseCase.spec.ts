@@ -22,9 +22,9 @@ describe("List Subjects", () => {
 
     const subjectCreated = await subjectsRepositoryInMemory.create(subject);
 
-    const subjects = await listSubjectsUseCase.execute();
+    const { subjects } = await listSubjectsUseCase.execute();
 
-    expect(subjectCreated).toHaveProperty("id");
-    expect(subjects).toContainEqual(subject);
+    expect(subjects).toHaveLength(1);
+    expect(subjects[0]).toEqual(subjectCreated);
   });
 });

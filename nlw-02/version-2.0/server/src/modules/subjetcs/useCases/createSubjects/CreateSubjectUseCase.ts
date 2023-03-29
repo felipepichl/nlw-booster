@@ -1,5 +1,6 @@
 import { inject, injectable } from "tsyringe";
 
+import { IUseCase } from "@shared/core/domain/UseCase";
 import { AppError } from "@shared/errors/AppError";
 
 import { Subject } from "../../domain/Subject";
@@ -9,14 +10,18 @@ interface IRequest {
   title: string;
 }
 
+interface IResponse {
+  subject: Subject;
+}
+
 @injectable()
-class CreateSubjectUseCase {
+class CreateSubjectUseCase implements IUseCase<IRequest, Promise<IResponse>> {
   constructor(
     @inject("SubjectsRepository")
     private subjectsRepository: ISubjetcsRepository
   ) {}
 
-  async execute({ title }: IRequest): Promise<Subject> {
+  async execute({ title }: IRequest): Promise<IResponse> {
     const subjectAlreadyExists = await this.subjectsRepository.listByName(
       title
     );
@@ -33,7 +38,7 @@ class CreateSubjectUseCase {
 
     await this.subjectsRepository.create(subject);
 
-    return subject;
+    return { subject };
   }
 }
 

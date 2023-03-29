@@ -14,11 +14,12 @@ describe("Create Subjects", () => {
   });
 
   it("should be able to create a new subject", async () => {
-    const subject = await createSubjectUseCase.execute({
+    const { subject } = await createSubjectUseCase.execute({
       title: "subject_test",
     });
 
-    expect(subject).toHaveProperty("id");
+    expect(subjectsRepositoryInMemory.subjects).toHaveLength(1);
+    expect(subjectsRepositoryInMemory.subjects[0]).toEqual(subject);
   });
 
   it("should not be able to create a new subject with exists title", async () => {
