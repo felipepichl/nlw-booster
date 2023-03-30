@@ -1,8 +1,7 @@
-import { ICreateClassesDTO } from "../dtos/ICreateClassesDTO";
-import { Class } from "../infra/prisma/models/Class";
+import { Class } from "@modules/classes/domain/Class";
 
 interface IClassesRepository {
-  create(data: ICreateClassesDTO): Promise<Class>;
+  create(classes: Class): Promise<Class>;
   listAllClassesBySubject(subject_id: string): Promise<Class[]>;
   listAllClassesBySubjectTitle(subject_title: string): Promise<Class[]>;
   listClasses(): Promise<Class[]>;
