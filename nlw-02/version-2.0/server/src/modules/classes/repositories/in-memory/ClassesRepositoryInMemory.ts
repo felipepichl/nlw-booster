@@ -1,27 +1,14 @@
-import { ICreateClassesDTO } from "@modules/classes/dtos/ICreateClassesDTO";
-import { Class } from "@modules/classes/infra/prisma/models/Class";
+import { Class } from "@modules/classes/domain/Class";
 
 import { IClassesRepository } from "../IClassesRepository";
 
 class ClassesRepositoryInMemory implements IClassesRepository {
   private classes: Class[] = [];
 
-  async create({
-    cost,
-    subject_id,
-    user_id,
-  }: ICreateClassesDTO): Promise<Class> {
-    const objectClass = new Class();
+  async create(classes: Class): Promise<Class> {
+    this.classes.push(classes);
 
-    Object.assign(objectClass, {
-      cost,
-      fk_subject_id: subject_id,
-      fk_user_id: user_id,
-    });
-
-    this.classes.push(objectClass);
-
-    return objectClass;
+    return this.classes[0];
   }
 
   async listAllClassesBySubject(subject_id: string): Promise<Class[]> {
