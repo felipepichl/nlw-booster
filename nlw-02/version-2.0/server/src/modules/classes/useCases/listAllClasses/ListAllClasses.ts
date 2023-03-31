@@ -1,6 +1,6 @@
+import { Class } from "@modules/classes/domain/Class";
 import { injectable, inject } from "tsyringe";
 
-import { Class } from "../../infra/prisma/models/Class";
 import { IClassesRepository } from "../../repositories/IClassesRepository";
 
 @injectable()
