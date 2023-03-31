@@ -1,3 +1,5 @@
+import { Class } from "@modules/classes/domain/Class";
+import { Subject } from "@modules/subjetcs/domain/Subject";
 import { SubjectsRepositoryInMemory } from "@modules/subjetcs/repositories/in-memory/SubjectsRepositoryInMemory";
 
 import { AppError } from "@shared/errors/AppError";
@@ -21,20 +23,28 @@ describe("List Classes by Subject", () => {
   });
 
   it("should be able to list all clsses by subject id", async () => {
-    const subject = await subjectsRepositoryInMemory.create({
-      title: "subject_test",
+    const subject = Subject.create({
+      props: {
+        title: "subject_title",
+      },
     });
 
     const { id } = subject;
 
-    await classesRepositoryInMemory.create({
-      cost: 100,
-      subject_id: id,
-      user_id: "user_id",
+    await subjectsRepositoryInMemory.create(subject);
+
+    const classes = Class.create({
+      props: {
+        coast: 100,
+        subject_id: String(id),
+        user_id: "user_id",
+      },
     });
 
+    await classesRepositoryInMemory.create(classes);
+
     const allClasses = await listAllClassesBySubject.execute({
-      subject_id: id,
+      subject_id: String(id),
     });
 
     expect(allClasses[0]).toHaveProperty("id");

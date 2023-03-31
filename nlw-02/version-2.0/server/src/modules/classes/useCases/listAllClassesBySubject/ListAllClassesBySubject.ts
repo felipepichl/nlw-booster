@@ -1,4 +1,4 @@
-import { Class } from "@modules/classes/infra/prisma/models/Class";
+import { Class } from "@modules/classes/domain/Class";
 import { IClassesRepository } from "@modules/classes/repositories/IClassesRepository";
 import { ISubjetcsRepository } from "@modules/subjetcs/repositories/ISubjetcsRepository";
 

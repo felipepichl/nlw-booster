@@ -13,7 +13,7 @@ class ClassesRepositoryInMemory implements IClassesRepository {
 
   async listAllClassesBySubject(subject_id: string): Promise<Class[]> {
     return this.classes.filter(
-      (objectClass) => String(objectClass.props.subject.id) === subject_id
+      (objectClass) => String(objectClass.props.subject_id) === subject_id
     );
   }
 
