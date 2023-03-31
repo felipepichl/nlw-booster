@@ -20,14 +20,12 @@ class CreateClassesUseCase {
     const classes = Class.create({
       props: {
         coast,
+        subject_id,
+        user_id,
       },
     });
 
-    const classes = await this.classesRepository.create({
-      cost,
-      subject_id,
-      user_id,
-    });
+    await this.classesRepository.create(classes);
 
     return classes;
   }

@@ -5,6 +5,8 @@ describe("Create Class", () => {
     const classes = Class.create({
       props: {
         coast: 100,
+        user_id: "user_id",
+        subject_id: "subject_id",
       },
     });
 

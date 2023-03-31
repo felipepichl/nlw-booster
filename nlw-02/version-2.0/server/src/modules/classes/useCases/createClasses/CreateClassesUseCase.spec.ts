@@ -13,7 +13,7 @@ describe("Create Classes", () => {
 
   it("shoul be abre to create a new class", async () => {
     const classes = await createClassesUseCase.execute({
-      cost: 100,
+      coast: 100,
       subject_id: "subject_id",
       user_id: "user_id",
     });

@@ -7,12 +7,12 @@ import { UniqueEntityID } from "@shared/core/domain/UniqueEntityID";
 
 interface IClassProps {
   coast: number;
-  user: User;
+  user?: User;
   user_id: string;
-  subject: Subject;
+  subject?: Subject;
   subject_id: string;
-  created_at: Date;
-  updated_at: Date;
+  created_at?: Date;
+  updated_at?: Date;
 }
 
 class Class extends AggregateRoot<IClassProps> {
@@ -22,6 +22,14 @@ class Class extends AggregateRoot<IClassProps> {
 
   get coast(): number {
     return this.coast;
+  }
+
+  get user_id(): string {
+    return this.user_id;
+  }
+
+  get subject_id(): string {
+    return this.subject_id;
   }
 
   get created_at(): Date {
