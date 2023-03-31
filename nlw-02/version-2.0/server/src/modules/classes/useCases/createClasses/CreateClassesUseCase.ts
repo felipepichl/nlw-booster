@@ -1,10 +1,10 @@
+import { Class } from "@modules/classes/domain/Class";
 import { inject, injectable } from "tsyringe";
 
-import { Class } from "../../infra/prisma/models/Class";
 import { IClassesRepository } from "../../repositories/IClassesRepository";
 
 interface IRequest {
-  cost: number;
+  coast: number;
   subject_id: string;
   user_id: string;
 }
@@ -16,7 +16,13 @@ class CreateClassesUseCase {
     private classesRepository: IClassesRepository
   ) {}
 
-  async execute({ cost, subject_id, user_id }: IRequest): Promise<Class> {
+  async execute({ coast, subject_id, user_id }: IRequest): Promise<Class> {
+    const classes = Class.create({
+      props: {
+        coast,
+      },
+    });
+
     const classes = await this.classesRepository.create({
       cost,
       subject_id,

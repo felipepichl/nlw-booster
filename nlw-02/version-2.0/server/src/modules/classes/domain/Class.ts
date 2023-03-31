@@ -8,7 +8,9 @@ import { UniqueEntityID } from "@shared/core/domain/UniqueEntityID";
 interface IClassProps {
   coast: number;
   user: User;
+  user_id: string;
   subject: Subject;
+  subject_id: string;
   created_at: Date;
   updated_at: Date;
 }
