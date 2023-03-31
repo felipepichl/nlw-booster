@@ -1,9 +1,14 @@
+import { Subject } from "@modules/subjetcs/domain/Subject";
+import { User } from "@modules/users/domain/User";
+
 import { AggregateRoot } from "@shared/core/domain/AggregateRoot";
 import { ICreateProps } from "@shared/core/domain/ICreateProps";
 import { UniqueEntityID } from "@shared/core/domain/UniqueEntityID";
 
 interface IClassProps {
   coast: number;
+  user: User;
+  subject: Subject;
   created_at: Date;
   updated_at: Date;
 }
