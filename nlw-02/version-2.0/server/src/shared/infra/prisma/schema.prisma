@@ -38,8 +38,8 @@ model Subject {
 }
 
 model Class {
-  id   String @id @default(uuid())
-  cost Float
+  id    String @id @default(uuid())
+  coast Float
 
   user       User   @relation(fields: [fk_user_id], references: [id])
   fk_user_id String

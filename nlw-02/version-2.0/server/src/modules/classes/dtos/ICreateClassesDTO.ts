@@ -1,5 +1,5 @@
 interface ICreateClassesDTO {
-  cost: number;
+  coast: number;
   subject_id: string;
   user_id: string;
 }

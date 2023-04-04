@@ -5,13 +5,13 @@ import { CreateClassesUseCase } from "../../../../useCases/createClasses/CreateC
 
 class CreateClassesController {
   async handle(request: Request, response: Response): Promise<Response> {
-    const { cost, subject_id } = request.body;
+    const { coast, subject_id } = request.body;
     const { id: user_id } = request.user;
 
     const createClassesUseCase = container.resolve(CreateClassesUseCase);
 
     const classes = await createClassesUseCase.execute({
-      cost,
+      coast,
       subject_id,
       user_id,
     });
