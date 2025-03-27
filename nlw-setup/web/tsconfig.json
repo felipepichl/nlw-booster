@@ -1,0 +1,19 @@
+{
+  "files": [],
+  "references": [
+    // {
+    //   "path": "./tsconfig.app.json"
+    // },
+    {
+      "path": "./tsconfig.node.json"
+    }
+  ],
+  "compilerOptions": {
+    "jsx": "react-jsx",
+    "target": "es6",
+    "module": "es6",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true
+  }
+}
