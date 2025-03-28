@@ -1,14 +1,12 @@
-import './styles/global.css'
+import './styles/global.css';
 
-import { Habit } from './components/Habit'
+// import { Habit } from "./components/Habit"
 
-function App() {
-
+export function App() {
   return (
-    <>
-      <Habit completed={6} />
-    </>
+    <div className="flex min-h-screen items-center justify-center bg-red-300">
+      <h1 className='text-3xl font-bold text-blue-800'>Hello, Tailwind!</h1>
+    </div> 
   )
 }
 
-export default App

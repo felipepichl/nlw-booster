@@ -1,15 +1,19 @@
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  purge: [],
-  darkMode: false, // or 'media' or 'class'
   content: [
     './src/**/*.tsx',
     './index.html'
   ],
   theme: {
-    extend: {},
-  },
-  variants: {
-    extend: {},
+    extend: {
+      colors: {
+        background: '#09090A'
+      },
+
+      gridTemplateRows: {
+        7: 'repeat(7, minmax(0, 1fr))',
+      }
+    },
   },
   plugins: [],
 }
